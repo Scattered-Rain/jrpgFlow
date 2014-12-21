@@ -23,5 +23,6 @@ public class JrpgFlow extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
+		System.out.println("First Propper Commit");
 	}
 }
