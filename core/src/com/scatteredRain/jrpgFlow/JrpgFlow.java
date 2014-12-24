@@ -5,15 +5,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class JrpgFlow extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
+	TextureRegion img;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		TextureAtlas a = new TextureAtlas(Gdx.files.internal("img/packed/test.atlas"));
+		AtlasRegion t = a.findRegion("portal");
+		img = t.split(t.getRegionWidth()/2, t.getRegionHeight()/1)[0][0];
 	}
 
 	@Override
@@ -23,6 +28,5 @@ public class JrpgFlow extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
-		System.out.println("First Propper Commit");
 	}
 }
