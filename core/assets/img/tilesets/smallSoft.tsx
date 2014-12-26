@@ -89,6 +89,12 @@
  <tile id="291" terrain="2,0,2,2"/>
  <tile id="292" terrain="0,2,2,2"/>
  <tile id="293" terrain="0,0,0,0"/>
+ <tile id="320">
+  <animation>
+   <frame tileid="320" duration="500"/>
+   <frame tileid="322" duration="500"/>
+  </animation>
+ </tile>
  <tile id="323" terrain=",6,6,6"/>
  <tile id="324" terrain="6,,6,6"/>
  <tile id="352" terrain=",,,6"/>
