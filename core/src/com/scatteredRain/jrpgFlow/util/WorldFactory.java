@@ -9,10 +9,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader.Parameters;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.scatteredRain.jrpgFlow.artemis.components.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
 
 /** Builds And Returns Artemis Worlds */
@@ -23,7 +25,8 @@ public class WorldFactory {
 		World world = new World();
 		
 		//Systems
-		world.setSystem(new MapRenderSystem(), false);
+		world.setSystem(new MapRenderSystem(false), false);
+		world.setSystem(new MapRenderSystem(true), false);
 		
 		world.initialize();
 		//Entities
@@ -31,14 +34,18 @@ public class WorldFactory {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		OrthographicCamera camera = new OrthographicCamera(1, h/w);
-		camera.zoom = 5f;
+		camera.position.x = 16;
+		camera.position.y = 16;
+		camera.zoom = 15f;
 		camera.update();
 		e.addComponent(new OrthographicCameraComponent(camera));
 		TmxMapLoader mapLoader = new TmxMapLoader();
 		Parameters mapLoadParams = new Parameters();
-		//TODO: Create Some Maps Using Tilesets 1024 or less
-		TiledMap map = mapLoader.load("maps/Island.tmx");
+		TiledMap map = mapLoader.load("maps/first.tmx");
 		e.addComponent(new MapComponent(map));
+		//TODO: Get Tile size Into Some Constants Class
+		OrthogonalTiledMapRenderer mapRenderer  = new OrthogonalTiledMapRenderer(map, 1f/16f);
+		e.addComponent(new TileMapRenderComponent(mapRenderer));
 		
 		return world;
 	}

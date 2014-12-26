@@ -27,6 +27,7 @@ public class JrpgFlow extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		long t = System.currentTimeMillis();
 		Gdx.gl.glClearColor(12f/255f, 12f/255f, 12f/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float delta = Gdx.graphics.getDeltaTime();
@@ -34,6 +35,7 @@ public class JrpgFlow extends ApplicationAdapter {
 			world.setDelta(delta);
 			world.process();
 		}
+		//System.out.println(System.currentTimeMillis()-t);
 	}
 	
 	@Override
