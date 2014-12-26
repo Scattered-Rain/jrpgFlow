@@ -21,7 +21,6 @@ public class Autopacker {
 		Settings settings = new Settings();
 		settings.maxWidth = DIMENSIONS;
 		settings.maxHeight = DIMENSIONS;
-		//settings.debug = true;
 		TexturePacker.process(settings, INPUT+"/"+folderName, OUTPUT, atlasName);
 	}
 	
