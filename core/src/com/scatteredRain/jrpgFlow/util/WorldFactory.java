@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader.Parameters;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.scatteredRain.jrpgFlow.artemis.components.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.TileMapRenderComponent;
@@ -30,7 +31,7 @@ public class WorldFactory {
 		
 		world.initialize();
 		//Entities
-		Entity e = world.createEntity();
+		Entity cameraEntity = world.createEntity();
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		OrthographicCamera camera = new OrthographicCamera(1, h/w);
@@ -38,16 +39,22 @@ public class WorldFactory {
 		camera.position.y = 16;
 		camera.zoom = 15f;
 		camera.update();
-		e.addComponent(new OrthographicCameraComponent(camera));
-		TmxMapLoader mapLoader = new TmxMapLoader();
-		Parameters mapLoadParams = new Parameters();
-		TiledMap map = mapLoader.load("maps/first.tmx");
-		e.addComponent(new MapComponent(map));
-		//TODO: Get Tile size Into Some Constants Class
-		OrthogonalTiledMapRenderer mapRenderer  = new OrthogonalTiledMapRenderer(map, 1f/16f);
-		e.addComponent(new TileMapRenderComponent(mapRenderer));
-		
+		cameraEntity.addComponent(new OrthographicCameraComponent(camera));
+		Entity mapEntity = world.createEntity();
+		buildMapEntity(mapEntity, "maps/first.tmx");
 		return world;
 	}
+	
+	/** Loads New Map And Attaches All Map Components To Given Entity */
+	private static Entity buildMapEntity(Entity e, String mapFile){
+		TmxMapLoader mapLoader = new TmxMapLoader();
+		Parameters mapLoadParams = new Parameters();
+		TiledMap map = mapLoader.load(mapFile);
+		e.addComponent(new MapComponent(map));
+		e.addComponent(new TileMapRenderComponent(map));
+		e.addComponent(new MapCollisionComponent(map));
+		return e;
+	}
+	
 
 }

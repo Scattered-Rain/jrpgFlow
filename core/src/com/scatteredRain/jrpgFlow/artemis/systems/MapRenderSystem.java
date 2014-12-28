@@ -18,21 +18,18 @@ import com.scatteredRain.jrpgFlow.artemis.components.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.TileMapRenderComponent;
 
+/** System Designated To Render All Maps In World */
 @Wire
 public class MapRenderSystem extends EntitySystem{
-	
-	/** The String That Identifies A Layer As A Top Layer */
-	private static final String TOP_LAYER_PROPERTY = "top";
 
 	ComponentMapper<TileMapRenderComponent> mapRenderComp;
 	ComponentMapper<OrthographicCameraComponent> cameraComp;
-	ComponentMapper<MapComponent> mapComp;
 	
 	/** Whether This System Should Render The Top Layers Of The Map Or Everything but */
 	private boolean renderTop;
 	
 	public MapRenderSystem(boolean renderTop) {
-		super(Aspect.getAspectForOne(TileMapRenderComponent.class, OrthographicCameraComponent.class, MapComponent.class));
+		super(Aspect.getAspectForOne(TileMapRenderComponent.class, OrthographicCameraComponent.class));
 		this.renderTop = renderTop;
 	}
 
@@ -49,35 +46,18 @@ public class MapRenderSystem extends EntitySystem{
 		//Find Entities With Map And MapRenderer, And Render Them
 		for(Entity e : entities){
 			//NOTE: Assertion That The Entity Holding A Map Is Also Holding Its Map Renderer
-			if(mapRenderComp.has(e) && mapComp.has(e)){
-				//Find Layers To Render Of Map
-				TiledMap map = mapComp.get(e).getMap();
-				Iterator<MapLayer> iterator = map.getLayers().iterator();
-				ArrayList<Integer> layersToRender = new ArrayList<Integer>();
-				int counter = -1;
-				while(iterator.hasNext()){
-					counter++;
-					MapLayer layer = iterator.next();
-					if(layer instanceof TiledMapTileLayer){
-						TiledMapTileLayer tileLayer = (TiledMapTileLayer)layer;
-						if(tileLayer.isVisible()){
-							if(tileLayer.getProperties().containsKey(TOP_LAYER_PROPERTY)){
-								if(renderTop){
-									layersToRender.add(counter);
-								}
-							}
-							else if(!renderTop){
-								layersToRender.add(counter);
-							}
-						}
-					}
+			if(mapRenderComp.has(e)){
+				TileMapRenderComponent mapRend = mapRenderComp.get(e);
+				//Prepare Layer List
+				int[] renderList = new int[0];
+				if(renderTop){
+					renderList = mapRend.getTopLayers();
 				}
-				int[] renderList = new int[layersToRender.size()];
-				for(int c=0; c<renderList.length; c++){
-					renderList[c] = layersToRender.get(c);
+				else{
+					renderList = mapRend.getGroundLayers();
 				}
 				//Prepare MapRenderer And Render
-				OrthogonalTiledMapRenderer mapRenderer = mapRenderComp.get(e).getMapRenderer();
+				OrthogonalTiledMapRenderer mapRenderer = mapRend.getMapRenderer();
 				mapRenderer.setView(camera);
 				mapRenderer.render(renderList);
 			}

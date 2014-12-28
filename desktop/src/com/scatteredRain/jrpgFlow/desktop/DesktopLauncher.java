@@ -11,11 +11,14 @@ public class DesktopLauncher {
 	private static final boolean PACKING = true;
 	
 	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		if(PACKING){
 			pack();
 		}
 		//Start Actual Game
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.resizable = false;
+		config.title = "JRPG Flow";
+		config.fullscreen = false;
 		new LwjglApplication(new JrpgFlow(), config);
 	}
 	
