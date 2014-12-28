@@ -12,10 +12,10 @@ import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader.Parameters;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.scatteredRain.jrpgFlow.artemis.components.MapCollisionComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.TileMapRenderComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
 
 /** Builds And Returns Artemis Worlds */
@@ -37,7 +37,7 @@ public class WorldFactory {
 		OrthographicCamera camera = new OrthographicCamera(1, h/w);
 		camera.position.x = 16;
 		camera.position.y = 16;
-		camera.zoom = 15f;
+		camera.zoom = 16f;
 		camera.update();
 		cameraEntity.addComponent(new OrthographicCameraComponent(camera));
 		Entity mapEntity = world.createEntity();

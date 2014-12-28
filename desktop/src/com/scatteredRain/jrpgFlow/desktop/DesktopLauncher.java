@@ -24,7 +24,7 @@ public class DesktopLauncher {
 	
 	/** Initializes All Packing */
 	private static void pack(){
-		Autopacker.packFolder("test");
+		Autopacker.packFolder("sprites");
 	}
 	
 }

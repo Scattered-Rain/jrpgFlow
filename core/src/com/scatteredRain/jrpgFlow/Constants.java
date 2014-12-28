@@ -4,6 +4,9 @@ import com.scatteredRain.jrpgFlow.util.Point;
 
 public class Constants {
 	
+	/** Pixel Size Of Any Tile */
+	public static final int TILE_SIZE = 16;
+	
 	/** The String That Identifies A Layer As A Top Layer */
 	public static final String TOP_LAYER_PROPERTY = "top";
 	
@@ -49,7 +52,7 @@ public class Constants {
 			x++;
 		}
 		else if(direction==DOWN){
-			y--;
+			y++;
 		}
 		else if(direction==LEFT){
 			x--;

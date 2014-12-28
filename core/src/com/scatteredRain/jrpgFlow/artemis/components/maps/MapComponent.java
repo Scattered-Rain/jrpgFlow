@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.components;
+package com.scatteredRain.jrpgFlow.artemis.components.maps;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

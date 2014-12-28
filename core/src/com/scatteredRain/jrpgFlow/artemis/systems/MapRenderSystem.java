@@ -14,9 +14,9 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.scatteredRain.jrpgFlow.artemis.components.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.TileMapRenderComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 
 /** System Designated To Render All Maps In World */
 @Wire
