@@ -43,9 +43,8 @@ public class MapRenderSystem extends EntitySystem{
 				break;
 			}
 		}
-		//Find Entities With Map And MapRenderer, And Render Them
+		//Find Entities With MapRenderer, And Render Them
 		for(Entity e : entities){
-			//NOTE: Assertion That The Entity Holding A Map Is Also Holding Its Map Renderer
 			if(mapRenderComp.has(e)){
 				TileMapRenderComponent mapRend = mapRenderComp.get(e);
 				//Prepare Layer List

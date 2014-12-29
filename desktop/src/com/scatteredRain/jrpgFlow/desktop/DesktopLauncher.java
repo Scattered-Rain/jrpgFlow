@@ -19,6 +19,8 @@ public class DesktopLauncher {
 		config.resizable = false;
 		config.title = "JRPG Flow";
 		config.fullscreen = false;
+		config.width = 640;
+		config.height = 480;
 		new LwjglApplication(new JrpgFlow(), config);
 	}
 	
