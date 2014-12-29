@@ -80,7 +80,7 @@ public class WorldFactory {
 		TextureRegion[][] regions = atlasRegion.split(atlasRegion.getRegionWidth()/4, atlasRegion.getRegionHeight()/4);
 		e.addComponent(new ActiveCharacterSpriteComponent(regions[2][0]));
 		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*16.5f, TILE_SIZE*16));
-		e.addComponent(new ActiveCharacterSpriteAnimationComponent(new Animation(regions[2], Animation.LOOP)));
+		e.addComponent(new ActiveCharacterSpriteAnimationComponent(new Animation(regions[2], Animation.LOOP, 2)));
 		return e;
 	}
 	
