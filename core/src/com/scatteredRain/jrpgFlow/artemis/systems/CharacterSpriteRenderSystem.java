@@ -50,8 +50,9 @@ public class CharacterSpriteRenderSystem extends EntitySystem{
 				TextureRegion sprite = spriteComp.get(e).getActiveSprite();
 				float x = locationComp.get(e).getX();
 				float y = locationComp.get(e).getY();
-				x = x - ((((float)sprite.getRegionWidth())/TILE_SIZE)/2f);
-				batch.draw(sprite, x, y, ((float)sprite.getRegionWidth())/TILE_SIZE, ((float)sprite.getRegionHeight())/TILE_SIZE);
+				x = (int)(x - (((float)sprite.getRegionWidth())/2f));
+				y = (int)y;
+				batch.draw(sprite, x, y);
 			}
 		}
 		batch.end();

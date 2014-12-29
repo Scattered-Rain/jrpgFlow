@@ -28,7 +28,7 @@ public class TileMapRenderComponent extends Component{
 	public TileMapRenderComponent(TiledMap map){
 		//Create Map Renderer
 		//TODO: Get Tile size Into Some Constants Class
-		this.mapRenderer  = new OrthogonalTiledMapRenderer(map, 1f/TILE_SIZE);
+		this.mapRenderer  = new OrthogonalTiledMapRenderer(map, 1);
 		//Figure Out The Layers That Shall Be Rendered
 		Iterator<MapLayer> iterator = map.getLayers().iterator();
 		ArrayList<Integer> layersGround = new ArrayList<Integer>();

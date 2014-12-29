@@ -16,15 +16,19 @@ import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader.Parameters;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import static com.scatteredRain.jrpgFlow.Constants.*;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.SpriteBatchComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
+import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
+import com.scatteredRain.jrpgFlow.general.Animation;
 
 /** Builds And Returns Artemis Worlds */
 public class WorldFactory {
@@ -34,6 +38,7 @@ public class WorldFactory {
 		World world = new World();
 		
 		//Systems
+		world.setSystem(new CharacterSpriteAnimationUpdateSystem(), false);
 		world.setSystem(new MapRenderSystem(false), false);
 		world.setSystem(new CharacterSpriteRenderSystem(), false);
 		world.setSystem(new MapRenderSystem(true), false);
@@ -44,9 +49,9 @@ public class WorldFactory {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		OrthographicCamera camera = new OrthographicCamera(1, h/w);
-		camera.position.x = 16;
-		camera.position.y = 16;
-		camera.zoom = (((float)h)/w)*12;
+		camera.position.x = TILE_SIZE*16;
+		camera.position.y = TILE_SIZE*16;
+		camera.zoom = TILE_SIZE*12;
 		camera.update();
 		generalEntity.addComponent(new OrthographicCameraComponent(camera));
 		generalEntity.addComponent(new SpriteBatchComponent(new SpriteBatch()));
@@ -74,7 +79,8 @@ public class WorldFactory {
 		AtlasRegion atlasRegion = atlas.findRegion("strawhatBoy");
 		TextureRegion[][] regions = atlasRegion.split(atlasRegion.getRegionWidth()/4, atlasRegion.getRegionHeight()/4);
 		e.addComponent(new ActiveCharacterSpriteComponent(regions[2][0]));
-		e.addComponent(new CharacterSpriteLocationComponent(16.5f, 16));
+		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*16.5f, TILE_SIZE*16));
+		e.addComponent(new ActiveCharacterSpriteAnimationComponent(new Animation(regions[2], Animation.LOOP)));
 		return e;
 	}
 	
