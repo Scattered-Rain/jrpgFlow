@@ -14,6 +14,7 @@ public class ActiveCharacterSpriteAnimationComponent extends Component{
 	@Getter
 	private Animation animation;
 	
+	
 	/** Constructs New Component, Given Animation Will Be Reset */
 	public ActiveCharacterSpriteAnimationComponent(Animation animation){
 		this.animation = animation;

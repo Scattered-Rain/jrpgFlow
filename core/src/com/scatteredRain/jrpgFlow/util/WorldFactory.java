@@ -24,6 +24,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
@@ -79,7 +80,10 @@ public class WorldFactory {
 		AtlasRegion atlasRegion = atlas.findRegion("strawhatBoy");
 		TextureRegion[][] regions = atlasRegion.split(atlasRegion.getRegionWidth()/4, atlasRegion.getRegionHeight()/4);
 		e.addComponent(new ActiveCharacterSpriteComponent(regions[2][0]));
-		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*16.5f, TILE_SIZE*16));
+		int xx = 16;
+		int yy = 16;
+		e.addComponent(new CharacterLocationComponent(xx, yy));
+		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*xx+TILE_SIZE*0.5f, TILE_SIZE*yy));
 		e.addComponent(new ActiveCharacterSpriteAnimationComponent(new Animation(regions[2], Animation.LOOP, 2)));
 		return e;
 	}
