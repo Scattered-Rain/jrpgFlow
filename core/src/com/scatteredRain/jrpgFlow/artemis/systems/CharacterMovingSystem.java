@@ -9,22 +9,24 @@ import com.artemis.utils.ImmutableBag;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterInMoveComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMovingComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.util.Point;
+
+//TODO: Finish This Class!
 
 @Wire
 public class CharacterMovingSystem extends EntitySystem{
 	
 	ComponentMapper<DesiredCharacterMovementComponent> desMoveComp;
-	ComponentMapper<CharacterInMoveComponent> isMoveComp;
+	ComponentMapper<CharacterMovingComponent> isMoveComp;
 	ComponentMapper<CharacterLocationComponent> locationComp;
 	
 	ComponentMapper<MapCollisionComponent> mapCollComp;
 
 	public CharacterMovingSystem() {
-		super(Aspect.getAspectForOne(DesiredCharacterMovementComponent.class, CharacterInMoveComponent.class, CharacterLocationComponent.class, MapCollisionComponent.class));
+		super(Aspect.getAspectForOne(DesiredCharacterMovementComponent.class, CharacterMovingComponent.class, CharacterLocationComponent.class, MapCollisionComponent.class));
 	}
 
 	@Override
@@ -47,10 +49,14 @@ public class CharacterMovingSystem extends EntitySystem{
 						desMoveComp.get(e).setStationary();
 						isMoveComp.get(e).setMoving(true);
 						Point dest = calcTarget(x, y, direction);
+						
+						
 						locationComp.get(e).setX(dest.getX());
 						locationComp.get(e).setY(dest.getY());
+						
 						//TODO: Send Event To Sprite Movement System
 						//TODO: Send Event To Map Collision Update System
+						
 					}
 				}
 			}
