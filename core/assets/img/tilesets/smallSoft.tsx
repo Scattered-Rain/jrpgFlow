@@ -1101,32 +1101,42 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="448">
+ <tile id="448" terrain=",,,8">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="450">
+ <tile id="449" terrain=",,8,8">
+  <properties>
+   <property name="collUP" value=""/>
+  </properties>
+ </tile>
+ <tile id="450" terrain=",,8,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="451">
+ <tile id="451" terrain="8,8,8,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="452">
+ <tile id="452" terrain="8,8,,8">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="453">
+ <tile id="453" terrain=",,,9">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="455">
+ <tile id="454" terrain=",,9,9">
+  <properties>
+   <property name="collUP" value=""/>
+  </properties>
+ </tile>
+ <tile id="455" terrain=",,9,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1206,24 +1216,34 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="480">
+ <tile id="480" terrain=",8,,8">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="481" terrain="8,8,8,8"/>
- <tile id="482">
+ <tile id="482" terrain="8,,8,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="485">
+ <tile id="483" terrain="8,,8,8">
+  <properties>
+   <property name="collUP" value=""/>
+  </properties>
+ </tile>
+ <tile id="484" terrain=",8,8,8">
+  <properties>
+   <property name="collUP" value=""/>
+  </properties>
+ </tile>
+ <tile id="485" terrain=",9,,9">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="486" terrain="9,9,9,9"/>
- <tile id="487">
+ <tile id="487" terrain="9,,9,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1313,32 +1333,42 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="512">
+ <tile id="512" terrain=",8,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="513">
+ <tile id="513" terrain="8,8,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="514">
+ <tile id="514" terrain="8,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="517">
+ <tile id="515" terrain="9,9,9,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="518">
+ <tile id="516" terrain="9,9,,9">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="519">
+ <tile id="517" terrain=",9,,">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
+ <tile id="518" terrain="9,9,,">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
+ <tile id="519" terrain="9,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1383,32 +1413,42 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="544">
+ <tile id="544" terrain=",,,11">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="545">
+ <tile id="545" terrain=",,11,11">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="546">
+ <tile id="546" terrain=",,11,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="549">
+ <tile id="547" terrain="9,,9,9">
+  <properties>
+   <property name="collUP" value=""/>
+  </properties>
+ </tile>
+ <tile id="548" terrain=",9,9,9">
+  <properties>
+   <property name="collUP" value=""/>
+  </properties>
+ </tile>
+ <tile id="549" terrain=",,,12">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="550">
+ <tile id="550" terrain=",,12,12">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="551">
+ <tile id="551" terrain=",,12,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1433,26 +1473,26 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="576">
+ <tile id="576" terrain=",11,,11">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="577" terrain="11,11,11,11"/>
- <tile id="578">
+ <tile id="578" terrain="11,,11,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="579" terrain="13,13,13,"/>
  <tile id="580" terrain="13,13,,13"/>
- <tile id="581">
+ <tile id="581" terrain=",12,,12">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="582" terrain="12,12,12,12"/>
- <tile id="583">
+ <tile id="583" terrain="12,,12,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1547,34 +1587,34 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="608">
+ <tile id="608" terrain=",11,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="609">
+ <tile id="609" terrain="11,11,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="610">
+ <tile id="610" terrain="11,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="611" terrain="13,,13,13"/>
  <tile id="612" terrain=",13,13,13"/>
- <tile id="613">
+ <tile id="613" terrain=",12,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="614">
+ <tile id="614" terrain="12,12,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="615">
+ <tile id="615" terrain="12,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1639,32 +1679,32 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="640">
+ <tile id="640" terrain="11,11,11,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="641">
+ <tile id="641" terrain="11,11,,11">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="642">
+ <tile id="642" terrain="14,14,14,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="643">
+ <tile id="643" terrain="14,14,,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="644">
+ <tile id="644" terrain="12,12,12,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="645">
+ <tile id="645" terrain="12,12,,12">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1749,32 +1789,32 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="672">
+ <tile id="672" terrain="11,,11,11">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="673">
+ <tile id="673" terrain=",11,11,11">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="674">
+ <tile id="674" terrain="14,,14,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="675">
+ <tile id="675" terrain=",14,14,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="676">
+ <tile id="676" terrain="12,,12,12">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="677">
+ <tile id="677" terrain=",12,12,12">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1879,32 +1919,32 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="704">
+ <tile id="704" terrain=",,,13">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="705">
+ <tile id="705" terrain=",,13,13">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="706">
+ <tile id="706" terrain=",,13,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="707">
+ <tile id="707" terrain=",,,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="708">
+ <tile id="708" terrain=",,14,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="709">
+ <tile id="709" terrain=",,14,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -1959,32 +1999,32 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="736">
+ <tile id="736" terrain=",13,,13">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="737">
+ <tile id="737" terrain="13,13,13,13">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="738">
+ <tile id="738" terrain="13,,13,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="739">
+ <tile id="739" terrain=",14,,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="740">
+ <tile id="740" terrain="14,14,14,14">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="741">
+ <tile id="741" terrain="14,,14,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -2019,32 +2059,32 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="768">
+ <tile id="768" terrain=",13,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="769">
+ <tile id="769" terrain="13,13,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="770">
+ <tile id="770" terrain="13,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="771">
+ <tile id="771" terrain=",14,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="772">
+ <tile id="772" terrain="14,14,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="773">
+ <tile id="773" terrain="14,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -2119,6 +2159,11 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
+ <tile id="803" terrain=",,,15"/>
+ <tile id="804" terrain=",,15,15"/>
+ <tile id="805" terrain=",,15,"/>
+ <tile id="806" terrain=",15,15,15"/>
+ <tile id="807" terrain="15,,15,15"/>
  <tile id="808">
   <properties>
    <property name="coll" value=""/>
@@ -2209,7 +2254,11 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
+ <tile id="835" terrain=",15,,15"/>
  <tile id="836" terrain="15,15,15,15"/>
+ <tile id="837" terrain="15,,15,"/>
+ <tile id="838" terrain="15,15,,15"/>
+ <tile id="839" terrain="15,15,15,"/>
  <tile id="840">
   <properties>
    <property name="coll" value=""/>
@@ -2275,21 +2324,24 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="864">
+ <tile id="864" terrain=",,,10">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="865">
+ <tile id="865" terrain=",,10,10">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="866">
+ <tile id="866" terrain=",,10,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
+ <tile id="867" terrain=",15,,"/>
+ <tile id="868" terrain="15,15,,"/>
+ <tile id="869" terrain="15,,,"/>
  <tile id="870">
   <properties>
    <property name="coll" value=""/>
@@ -2365,38 +2417,38 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="896">
+ <tile id="896" terrain=",10,,10">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="897" terrain="10,10,10,10"/>
- <tile id="898">
+ <tile id="898" terrain="10,,10,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="899">
+ <tile id="899" terrain=",,,16">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="900">
+ <tile id="900" terrain=",,16,16">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="901">
+ <tile id="901" terrain=",,16,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="902">
+ <tile id="902" terrain=",16,16,16">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="903">
+ <tile id="903" terrain="16,,16,16">
   <properties>
    <property name="coll" value=""/>
   </properties>
@@ -2436,75 +2488,75 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="928">
+ <tile id="928" terrain=",10,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="929">
+ <tile id="929" terrain="10,10,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="930">
+ <tile id="930" terrain="10,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="931">
+ <tile id="931" terrain=",16,,16">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="932" terrain="16,16,16,16"/>
- <tile id="933">
+ <tile id="933" terrain="16,,16,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="934">
+ <tile id="934" terrain="16,16,,16">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="935">
+ <tile id="935" terrain="16,16,16,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="960">
+ <tile id="960" terrain=",10,10,10">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="961">
+ <tile id="961" terrain="10,,10,10">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="963">
+ <tile id="963" terrain=",16,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="964">
+ <tile id="964" terrain="16,16,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="965">
+ <tile id="965" terrain="16,,,">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
  <tile id="966" terrain="16,16,16,16"/>
  <tile id="967" terrain="16,16,16,16"/>
- <tile id="992">
+ <tile id="992" terrain="10,10,,10">
   <properties>
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="993">
+ <tile id="993" terrain="10,10,10,">
   <properties>
    <property name="coll" value=""/>
   </properties>
