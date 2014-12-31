@@ -20,6 +20,7 @@ allprojects {
         aiVersion = '1.4.0'
         lombokVersion = '1.14.8'
         artemisVersion = '0.7.1'
+        tweenVersion = '6.3.3'
     }
 
     repositories {
@@ -51,6 +52,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "org.projectlombok:lombok:$lombokVersion"
 		compile "net.onedaybeard.artemis:artemis-odb:$artemisVersion"
+		compile fileTree(dir: "../libs", include: "*.jar")
     }
 }
 

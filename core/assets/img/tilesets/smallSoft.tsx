@@ -2549,8 +2549,6 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="966" terrain="16,16,16,16"/>
- <tile id="967" terrain="16,16,16,16"/>
  <tile id="992" terrain="10,10,,10">
   <properties>
    <property name="coll" value=""/>
@@ -2581,6 +2579,4 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="998" terrain="16,16,16,16"/>
- <tile id="999" terrain="16,16,16,16"/>
 </tileset>
