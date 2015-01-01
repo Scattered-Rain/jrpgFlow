@@ -2,6 +2,9 @@ package com.scatteredRain.jrpgFlow;
 
 import java.util.ArrayList;
 
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenManager;
+
 import com.artemis.World;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -12,7 +15,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.scatteredRain.jrpgFlow.tween.FloatPointTweener;
+import com.scatteredRain.jrpgFlow.util.FloatPoint;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
+import static com.scatteredRain.jrpgFlow.Constants.*;
 
 public class JrpgFlow extends ApplicationAdapter {
 	
@@ -23,6 +29,13 @@ public class JrpgFlow extends ApplicationAdapter {
 	public void create () {
 		activeWorlds = new ArrayList<World>();
 		activeWorlds.add(WorldFactory.buildMapWorld());
+		
+		setupTween();
+	}
+	
+	private void setupTween(){
+		TWEEN_MANAGER = new TweenManager();
+		Tween.registerAccessor(FloatPoint.class, new FloatPointTweener());
 	}
 
 	@Override
@@ -32,6 +45,7 @@ public class JrpgFlow extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float delta = Gdx.graphics.getDeltaTime();
 		for(World world : activeWorlds){
+			TWEEN_MANAGER.update(delta);
 			world.setDelta(delta);
 			world.process();
 		}

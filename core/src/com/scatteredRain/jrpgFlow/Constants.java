@@ -1,8 +1,13 @@
 package com.scatteredRain.jrpgFlow;
 
+import aurelienribon.tweenengine.TweenManager;
+
 import com.scatteredRain.jrpgFlow.util.Point;
 
 public class Constants {
+	
+	/** Globally Used Tween Manager */
+	public static TweenManager TWEEN_MANAGER;
 	
 	/** Pixel Size Of Any Tile */
 	public static final int TILE_SIZE = 16;
