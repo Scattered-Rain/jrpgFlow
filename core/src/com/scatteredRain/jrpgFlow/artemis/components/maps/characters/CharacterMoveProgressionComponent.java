@@ -28,7 +28,7 @@ public class CharacterMoveProgressionComponent extends Component{
 	
 	public void setMoving(float moveDuration){
 		this.timer.reset();
-		Tween.to(timer, 0, 1f).target(1).ease(Linear.INOUT).start(TWEEN_MANAGER);
+		timer.start(moveDuration);
 	}
 	
 	/** Returns Progression Of Movement, 0 Means No Progression, 1 Means Move Finished And Currently Stationary */

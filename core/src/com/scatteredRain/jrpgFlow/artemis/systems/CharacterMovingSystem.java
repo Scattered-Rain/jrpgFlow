@@ -63,8 +63,6 @@ public class CharacterMovingSystem extends EntitySystem{
 						locationComp.get(e).setX(dest.getX());
 						locationComp.get(e).setY(dest.getY());
 						
-						System.out.println(x+" "+y+" | "+dest.getX()+" "+dest.getY());
-						
 						//Init Sprite Move (Tween)
 						if(spriteLocationComp.has(e)){
 							Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);

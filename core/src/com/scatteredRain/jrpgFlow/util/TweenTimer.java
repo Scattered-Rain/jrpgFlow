@@ -1,5 +1,8 @@
 package com.scatteredRain.jrpgFlow.util;
 
+import static com.scatteredRain.jrpgFlow.Constants.TWEEN_MANAGER;
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.equations.Linear;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -24,6 +27,11 @@ public class TweenTimer {
 	
 	public boolean isFinished(){
 		return (time>=1f);
+	}
+	
+	public void start(float duration){
+		reset();
+		Tween.to(this, 0, duration).target(1).ease(Linear.INOUT).start(TWEEN_MANAGER);
 	}
 
 }
