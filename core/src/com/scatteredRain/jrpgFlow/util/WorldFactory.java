@@ -25,7 +25,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMovingComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMovingSystem;
@@ -90,7 +90,7 @@ public class WorldFactory {
 		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*xx+TILE_SIZE*0.5f, TILE_SIZE*yy));
 		e.addComponent(new ActiveCharacterSpriteAnimationComponent(new Animation(regions[2], Animation.LOOP, 2)));
 		e.addComponent(new DesiredCharacterMovementComponent(0));
-		e.addComponent(new CharacterMovingComponent());
+		e.addComponent(new CharacterMoveProgressionComponent());
 		return e;
 	}
 	

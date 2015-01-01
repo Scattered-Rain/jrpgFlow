@@ -14,7 +14,7 @@ import static com.scatteredRain.jrpgFlow.Constants.*;
 
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMovingComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
@@ -26,7 +26,7 @@ import com.scatteredRain.jrpgFlow.util.Point;
 public class CharacterMovingSystem extends EntitySystem{
 	
 	ComponentMapper<DesiredCharacterMovementComponent> desMoveComp;
-	ComponentMapper<CharacterMovingComponent> isMoveComp;
+	ComponentMapper<CharacterMoveProgressionComponent> isMoveComp;
 	ComponentMapper<CharacterLocationComponent> locationComp;
 	
 	ComponentMapper<CharacterSpriteLocationComponent> spriteLocationComp;
@@ -34,7 +34,7 @@ public class CharacterMovingSystem extends EntitySystem{
 	ComponentMapper<MapCollisionComponent> mapCollComp;
 
 	public CharacterMovingSystem() {
-		super(Aspect.getAspectForOne(DesiredCharacterMovementComponent.class, CharacterMovingComponent.class, CharacterLocationComponent.class, MapCollisionComponent.class));
+		super(Aspect.getAspectForOne(DesiredCharacterMovementComponent.class, CharacterMoveProgressionComponent.class, CharacterLocationComponent.class, MapCollisionComponent.class));
 	}
 
 	@Override
@@ -53,9 +53,11 @@ public class CharacterMovingSystem extends EntitySystem{
 					int y = locationComp.get(e).getY();
 					int direction = desMoveComp.get(e).getDesiredDirection();
 					if(map.isTraversible(x, y, direction)){
+						//Duration Of The Movement
+						float movementDuration = 1f;
 						//Actually Init Movement
 						desMoveComp.get(e).setStationary();
-						isMoveComp.get(e).setMoving(true);
+						isMoveComp.get(e).setMoving(movementDuration);
 						Point dest = calcTarget(x, y, direction);
 						//Set Map Location To Destination
 						locationComp.get(e).setX(dest.getX());
@@ -65,12 +67,15 @@ public class CharacterMovingSystem extends EntitySystem{
 						
 						//Init Sprite Move (Tween)
 						if(spriteLocationComp.has(e)){
-							Tween.to(spriteLocationComp.get(e).getLocation(), 0, 1f).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);
+							Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);
 						}
 						
 						//TODO: Send Event To Sprite Movement System
 						//TODO: Send Event To Map Collision Update System
 						
+					}
+					else{
+						//TODO: Send Event For Movement Collision
 					}
 				}
 			}

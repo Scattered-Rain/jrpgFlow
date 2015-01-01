@@ -16,7 +16,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.scatteredRain.jrpgFlow.tween.FloatPointTweener;
+import com.scatteredRain.jrpgFlow.tween.TweenTimerTweener;
 import com.scatteredRain.jrpgFlow.util.FloatPoint;
+import com.scatteredRain.jrpgFlow.util.TweenTimer;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 
@@ -36,6 +38,7 @@ public class JrpgFlow extends ApplicationAdapter {
 	private void setupTween(){
 		TWEEN_MANAGER = new TweenManager();
 		Tween.registerAccessor(FloatPoint.class, new FloatPointTweener());
+		Tween.registerAccessor(TweenTimer.class, new TweenTimerTweener());
 	}
 
 	@Override
