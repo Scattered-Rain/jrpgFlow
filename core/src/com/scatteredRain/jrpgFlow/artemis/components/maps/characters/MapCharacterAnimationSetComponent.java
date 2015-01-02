@@ -15,9 +15,9 @@ import com.scatteredRain.jrpgFlow.general.Animation;
 public class MapCharacterAnimationSetComponent extends Component{
 	
 	//Integer Defining The Currently Active Set Of The Animation Set, -1 implies non existence of that set
-	private int activeSingle;
-	private int activeStanding;
-	private int activeWalking;
+	private int activeSingleIndex;
+	private int activeStandingIndex;
+	private int activeWalkingIndex;
 	
 	//Passive Animation Set
 	private Animation[] single;
@@ -36,9 +36,9 @@ public class MapCharacterAnimationSetComponent extends Component{
 			this.standing[0][c] = new Animation(new TextureRegion[]{regions[c][0]}, Animation.LOOP);
 			this.walking[0][c] = new Animation(regions[c], Animation.LOOP);
 		}
-		this.activeSingle = -1;
-		this.activeStanding = 0;
-		this.activeWalking = 0;
+		this.activeSingleIndex = -1;
+		this.activeStandingIndex = 0;
+		this.activeWalkingIndex = 0;
 	}
 	
 	
@@ -55,24 +55,24 @@ public class MapCharacterAnimationSetComponent extends Component{
 	}
 	
 	public Animation getActiveSingle(){
-		if(activeSingle==-1){
+		if(activeSingleIndex==-1){
 			return null;
 		}
-		return single[activeSingle];
+		return single[activeSingleIndex];
 	}
 	
 	public Animation getActiveStanding(int direction){
-		if(activeStanding==-1){
+		if(activeStandingIndex==-1){
 			return null;
 		}
-		return standing[activeStanding][direction];
+		return standing[activeStandingIndex][direction];
 	}
 	
 	public Animation getActiveWalking(int direction){
-		if(activeWalking==-1){
+		if(activeWalkingIndex==-1){
 			return null;
 		}
-		return walking[activeWalking][direction];
+		return walking[activeWalkingIndex][direction];
 	}
 
 }

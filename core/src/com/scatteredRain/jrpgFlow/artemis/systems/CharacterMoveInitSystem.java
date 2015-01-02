@@ -56,7 +56,7 @@ public class CharacterMoveInitSystem extends EntitySystem{
 						//Duration Of The Movement
 						float movementDuration = 1f;
 						//Actually Init Movement
-						//desMoveComp.get(e).setStationary();
+						desMoveComp.get(e).setStationary();
 						isMoveComp.get(e).setMoving(movementDuration);
 						Point dest = calcTarget(x, y, direction);
 						//Set Map Location To Destination

@@ -22,7 +22,7 @@ public class ActiveCharacterSpriteAnimationComponent extends Component{
 	}
 	
 	
-	/** Sets A New Animation, Restets This Animation As Well */
+	/** Sets A New Animation, Resets This Animation As Well */
 	public void setNewAnimation(Animation animation){
 		this.animation = animation;
 		animation.reset();

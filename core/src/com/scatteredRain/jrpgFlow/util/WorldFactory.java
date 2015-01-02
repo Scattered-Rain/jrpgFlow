@@ -33,6 +33,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacte
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMoveInitSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.MapCharacterSpriteUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
 import com.scatteredRain.jrpgFlow.general.Animation;
 
@@ -45,6 +46,7 @@ public class WorldFactory {
 		
 		//Systems
 		world.setSystem(new CharacterMoveInitSystem(), false);
+		world.setSystem(new MapCharacterSpriteUpdateSystem(), false);
 		world.setSystem(new CharacterSpriteAnimationUpdateSystem(), false);
 		world.setSystem(new MapRenderSystem(false), false);
 		world.setSystem(new CharacterSpriteRenderSystem(), false);
