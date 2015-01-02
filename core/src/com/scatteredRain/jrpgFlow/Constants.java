@@ -51,13 +51,13 @@ public class Constants {
 	/** Converts Given Position Into Position Adjacent Given Direction */
 	public static Point calcTarget(int x, int y, int direction){
 		if(direction==UP){
-			y--;
+			y++;
 		}
 		else if(direction==RIGHT){
 			x++;
 		}
 		else if(direction==DOWN){
-			y++;
+			y--;
 		}
 		else if(direction==LEFT){
 			x--;

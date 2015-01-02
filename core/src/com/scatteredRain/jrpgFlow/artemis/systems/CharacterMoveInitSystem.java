@@ -56,7 +56,7 @@ public class CharacterMoveInitSystem extends EntitySystem{
 						//Duration Of The Movement
 						float movementDuration = 1f;
 						//Actually Init Movement
-						desMoveComp.get(e).setStationary();
+						//desMoveComp.get(e).setStationary();
 						isMoveComp.get(e).setMoving(movementDuration);
 						Point dest = calcTarget(x, y, direction);
 						//Set Map Location To Destination
@@ -68,8 +68,6 @@ public class CharacterMoveInitSystem extends EntitySystem{
 						if(spriteLocationComp.has(e)){
 							Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);
 						}
-						
-						
 					}
 					else{
 						//TODO: Send Event For Movement Collision
