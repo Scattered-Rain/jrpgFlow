@@ -52,7 +52,7 @@ public class JrpgFlow extends ApplicationAdapter {
 			world.setDelta(delta);
 			world.process();
 		}
-		System.out.println(System.currentTimeMillis()-t);
+		//System.out.println(System.currentTimeMillis()-t);
 	}
 	
 	@Override

@@ -23,7 +23,7 @@ import com.scatteredRain.jrpgFlow.util.Point;
 //TODO: Finish This Class!
 
 @Wire
-public class CharacterMovingSystem extends EntitySystem{
+public class CharacterMoveInitSystem extends EntitySystem{
 	
 	ComponentMapper<DesiredCharacterMovementComponent> desMoveComp;
 	ComponentMapper<CharacterMoveProgressionComponent> isMoveComp;
@@ -33,7 +33,7 @@ public class CharacterMovingSystem extends EntitySystem{
 	
 	ComponentMapper<MapCollisionComponent> mapCollComp;
 
-	public CharacterMovingSystem() {
+	public CharacterMoveInitSystem() {
 		super(Aspect.getAspectForOne(DesiredCharacterMovementComponent.class, CharacterMoveProgressionComponent.class, CharacterLocationComponent.class, MapCollisionComponent.class));
 	}
 
@@ -64,12 +64,11 @@ public class CharacterMovingSystem extends EntitySystem{
 						locationComp.get(e).setY(dest.getY());
 						
 						//Init Sprite Move (Tween)
+						//TODO: Maybe Outsource Later
 						if(spriteLocationComp.has(e)){
 							Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);
 						}
 						
-						//TODO: Send Event To Sprite Movement System
-						//TODO: Send Event To Map Collision Update System
 						
 					}
 					else{

@@ -3,6 +3,7 @@ package com.scatteredRain.jrpgFlow.artemis.components.maps;
 import java.util.Iterator;
 
 import com.artemis.Component;
+import com.artemis.Entity;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -20,6 +21,8 @@ public class MapCollisionComponent extends Component{
 	private boolean[][] generalCollision;
 	//Up, Right, Down, Left As far as the order of the side collisions is concerned
 	private boolean[][][] sideCollision;
+	//Collision Caused by entities
+	private Entity[][] characterCollision;
 	
 	
 	public MapCollisionComponent(TiledMap map){
@@ -36,6 +39,7 @@ public class MapCollisionComponent extends Component{
 							this.width = tileLayer.getWidth();
 							this.height = tileLayer.getHeight();
 							this.generalCollision = new boolean[height][width];
+							this.characterCollision = new Entity[height][width];
 							this.sideCollision = new boolean[4][][];
 							for(int c=0; c<sideCollision.length; c++){
 								this.sideCollision[c] = new boolean[height][width];

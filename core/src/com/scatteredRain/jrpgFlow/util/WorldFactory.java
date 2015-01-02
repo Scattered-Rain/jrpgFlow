@@ -24,11 +24,13 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
-import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMovingSystem;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
+import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMoveInitSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
@@ -42,7 +44,7 @@ public class WorldFactory {
 		World world = new World();
 		
 		//Systems
-		world.setSystem(new CharacterMovingSystem(), false);
+		world.setSystem(new CharacterMoveInitSystem(), false);
 		world.setSystem(new CharacterSpriteAnimationUpdateSystem(), false);
 		world.setSystem(new MapRenderSystem(false), false);
 		world.setSystem(new CharacterSpriteRenderSystem(), false);
@@ -63,7 +65,7 @@ public class WorldFactory {
 		Entity mapEntity = world.createEntity();
 		buildMapEntity(mapEntity, "maps/first.tmx");
 		Entity testCharacter = world.createEntity();
-		buildBaseCharacter(testCharacter, "", 0, 0, 0);
+		buildBaseCharacter(testCharacter, "", 16, 16, 2);
 		return world;
 	}
 	
@@ -81,15 +83,14 @@ public class WorldFactory {
 	/** Adds Character To The World, Given X|Y, direction and Name of the Sprite */
 	private static Entity buildBaseCharacter(Entity e, String spriteName, int x, int y, int dir){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
-		AtlasRegion atlasRegion = atlas.findRegion("strawhatBoy");
-		TextureRegion[][] regions = atlasRegion.split(atlasRegion.getRegionWidth()/4, atlasRegion.getRegionHeight()/4);
-		e.addComponent(new ActiveCharacterSpriteComponent(regions[2][0]));
-		int xx = 16;
-		int yy = 16;
-		e.addComponent(new CharacterLocationComponent(xx, yy));
-		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*xx+TILE_SIZE*0.5f, TILE_SIZE*yy));
-		e.addComponent(new ActiveCharacterSpriteAnimationComponent(new Animation(regions[2], Animation.LOOP, 2)));
-		e.addComponent(new DesiredCharacterMovementComponent(0));
+		MapCharacterAnimationSetComponent mapCharAniComp = new MapCharacterAnimationSetComponent(atlas, "strawhatBoy");
+		e.addComponent(mapCharAniComp);
+		e.addComponent(new ActiveCharacterSpriteAnimationComponent(mapCharAniComp.getActiveWalking(dir)));
+		e.addComponent(new ActiveCharacterSpriteComponent(mapCharAniComp.getActiveWalking(dir).currentFrame()));
+		e.addComponent(new CharacterLocationComponent(x, y));
+		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*x+TILE_SIZE*0.5f, TILE_SIZE*y));
+		e.addComponent(new DesiredCharacterMovementComponent(dir));
+		e.addComponent(new CharacterDirectionComponent(dir));
 		e.addComponent(new CharacterMoveProgressionComponent());
 		return e;
 	}
