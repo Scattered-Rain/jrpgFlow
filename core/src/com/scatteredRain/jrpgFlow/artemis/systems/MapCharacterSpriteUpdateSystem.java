@@ -12,6 +12,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMo
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
 import com.scatteredRain.jrpgFlow.general.Animation;
 
+/** Changes Animations of Characters on Map depending on what they are doing (and where they are facing) */
 @Wire
 public class MapCharacterSpriteUpdateSystem extends EntitySystem{
 	

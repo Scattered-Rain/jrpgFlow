@@ -30,12 +30,15 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMo
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMoveInitSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapCharacterSpriteUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.PlayerCharacterInputSystem;
 import com.scatteredRain.jrpgFlow.general.Animation;
+import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 
 /** Builds And Returns Artemis Worlds */
 public class WorldFactory {
@@ -45,6 +48,7 @@ public class WorldFactory {
 		World world = new World();
 		
 		//Systems
+		world.setSystem(new PlayerCharacterInputSystem(), false);
 		world.setSystem(new CharacterMoveInitSystem(), false);
 		world.setSystem(new MapCharacterSpriteUpdateSystem(), false);
 		world.setSystem(new CharacterSpriteAnimationUpdateSystem(), false);
@@ -94,6 +98,9 @@ public class WorldFactory {
 		e.addComponent(new DesiredCharacterMovementComponent(dir));
 		e.addComponent(new CharacterDirectionComponent(dir));
 		e.addComponent(new CharacterMoveProgressionComponent());
+		PlayerCharacterInput playerInput = new PlayerCharacterInput();
+		Gdx.input.setInputProcessor(playerInput);
+		e.addComponent(new PlayerCharacterComponent(playerInput));
 		return e;
 	}
 	

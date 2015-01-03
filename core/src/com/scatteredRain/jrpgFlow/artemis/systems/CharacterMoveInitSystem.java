@@ -14,6 +14,7 @@ import static com.scatteredRain.jrpgFlow.Constants.*;
 
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
@@ -28,6 +29,7 @@ public class CharacterMoveInitSystem extends EntitySystem{
 	ComponentMapper<DesiredCharacterMovementComponent> desMoveComp;
 	ComponentMapper<CharacterMoveProgressionComponent> isMoveComp;
 	ComponentMapper<CharacterLocationComponent> locationComp;
+	ComponentMapper<CharacterDirectionComponent> directionComp;
 	
 	ComponentMapper<CharacterSpriteLocationComponent> spriteLocationComp;
 	
@@ -52,6 +54,7 @@ public class CharacterMoveInitSystem extends EntitySystem{
 					int x = locationComp.get(e).getX();
 					int y = locationComp.get(e).getY();
 					int direction = desMoveComp.get(e).getDesiredDirection();
+					directionComp.get(e).setDirection(direction);
 					if(map.isTraversible(x, y, direction)){
 						//Duration Of The Movement
 						float movementDuration = 1f;
@@ -68,6 +71,7 @@ public class CharacterMoveInitSystem extends EntitySystem{
 						if(spriteLocationComp.has(e)){
 							Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);
 						}
+						
 					}
 					else{
 						//TODO: Send Event For Movement Collision
