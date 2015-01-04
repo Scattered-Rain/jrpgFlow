@@ -35,5 +35,13 @@ public class CharacterMoveProgressionComponent extends Component{
 	public float getProgression(){
 		return timer.getTime();
 	}
-
+	
+	public boolean justStarted(){
+		return timer.getTime()==0;
+	}
+	
+	public float getTotalNeededTime(){
+		return timer.getDuration();
+	}
+	
 }

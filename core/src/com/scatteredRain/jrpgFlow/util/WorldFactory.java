@@ -24,6 +24,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CameraFocusComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
@@ -35,6 +36,7 @@ import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMoveInitSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapCharacterSpriteUpdateSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.MapPlayerCameraFocusSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.PlayerCharacterInputSystem;
 import com.scatteredRain.jrpgFlow.general.Animation;
@@ -50,6 +52,7 @@ public class WorldFactory {
 		//Systems
 		world.setSystem(new PlayerCharacterInputSystem(), false);
 		world.setSystem(new CharacterMoveInitSystem(), false);
+		world.setSystem(new MapPlayerCameraFocusSystem(), false);
 		world.setSystem(new MapCharacterSpriteUpdateSystem(), false);
 		world.setSystem(new CharacterSpriteAnimationUpdateSystem(), false);
 		world.setSystem(new MapRenderSystem(false), false);
@@ -101,6 +104,7 @@ public class WorldFactory {
 		PlayerCharacterInput playerInput = new PlayerCharacterInput();
 		Gdx.input.setInputProcessor(playerInput);
 		e.addComponent(new PlayerCharacterComponent(playerInput));
+		e.addComponent(new CameraFocusComponent());
 		return e;
 	}
 	

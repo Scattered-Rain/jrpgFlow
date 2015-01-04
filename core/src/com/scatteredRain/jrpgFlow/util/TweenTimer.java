@@ -8,13 +8,14 @@ import lombok.Data;
 
 /** Timer Supposed To Return TRUE once time has reached 1, FALSE for any value below */
 @Data
-@AllArgsConstructor
 public class TweenTimer {
 	
 	private float time;
+	private float duration;
 	
 	public TweenTimer(){
 		this.time = 0;
+		this.duration = -1;
 	}
 	
 	public void reset(){
@@ -31,6 +32,7 @@ public class TweenTimer {
 	
 	public void start(float duration){
 		reset();
+		this.duration = duration;
 		Tween.to(this, 0, duration).target(1).ease(Linear.INOUT).start(TWEEN_MANAGER);
 	}
 

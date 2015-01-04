@@ -54,10 +54,12 @@ public class CharacterMoveInitSystem extends EntitySystem{
 					int x = locationComp.get(e).getX();
 					int y = locationComp.get(e).getY();
 					int direction = desMoveComp.get(e).getDesiredDirection();
+					//Set Direction
 					directionComp.get(e).setDirection(direction);
+					//Actually Init Move
 					if(map.isTraversible(x, y, direction)){
 						//Duration Of The Movement
-						float movementDuration = 1f;
+						float movementDuration = 0.3f;
 						//Actually Init Movement
 						desMoveComp.get(e).setStationary();
 						isMoveComp.get(e).setMoving(movementDuration);

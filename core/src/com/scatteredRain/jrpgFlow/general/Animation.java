@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Animation {
 	
-	public static final float DEFAULT_SPEED = 1f;
+	public static final float DEFAULT_SPEED = 0.6f;
 	
 	/** Runs Animation Once And Then Stops, Returns Last Frame Of Animation When Done */
 	public static final int NORMAL = 0;

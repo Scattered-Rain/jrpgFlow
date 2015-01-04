@@ -2,6 +2,7 @@ package com.scatteredRain.jrpgFlow;
 
 import aurelienribon.tweenengine.TweenManager;
 
+import com.scatteredRain.jrpgFlow.util.FloatPoint;
 import com.scatteredRain.jrpgFlow.util.Point;
 
 public class Constants {
