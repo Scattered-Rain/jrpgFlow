@@ -72,40 +72,11 @@ public class WorldFactory {
 		generalEntity.addComponent(new OrthographicCameraComponent(camera));
 		generalEntity.addComponent(new SpriteBatchComponent(new SpriteBatch()));
 		Entity mapEntity = world.createEntity();
-		buildMapEntity(mapEntity, "maps/first.tmx");
-		Entity testCharacter = world.createEntity();
-		buildBaseCharacter(testCharacter, "", 16, 16, 2);
-		return world;
-	}
-	
-	/** Loads New Map And Attaches All Map Components To Given Entity */
-	private static Entity buildMapEntity(Entity e, String mapFile){
 		TmxMapLoader mapLoader = new TmxMapLoader();
 		Parameters mapLoadParams = new Parameters();
-		TiledMap map = mapLoader.load(mapFile);
-		e.addComponent(new MapComponent(map));
-		e.addComponent(new TileMapRenderComponent(map));
-		e.addComponent(new MapCollisionComponent(map));
-		return e;
-	}
-	
-	/** Adds Character To The World, Given X|Y, direction and Name of the Sprite */
-	private static Entity buildBaseCharacter(Entity e, String spriteName, int x, int y, int dir){
-		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
-		MapCharacterAnimationSetComponent mapCharAniComp = new MapCharacterAnimationSetComponent(atlas, "strawhatBoy");
-		e.addComponent(mapCharAniComp);
-		e.addComponent(new ActiveCharacterSpriteAnimationComponent(mapCharAniComp.getActiveWalking(dir)));
-		e.addComponent(new ActiveCharacterSpriteComponent(mapCharAniComp.getActiveWalking(dir).currentFrame()));
-		e.addComponent(new CharacterLocationComponent(x, y));
-		e.addComponent(new CharacterSpriteLocationComponent(TILE_SIZE*x+TILE_SIZE*0.5f, TILE_SIZE*y));
-		e.addComponent(new DesiredCharacterMovementComponent(dir));
-		e.addComponent(new CharacterDirectionComponent(dir));
-		e.addComponent(new CharacterMoveProgressionComponent());
-		PlayerCharacterInput playerInput = new PlayerCharacterInput();
-		Gdx.input.setInputProcessor(playerInput);
-		e.addComponent(new PlayerCharacterComponent(playerInput));
-		e.addComponent(new CameraFocusComponent());
-		return e;
+		TiledMap map = mapLoader.load("maps/first.tmx");
+		world = MapFactory.buildMap(world, map);
+		return world;
 	}
 	
 
