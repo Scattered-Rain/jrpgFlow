@@ -1,0 +1,48 @@
+package com.scatteredRain.jrpgFlow.artemis.components.maps;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.artemis.Component;
+import com.artemis.Entity;
+
+/** Component Contains References To All Characters On The Map, As Well As Their Location */
+public class MapCharacterListComponent extends Component{
+	
+	private int width;
+	private int height;
+	
+	/** 2D Array Of Array Lists Storing Each Character's Entity */
+	private List<Entity>[][] characterList;
+	
+	/** Creates Character List For Map, Empty */
+	public MapCharacterListComponent(int width, int height){
+		this.width = width;
+		this.height = height;
+		this.characterList = new ArrayList[height][width];
+		for(int cy=0; cy<characterList.length; cy++){
+			for(int cx=0; cx<characterList[cy].length; cx++){
+				characterList[cy][cx] = new ArrayList<Entity>();
+			}
+		}
+	}
+	
+	public void removeEntityAt(int x, int y, Entity e){
+		List<Entity> list = characterList[y][x];
+		for(int c=0; c<list.size(); c++){
+			if(list.get(c).equals(e)){
+				list.remove(c);
+			}
+		}
+	}
+	
+	public void addEntity(int x, int y, Entity e){
+		List<Entity> list = characterList[y][x];
+		list.add(e);
+	}
+	
+	public List<Entity> getEntitiesAt(int x, int y){
+		return characterList[y][x];
+	}
+	
+}

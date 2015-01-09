@@ -75,7 +75,11 @@ public class WorldFactory {
 		TmxMapLoader mapLoader = new TmxMapLoader();
 		Parameters mapLoadParams = new Parameters();
 		TiledMap map = mapLoader.load("maps/first.tmx");
-		world = MapFactory.buildMap(world, map);
+		world = MapFactory.buildMap(world, map, 0);
+		
+		
+		
+		
 		return world;
 	}
 	

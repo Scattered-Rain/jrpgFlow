@@ -70,7 +70,7 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 					//Tell Component That Refocus Happened
 					cameraFocusComp.get(e).setRefocus(false);
 					//Reset Camera Location (Even Without Movement, Hence Using 'Arbitrary' Duration
-					float refocusTime = 0.5f;
+					float refocusTime = cameraFocusComp.get(e).getRefocusDuration();
 					//Set To Player
 					float x = locationComp.get(e).getX()*TILE_SIZE+TILE_SIZE*0.5f;
 					float y = locationComp.get(e).getY()*TILE_SIZE+TILE_SIZE*0.5f;

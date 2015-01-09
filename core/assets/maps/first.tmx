@@ -50,6 +50,11 @@
   </data>
  </layer>
  <objectgroup name="chars">
-  <object name="entrance" type="ENTER" gid="463" x="224" y="96"/>
+  <object name="entrance" type="enter" gid="463" x="224" y="48">
+   <properties>
+    <property name="dir" value="2"/>
+    <property name="id" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
