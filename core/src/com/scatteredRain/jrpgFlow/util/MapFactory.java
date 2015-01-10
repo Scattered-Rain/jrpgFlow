@@ -39,14 +39,26 @@ import com.sun.xml.internal.fastinfoset.sax.Properties;
 
 public class MapFactory {
 	
+	//General Terms
+	private static final String TYPE = "type";
+	
+	//Keys
+	private static final String ID = "id";
+	private static final String DIRECTION = "dir";
+	
+	//Types
+	private static final String ENTER = "enter";
+	
+	
+	
 	/** Adds Given Map To Given World, Completely Initializes All Entities Needed Thusly */
 	public static World buildMap(World world, TiledMap map, int entrance){
-		buildMapEntity(world.createEntity(), map);
-		readObjects(world, map, entrance);
+		MapCharacterListComponent characterList = readObjectLayers(world, map, entrance);
+		buildMapEntity(world.createEntity(), map, characterList);
 		return world;
 	}
 	
-	private static void readObjects(World world, TiledMap map, int entranceId){
+	private static MapCharacterListComponent readObjectLayers(World world, TiledMap map, int entranceId){
 		Entrance entrance = null;
 		//Init Component To Store Chars Easily
 		MapCharacterListComponent characterList = null;
@@ -73,46 +85,62 @@ public class MapFactory {
 				//Go Through All The Layers Objects
 				Iterator<MapObject> objectIterator = layer.getObjects().iterator();
 				while(objectIterator.hasNext()){
-					
 					//Note: Assumes All Objects Are RectangleMapObjects
 					RectangleMapObject object = (RectangleMapObject)objectIterator.next();
 					MapProperties properties = object.getProperties();
 					int x = (int)(object.getRectangle().getX()/TILE_SIZE);
 					int y = (int)(object.getRectangle().getY()/TILE_SIZE);
-					
 					//Find Entrance
-					if(properties.get("type", String.class).equals("enter")){
-						if(Integer.parseInt(properties.get("id", String.class)) == entranceId){
+					if(properties.get(TYPE, String.class).equals(ENTER)){
+						if(Integer.parseInt(properties.get(ID, String.class)) == entranceId){
 							int enterDir = 2;
-							if(properties.containsKey("dir")){
-								enterDir = Integer.parseInt(properties.get("dir", String.class));
+							if(properties.containsKey(DIRECTION)){
+								enterDir = Integer.parseInt(properties.get(DIRECTION, String.class));
 							}
 							entrance = new Entrance(x, y, enterDir);
 						}
 					}
 					//Find Other Objects
 					else{
-						//TODO: Add All Characters Here!
-						
+						//Adds All Actual Characters Here!
+						Entity character = readObject(world.createEntity(), x, y, object, properties);
+						characterList.addEntity(x, y, character);
 					}
 				}
 			}
 		}
 		//Add Player (At Entrance)
+		int playerX = -1;
+		int playerY = -1;
+		int playerDir = -1;
 		if(entrance!=null){
-			buildPlayer(world.createEntity(), "", entrance.getX(), entrance.getY(), entrance.getDir());
+			playerX = entrance.getX();
+			playerY = entrance.getY();
+			playerDir = entrance.getDir();
 		}
 		else{
 			//If No Entrance Default Placement, Should NOT HAPPEN IN PROPPER GAME
 			System.out.println("Could Not Find Proper Entrance On Map!");
-			buildPlayer(world.createEntity(), "", width/2, width/2, 2);
+			playerX = width/2;
+			playerY = height/2;
+			playerDir = 2;
 		}
+		Entity player = buildPlayer(world.createEntity(), "", playerX, playerY, playerDir);
+		characterList.addEntity(playerX, playerY, player);
+		return characterList;
+	}
+	
+	
+	private static Entity readObject(Entity e, int x, int y, RectangleMapObject object, MapProperties properties){
+		
+		return e;
 	}
 	
 	
 	
 	/** Loads New Map And Attaches All Map Components To Given Entity */
-	private static Entity buildMapEntity(Entity e, TiledMap map){
+	private static Entity buildMapEntity(Entity e, TiledMap map, MapCharacterListComponent characterList){
+		e.addComponent(characterList);
 		e.addComponent(new MapComponent(map));
 		e.addComponent(new TileMapRenderComponent(map));
 		e.addComponent(new MapCollisionComponent(map));
@@ -122,7 +150,7 @@ public class MapFactory {
 	/** Adds Character To The World, Given X|Y, direction and Name of the Sprite */
 	private static Entity buildPlayer(Entity e, String spriteName, int x, int y, int dir){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
-		MapCharacterAnimationSetComponent mapCharAniComp = new MapCharacterAnimationSetComponent(atlas, "strawhatBoy");
+		MapCharacterAnimationSetComponent mapCharAniComp = new MapCharacterAnimationSetComponent(atlas, "elderlyGentleman");
 		e.addComponent(mapCharAniComp);
 		e.addComponent(new ActiveCharacterSpriteAnimationComponent(mapCharAniComp.getActiveWalking(dir)));
 		e.addComponent(new ActiveCharacterSpriteComponent(mapCharAniComp.getActiveWalking(dir).currentFrame()));
