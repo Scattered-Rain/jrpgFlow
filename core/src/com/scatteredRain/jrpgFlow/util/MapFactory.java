@@ -27,6 +27,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CameraFocusComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
@@ -159,6 +160,7 @@ public class MapFactory {
 		e.addComponent(new DesiredCharacterMovementComponent(dir));
 		e.addComponent(new CharacterDirectionComponent(dir));
 		e.addComponent(new CharacterMoveProgressionComponent());
+		e.addComponent(new CharacterCollisionComponent(true));
 		PlayerCharacterInput playerInput = new PlayerCharacterInput();
 		Gdx.input.setInputProcessor(playerInput);
 		e.addComponent(new PlayerCharacterComponent(playerInput));

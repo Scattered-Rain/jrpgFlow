@@ -27,13 +27,16 @@ public class MapCharacterListComponent extends Component{
 		}
 	}
 	
-	public void removeEntityAt(int x, int y, Entity e){
+	/** Returns Whether Entity Has Been Removed, Assumes That Only One Identical Entity Is Stored */
+	public boolean removeEntityAt(int x, int y, Entity e){
 		List<Entity> list = characterList[y][x];
 		for(int c=0; c<list.size(); c++){
 			if(list.get(c).equals(e)){
 				list.remove(c);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public void addEntity(int x, int y, Entity e){
@@ -43,6 +46,12 @@ public class MapCharacterListComponent extends Component{
 	
 	public List<Entity> getEntitiesAt(int x, int y){
 		return characterList[y][x];
+	}
+	
+	public void relocateEntity(int fromX, int fromY, Entity e, int toX, int toY){
+		if(removeEntityAt(fromX, fromY, e)){
+			addEntity(toX, toY, e);
+		}
 	}
 	
 }

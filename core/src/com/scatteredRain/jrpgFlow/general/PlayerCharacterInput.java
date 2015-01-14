@@ -18,7 +18,7 @@ public class PlayerCharacterInput extends InputAdapter{
 	private static final int KEY_DOWN = Input.Keys.S;
 	private static final int KEY_LEFT = Input.Keys.A;
 	
-	private static final int KEY_ACTION = Input.Keys.ENTER;
+	private static final int KEY_ACTION = Input.Keys.SPACE;
 	
 	private ArrayList<Integer> desDirections;
 	private boolean action;
