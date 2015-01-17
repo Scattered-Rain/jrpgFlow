@@ -2,6 +2,7 @@ package com.scatteredRain.jrpgFlow;
 
 import aurelienribon.tweenengine.TweenManager;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.scatteredRain.jrpgFlow.util.FloatPoint;
 import com.scatteredRain.jrpgFlow.util.Point;
 
@@ -10,12 +11,15 @@ public class Constants {
 	/** Globally Used Tween Manager */
 	public static TweenManager TWEEN_MANAGER;
 	
+	/** Globally Used Sprite Atlas */
+	public static TextureAtlas SPRITE_ATLAS;
+	
 	/** Pixel Size Of Any Tile */
 	public static final int TILE_SIZE = 16;
 	
+	//Map Key Words
 	/** The String That Identifies A Layer As A Top Layer */
 	public static final String TOP_LAYER_PROPERTY = "top";
-	
 	/** The String That Identifies A Tile As Having General Collision */
 	public static final String COLLISION_PROPERTY = "coll";
 	/** The String That Identifies A Tile As Having Sideways Collision In The Corresponding Directions */
@@ -23,6 +27,9 @@ public class Constants {
 	public static final String COLLISION_PROPERTY_RIGHT = "collRIGHT";
 	public static final String COLLISION_PROPERTY_DOWN = "collDOWN";
 	public static final String COLLISION_PROPERTY_LEFT = "collLEFT";
+	//Character Key Words
+	
+	
 	
 	/** The IDs corresponding to the directions */
 	public static final int UP = 0;

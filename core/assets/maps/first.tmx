@@ -56,5 +56,10 @@
     <property name="id" value="0"/>
    </properties>
   </object>
+  <object name="sign" type="sign" gid="432" x="256" y="64">
+   <properties>
+    <property name="text" value="This is the Danger Cave. I know, I know. But just trust me, it actually is REALLY dangerous. Do Not Enter."/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

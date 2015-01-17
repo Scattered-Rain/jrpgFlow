@@ -50,8 +50,8 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 			}
 		}
 		for(Entity e : entities){
-			if(cameraFocusComp.has(e) && locationComp.has(e) && moveComp.has(e)){
-				if(moveComp.get(e).justStarted()){
+			if(cameraFocusComp.has(e) && locationComp.has(e)){
+				if(moveComp.has(e) && moveComp.get(e).justStarted()){
 					//Tell Component That Refocus Happened
 					cameraFocusComp.get(e).setRefocus(false);
 					//Do Processing

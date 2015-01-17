@@ -31,6 +31,8 @@ public class JrpgFlow extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		SPRITE_ATLAS = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
+		
 		activeWorlds = new ArrayList<World>();
 		activeWorlds.add(WorldFactory.buildMapWorld());
 		
