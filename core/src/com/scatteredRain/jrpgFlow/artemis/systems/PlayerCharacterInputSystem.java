@@ -73,14 +73,16 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 	/** Checks For Character Interaction For The Front Of The Character, Returns Whether It Triggered Or Not */
 	private boolean checkFront(int x, int y, int dir, MapCharacterListComponent charList){
 		Point target = calcTarget(x, y, dir);
-		List<Entity> entities = charList.getEntitiesAt(target.getX(), target.getY());
-		for(Entity e : entities){
-			if(interactComp.has(e)){
-				//TODO: Init Actual Interaction Parts Here
-				System.out.println(interactComp.get(e).getAction());
-				return true;
+		try{
+			List<Entity> entities = charList.getEntitiesAt(target.getX(), target.getY());
+			for(Entity e : entities){
+				if(interactComp.has(e)){
+					//TODO: Init Actual Interaction Parts Here
+					System.out.println(interactComp.get(e).getAction());
+					return true;
+				}
 			}
-		}
+		}catch(Exception ex){}
 		return false;
 	}
 
