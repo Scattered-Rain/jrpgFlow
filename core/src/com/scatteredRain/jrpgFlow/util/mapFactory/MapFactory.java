@@ -6,10 +6,12 @@ import java.util.Iterator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 import com.artemis.Entity;
 import com.artemis.World;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -35,6 +37,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSp
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
+import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 import com.sun.xml.internal.fastinfoset.sax.Properties;
 import static com.scatteredRain.jrpgFlow.util.mapFactory.CharacterFactory.*;
@@ -129,26 +132,25 @@ public class MapFactory {
 			playerY = height/2;
 			playerDir = 2;
 		}
-		Entity player = buildPlayer(world.createEntity(), "", playerX, playerY, playerDir);
+		Entity player = buildPlayer(world.createEntity(), playerX, playerY, playerDir);
 		characterList.addEntity(playerX, playerY, player);
 		return characterList;
 	}
 	
 	/** Adds Character To The World, Given X|Y, direction and Name of the Sprite */
-	private static Entity buildPlayer(Entity e, String spriteName, int x, int y, int dir){
+	private static Entity buildPlayer(Entity e, int x, int y, int dir){
 		addSprite(e, x, y, "elderlyGentleman", dir);
 		addExistence(e, x, y, dir, true);
 		addMovabililty(e);
 		
-		PlayerCharacterInput playerInput = new PlayerCharacterInput();
-		Gdx.input.setInputProcessor(playerInput);
+		PlayerCharacterInput playerInput = (PlayerCharacterInput) ((InputMultiplexer)Gdx.input.getInputProcessor()).getProcessors().get(ActiveWorldList.MAP_WORLD);
+		playerInput.doTransitionPause();
+		
 		e.addComponent(new PlayerCharacterComponent(playerInput));
 		e.addComponent(new CameraFocusComponent());
 		
 		return e;
 	}
-	
-	
 	
 	
 	@Data

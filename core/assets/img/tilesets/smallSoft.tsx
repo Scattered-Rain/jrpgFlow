@@ -2453,6 +2453,16 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
+ <tile id="905">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
+ <tile id="906">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
  <tile id="921">
   <properties>
    <property name="coll" value=""/>
@@ -2524,6 +2534,16 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
+ <tile id="936">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
+ <tile id="937">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
  <tile id="960" terrain=",10,10,10">
   <properties>
    <property name="coll" value=""/>
@@ -2545,6 +2565,16 @@
   </properties>
  </tile>
  <tile id="965" terrain="16,,,">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
+ <tile id="968">
+  <properties>
+   <property name="coll" value=""/>
+  </properties>
+ </tile>
+ <tile id="969">
   <properties>
    <property name="coll" value=""/>
   </properties>

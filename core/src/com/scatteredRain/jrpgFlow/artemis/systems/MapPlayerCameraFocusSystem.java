@@ -1,7 +1,7 @@
 package com.scatteredRain.jrpgFlow.artemis.systems;
 
-import static com.scatteredRain.jrpgFlow.Constants.TILE_SIZE;
-import static com.scatteredRain.jrpgFlow.Constants.TWEEN_MANAGER;
+import static com.scatteredRain.jrpgFlow.Constants.*;
+import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.equations.Linear;
 
@@ -64,7 +64,7 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 					Tween.to(camera, 0, moveComp.get(e).getTotalNeededTime())
 							.target(x, y)
 							.ease(Linear.INOUT)
-							.start(TWEEN_MANAGER);
+							.start(globalTweenManager);
 				}
 				else if(cameraFocusComp.get(e).isRefocus()){
 					//Tell Component That Refocus Happened
@@ -81,7 +81,7 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 					Tween.to(camera, 0, refocusTime)
 							.target(x, y)
 							.ease(Linear.INOUT)
-							.start(TWEEN_MANAGER);
+							.start(globalTweenManager);
 				}
 			}
 		}

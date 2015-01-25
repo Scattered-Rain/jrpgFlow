@@ -47,7 +47,7 @@ import com.scatteredRain.jrpgFlow.util.mapFactory.MapFactory;
 public class WorldFactory {
 	
 	/** Build World Concerned With Map Processes */
-	public static World buildMapWorld(){
+	public static World buildMapWorld(MapID mapPath, int enter){
 		World world = new World();
 		
 		//Systems
@@ -75,11 +75,8 @@ public class WorldFactory {
 		Entity mapEntity = world.createEntity();
 		TmxMapLoader mapLoader = new TmxMapLoader();
 		Parameters mapLoadParams = new Parameters();
-		TiledMap map = mapLoader.load("maps/first.tmx");
-		world = MapFactory.buildMap(world, map, 0);
-		
-		
-		
+		TiledMap map = mapLoader.load(mapPath.getPath());
+		world = MapFactory.buildMap(world, map, enter);
 		
 		return world;
 	}

@@ -1,5 +1,6 @@
 package com.scatteredRain.jrpgFlow;
 
+import lombok.Getter;
 import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -7,12 +8,6 @@ import com.scatteredRain.jrpgFlow.util.FloatPoint;
 import com.scatteredRain.jrpgFlow.util.Point;
 
 public class Constants {
-	
-	/** Globally Used Tween Manager */
-	public static TweenManager TWEEN_MANAGER;
-	
-	/** Globally Used Sprite Atlas */
-	public static TextureAtlas SPRITE_ATLAS;
 	
 	/** Pixel Size Of Any Tile */
 	public static final int TILE_SIZE = 16;
@@ -72,5 +67,18 @@ public class Constants {
 		}
 		return new Point(x, y);
 	}
+	
+	
+	public enum MapID{
+		DEBUG_FIRST("maps/first.tmx"),
+		DEBUG_CAVE("maps/cave.tmx");
+		
+		@Getter
+		private String path;
+		private MapID(String path){
+			this.path = path;
+		}
+	}
+	
 	
 }

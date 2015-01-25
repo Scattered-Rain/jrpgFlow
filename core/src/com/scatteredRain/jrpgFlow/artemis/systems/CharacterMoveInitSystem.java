@@ -13,6 +13,7 @@ import com.artemis.EntitySystem;
 import com.artemis.annotations.Wire;
 import com.artemis.utils.ImmutableBag;
 import static com.scatteredRain.jrpgFlow.Constants.*;
+import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
@@ -88,7 +89,7 @@ public class CharacterMoveInitSystem extends EntitySystem{
 							//Init Sprite Move (Tween)
 							//TODO: Maybe Outsource Later
 							if(spriteLocationComp.has(e)){
-								Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(TWEEN_MANAGER);
+								Tween.to(spriteLocationComp.get(e).getLocation(), 0, movementDuration).target(dest.getX()*TILE_SIZE+TILE_SIZE*0.5f, dest.getY()*TILE_SIZE).ease(Linear.INOUT).start(globalTweenManager);
 							}
 							
 						}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.scatteredRain.jrpgFlow.util.TweenTimer;
 
 //TODO: Integrate!
 
@@ -22,11 +23,13 @@ public class PlayerCharacterInput extends InputAdapter{
 	
 	private ArrayList<Integer> desDirections;
 	private boolean action;
+	private TweenTimer pause;
 	
 	
 	public PlayerCharacterInput(){
 		this.desDirections = new ArrayList<Integer>();
 		this.action = false;
+		this.pause = new TweenTimer();
 	}
 	
 
@@ -56,6 +59,9 @@ public class PlayerCharacterInput extends InputAdapter{
 	
 	
 	public boolean hasDirection(){
+		if(!pause.isFinished()){
+			return false;
+		}
 		return (desDirections.size()>0);
 	}
 	
@@ -64,6 +70,9 @@ public class PlayerCharacterInput extends InputAdapter{
 	}
 	
 	public boolean getAction(){
+		if(!pause.isFinished()){
+			return false;
+		}
 		return action;
 	}
 	
@@ -124,6 +133,10 @@ public class PlayerCharacterInput extends InputAdapter{
 		else{
 			return false;
 		}
+	}
+	
+	public void doTransitionPause(){
+		this.pause.start(0.2f);
 	}
 	
 }

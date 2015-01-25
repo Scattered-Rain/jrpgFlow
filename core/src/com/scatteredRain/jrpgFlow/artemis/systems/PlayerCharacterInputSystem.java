@@ -11,10 +11,14 @@ import com.artemis.utils.ImmutableBag;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerInteractionComponent;
 import com.scatteredRain.jrpgFlow.util.Point;
+import com.scatteredRain.jrpgFlow.util.WorldFactory;
+
+import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 
 import static com.scatteredRain.jrpgFlow.Constants.*;
 
@@ -26,6 +30,7 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 	
 	ComponentMapper<CharacterLocationComponent> localComp;
 	ComponentMapper<CharacterDirectionComponent> dirComp;
+	ComponentMapper<CharacterMoveProgressionComponent> moveProgComp;
 	
 	ComponentMapper<MapCharacterListComponent> charListComp;
 	
@@ -33,6 +38,7 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 	
 	//Indicates Whether The Currently Registered Action Button Press Was Already Used For Triggering Something Else
 	private boolean actionUsed;
+	private Point lastPoint;
 	
 	
 	public PlayerCharacterInputSystem() {
@@ -54,31 +60,94 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 				//Player Movement
 				if(player.getInput().hasDirection()){
 					desiredDirComp.get(e).setDesiredDirection(player.getInput().getDirection());
+					if(!moveProgComp.get(e).isMoving()){
+						//Interaction With Character in front
+						checkFrontPush(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+					}
 				}
 				else{
 					desiredDirComp.get(e).setStationary();
+					if(!moveProgComp.get(e).isMoving()){
+						checkFrontLook(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+					}
 				}
 				//Player Action Button
 				if(player.getInput().getAction() && !actionUsed){
 					actionUsed = true;
-					checkFront(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+					checkFrontTalk(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
 				}
 				else if(!player.getInput().getAction()){
 					actionUsed = false;
+				}
+				//Player Standing
+				if(!moveProgComp.get(e).isMoving()){
+					if(lastPoint!=null && 1==Math.abs(lastPoint.getX()-localComp.get(e).getX()+lastPoint.getY()-localComp.get(e).getY())){
+						checkStanding(localComp.get(e).getX(), localComp.get(e).getY(), charList);
+					}
+					lastPoint = new Point(localComp.get(e).getX(), localComp.get(e).getY());
 				}
 			}
 		}
 	}
 	
-	/** Checks For Character Interaction For The Front Of The Character, Returns Whether It Triggered Or Not */
-	private boolean checkFront(int x, int y, int dir, MapCharacterListComponent charList){
+	
+	
+	
+	
+	
+	/** Character Interaction For The Front (Talking) Of The Character, Returns Whether It Triggered Or Not */
+	private boolean checkFrontTalk(int x, int y, int dir, MapCharacterListComponent charList){
 		Point target = calcTarget(x, y, dir);
 		try{
 			List<Entity> entities = charList.getEntitiesAt(target.getX(), target.getY());
 			for(Entity e : entities){
-				if(interactComp.has(e)){
-					//TODO: Init Actual Interaction Parts Here
-					System.out.println(interactComp.get(e).getAction());
+				if(interactComp.has(e) && interactComp.get(e).hasTalking()){
+					interactComp.get(e).getTalking().act();
+					return true;
+				}
+			}
+		}catch(Exception ex){}
+		return false;
+	}
+	
+	/** Character Interaction For The Front (Pushing) Of The Character, Returns Whether It Triggered Or Not */
+	private boolean checkFrontPush(int x, int y, int dir, MapCharacterListComponent charList){
+		Point target = calcTarget(x, y, dir);
+		try{
+			List<Entity> entities = charList.getEntitiesAt(target.getX(), target.getY());
+			for(Entity e : entities){
+				if(interactComp.has(e) && interactComp.get(e).hasPushing()){
+					interactComp.get(e).getPushing().act();
+					return true;
+				}
+			}
+		}catch(Exception ex){}
+		return false;
+	}
+	
+	/** Character Interaction For The Front (Pushing) Of The Character, Returns Whether It Triggered Or Not */
+	private boolean checkFrontLook(int x, int y, int dir, MapCharacterListComponent charList){
+		Point target = calcTarget(x, y, dir);
+		try{
+			List<Entity> entities = charList.getEntitiesAt(target.getX(), target.getY());
+			for(Entity e : entities){
+				if(interactComp.has(e) && interactComp.get(e).hasLooking()){
+					interactComp.get(e).getLooking().act();
+					return true;
+				}
+			}
+		}catch(Exception ex){}
+		return false;
+	}
+	
+	/** Character Interaction For Touching Of The Character, Returns Whether It Triggered Or Not */
+	private boolean checkStanding(int x, int y, MapCharacterListComponent charList){
+		Point target = new Point(x, y);
+		try{
+			List<Entity> entities = charList.getEntitiesAt(target.getX(), target.getY());
+			for(Entity e : entities){
+				if(interactComp.has(e) && interactComp.get(e).hasTouching()){
+					interactComp.get(e).getTouching().act();
 					return true;
 				}
 			}
