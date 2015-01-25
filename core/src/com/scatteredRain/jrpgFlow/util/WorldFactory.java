@@ -39,6 +39,7 @@ import com.scatteredRain.jrpgFlow.artemis.systems.MapCharacterSpriteUpdateSystem
 import com.scatteredRain.jrpgFlow.artemis.systems.MapPlayerCameraFocusSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.PlayerCharacterInputSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
 import com.scatteredRain.jrpgFlow.general.Animation;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 import com.scatteredRain.jrpgFlow.util.mapFactory.MapFactory;
@@ -68,7 +69,7 @@ public class WorldFactory {
 		OrthographicCamera camera = new OrthographicCamera(1, h/w);
 		camera.position.x = TILE_SIZE*16;
 		camera.position.y = TILE_SIZE*16;
-		camera.zoom = TILE_SIZE*12;
+		camera.zoom = ZOOM;
 		camera.update();
 		generalEntity.addComponent(new OrthographicCameraComponent(camera));
 		generalEntity.addComponent(new SpriteBatchComponent(new SpriteBatch()));
@@ -77,6 +78,16 @@ public class WorldFactory {
 		Parameters mapLoadParams = new Parameters();
 		TiledMap map = mapLoader.load(mapPath.getPath());
 		world = MapFactory.buildMap(world, map, enter);
+		
+		return world;
+	}
+	
+	/** Build World Solely Concerned With Textboxes */
+	public static World buildTextboxWorld(){
+		World world = new World();
+		
+		world.setSystem(new TextboxRenderSystem());
+		world.initialize();
 		
 		return world;
 	}

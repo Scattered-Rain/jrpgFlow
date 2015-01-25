@@ -12,6 +12,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -36,16 +37,20 @@ public class JrpgFlow extends ApplicationAdapter {
 	public void create () {
 		setupTween();
 		globalSpriteAtlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
+		GlobalVariables.playerSkin = SpriteID.GENTLEMAN;
+		defaultFont = new BitmapFont(Gdx.files.internal("img/fonts/default.fnt"), Gdx.files.internal("img/fonts/default.png"), false);
 		
 		InputMultiplexer input = new InputMultiplexer();
 		Gdx.input.setInputProcessor(input);
+		World[] activeWorlds = new World[2];
 		
-		World[] activeWorlds = new World[1];
 		input.addProcessor(ActiveWorldList.MAP_WORLD, new PlayerCharacterInput());
 		activeWorlds[ActiveWorldList.MAP_WORLD] = WorldFactory.buildMapWorld(MapID.DEBUG_FIRST, 0);
 		
+		activeWorlds[1] = WorldFactory.buildTextboxWorld();
 		
 		globalActiveWorldsList = new ActiveWorldList(activeWorlds);
+		
 	}
 	
 	private void setupTween(){
@@ -61,8 +66,8 @@ public class JrpgFlow extends ApplicationAdapter {
 		Gdx.gl.glClearColor(12f/255f, 12f/255f, 12f/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float delta = Gdx.graphics.getDeltaTime();
+		globalTweenManager.update(delta);
 		for(World world : globalActiveWorldsList.getActiveWorlds()){
-			globalTweenManager.update(delta);
 			world.setDelta(delta);
 			world.process();
 		}

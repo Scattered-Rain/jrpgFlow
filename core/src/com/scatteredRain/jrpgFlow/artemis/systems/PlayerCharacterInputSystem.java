@@ -61,19 +61,23 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 				if(player.getInput().hasDirection()){
 					desiredDirComp.get(e).setDesiredDirection(player.getInput().getDirection());
 					if(!moveProgComp.get(e).isMoving()){
-						//Interaction With Character in front
-						checkFrontPush(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+						if(desiredDirComp.get(e).getDesiredDirection()==dirComp.get(e).getDirection()){
+							//Push
+							checkFrontPush(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+						}
 					}
 				}
 				else{
 					desiredDirComp.get(e).setStationary();
 					if(!moveProgComp.get(e).isMoving()){
+						//Look
 						checkFrontLook(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
 					}
 				}
 				//Player Action Button
 				if(player.getInput().getAction() && !actionUsed){
 					actionUsed = true;
+					//Talk
 					checkFrontTalk(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
 				}
 				else if(!player.getInput().getAction()){
@@ -82,6 +86,7 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 				//Player Standing
 				if(!moveProgComp.get(e).isMoving()){
 					if(lastPoint!=null && 1==Math.abs(lastPoint.getX()-localComp.get(e).getX()+lastPoint.getY()-localComp.get(e).getY())){
+						//Standing
 						checkStanding(localComp.get(e).getX(), localComp.get(e).getY(), charList);
 					}
 					lastPoint = new Point(localComp.get(e).getX(), localComp.get(e).getY());

@@ -1,5 +1,7 @@
 package com.scatteredRain.jrpgFlow;
 
+import static com.scatteredRain.jrpgFlow.Constants.TILE_SIZE;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import aurelienribon.tweenengine.TweenManager;
 
@@ -22,8 +24,10 @@ public class Constants {
 	public static final String COLLISION_PROPERTY_RIGHT = "collRIGHT";
 	public static final String COLLISION_PROPERTY_DOWN = "collDOWN";
 	public static final String COLLISION_PROPERTY_LEFT = "collLEFT";
-	//Character Key Words
 	
+	
+	/** The Game's Zoom Level */
+	public static final float ZOOM = TILE_SIZE*12;
 	
 	
 	/** The IDs corresponding to the directions */
@@ -69,15 +73,23 @@ public class Constants {
 	}
 	
 	
+	
+	@AllArgsConstructor
 	public enum MapID{
 		DEBUG_FIRST("maps/first.tmx"),
 		DEBUG_CAVE("maps/cave.tmx");
 		
 		@Getter
 		private String path;
-		private MapID(String path){
-			this.path = path;
-		}
+	}
+	
+	@AllArgsConstructor
+	public enum SpriteID{
+		GENTLEMAN("elderlyGentleman"),
+		STRAWHAT("strawhatBoy");
+		
+		@Getter
+		private String path;
 	}
 	
 	

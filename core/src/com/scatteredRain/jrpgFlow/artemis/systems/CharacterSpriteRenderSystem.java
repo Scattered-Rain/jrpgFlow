@@ -6,8 +6,10 @@ import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.annotations.Wire;
 import com.artemis.utils.ImmutableBag;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import static com.scatteredRain.jrpgFlow.Constants.*;
@@ -55,6 +57,7 @@ public class CharacterSpriteRenderSystem extends EntitySystem{
 				batch.draw(sprite, x, y);
 			}
 		}
+		
 		batch.end();
 	}
 

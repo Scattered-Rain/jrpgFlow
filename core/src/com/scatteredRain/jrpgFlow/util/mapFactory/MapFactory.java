@@ -22,6 +22,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader.Parameters;
+import com.scatteredRain.jrpgFlow.GlobalVariables;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
@@ -139,7 +140,7 @@ public class MapFactory {
 	
 	/** Adds Character To The World, Given X|Y, direction and Name of the Sprite */
 	private static Entity buildPlayer(Entity e, int x, int y, int dir){
-		addSprite(e, x, y, "elderlyGentleman", dir);
+		addSprite(e, x, y, GlobalVariables.playerSkin.getPath(), dir);
 		addExistence(e, x, y, dir, true);
 		addMovabililty(e);
 		
