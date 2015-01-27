@@ -4,6 +4,7 @@ import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.scatteredRain.jrpgFlow.Constants.SpriteID;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 
@@ -22,9 +23,9 @@ public class GlobalVariables {
 	public static ActiveWorldList globalActiveWorldsList;
 	
 	/** The Players Current Skin */
-	public static SpriteID playerSkin;
+	public static SpriteID globalPlayerSkin;
 	
-	/** The Default Font That Is Used By The Game */
-	public static BitmapFont defaultFont;
+	/** The Default Skin That Is Used By The Game */
+	public static Skin globalSkin;
 	
 }

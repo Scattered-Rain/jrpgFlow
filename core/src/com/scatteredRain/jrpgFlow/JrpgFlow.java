@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
@@ -37,8 +38,8 @@ public class JrpgFlow extends ApplicationAdapter {
 	public void create () {
 		setupTween();
 		globalSpriteAtlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
-		GlobalVariables.playerSkin = SpriteID.GENTLEMAN;
-		defaultFont = new BitmapFont(Gdx.files.internal("img/fonts/default.fnt"), Gdx.files.internal("img/fonts/default.png"), false);
+		GlobalVariables.globalPlayerSkin = SpriteID.GENTLEMAN;
+		globalSkin = new Skin(Gdx.files.internal("json/skin.json"), new TextureAtlas(Gdx.files.internal("img/packed/ui.atlas")));
 		
 		InputMultiplexer input = new InputMultiplexer();
 		Gdx.input.setInputProcessor(input);
@@ -71,7 +72,7 @@ public class JrpgFlow extends ApplicationAdapter {
 			world.setDelta(delta);
 			world.process();
 		}
-		//System.out.println(System.currentTimeMillis()-t);
+		System.out.println(System.currentTimeMillis()-t);
 	}
 	
 	@Override

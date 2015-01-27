@@ -140,7 +140,7 @@ public class MapFactory {
 	
 	/** Adds Character To The World, Given X|Y, direction and Name of the Sprite */
 	private static Entity buildPlayer(Entity e, int x, int y, int dir){
-		addSprite(e, x, y, GlobalVariables.playerSkin.getPath(), dir);
+		addSprite(e, x, y, GlobalVariables.globalPlayerSkin.getPath(), dir);
 		addExistence(e, x, y, dir, true);
 		addMovabililty(e);
 		

@@ -1,0 +1,20 @@
+   {  
+     com.badlogic.gdx.graphics.g2d.BitmapFont: {  
+      default: { file: fonts/defaultFont.fnt }
+     },  
+     com.badlogic.gdx.graphics.Color: {  
+      red: { a: 1, b: 0, g: 0, r: 1 },  
+      green: { a: 1, b: 0, g: 1, r: 0 },  
+      blue: { a: 1, b: 1, g: 0, r: 0 },  
+	  gray:  { a: 1, b: 0.5, g: 0.5, r: 0.5 },
+      white: { hex: "FFFFFF" },  
+      black: { hex: "000000" }  
+     },  
+     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
+      default: { font: default, fontColor: white }  
+     },
+	 com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	  default: { background: backgroundBox}
+	 }
+	 
+   }  
