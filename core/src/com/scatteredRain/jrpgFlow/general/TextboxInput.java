@@ -25,7 +25,9 @@ public class TextboxInput extends InputAdapter{
 		boolean textboxActive = reference.isActive();
 		if(keycode==KEY_ACTION){
 			if(!action){
-				reference.input();
+				if(textboxActive){
+					reference.input();
+				}
 			}
 			this.action = true;
 		}

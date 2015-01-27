@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.scatteredRain.jrpgFlow.util.TweenTimer;
 
 import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 import static com.scatteredRain.jrpgFlow.Constants.*;
@@ -30,6 +31,9 @@ public class TextboxRenderSystem extends EntitySystem{
 	
 	private static final float LABEL_PADDING = 6;
 	private static final float GENERAL_PADDING = 4;
+	
+	//Scroll Time Per Character
+	private static final float SCROLL_TIME = 0.05f;
 	
 	/** The Table The Textbox Uses To Render */
 	private Table table;
@@ -41,6 +45,9 @@ public class TextboxRenderSystem extends EntitySystem{
 	private Label[] labels;
 	private Group[] group;
 	
+	/** Timer for Text Scroll */
+	private TweenTimer timer;
+	
 	/** Strings Representing An Entire Box */
 	private List<String> boxStrings = null;
 	/** The Currently Active Box String */
@@ -49,9 +56,15 @@ public class TextboxRenderSystem extends EntitySystem{
 	private boolean box = false;
 	private int place = -1;
 	
+	/** Had Just Been Inputed */
+	private boolean input;
+	
 	
 	public TextboxRenderSystem() {
 		super(Aspect.getAspectForOne());
+		
+		this.timer = new TweenTimer();
+		this.input = false;
 		
 		float labelPadding = LABEL_PADDING;
 		float generalPadding = GENERAL_PADDING;
@@ -122,7 +135,7 @@ public class TextboxRenderSystem extends EntitySystem{
 			labels[c].setText("");
 		}
 		
-		stage.setDebugAll(true);
+		//stage.setDebugAll(true);
 		
 	}
 	
@@ -153,7 +166,7 @@ public class TextboxRenderSystem extends EntitySystem{
 					line = tokenLine;
 				}
 			}
-			textLines.add(line+"\n");
+			textLines.add(line);
 		}
 		
 		//Estimate Height Of The Available Textspace (Very Crudely)
@@ -167,7 +180,7 @@ public class TextboxRenderSystem extends EntitySystem{
 			String boxText = "";
 			for(int c=0; c<lines; c++){
 				if(counter<textLines.size()){
-					boxText += " "+textLines.get(counter);
+					boxText += textLines.get(counter)+"\n";
 					counter++;
 				}
 			}
@@ -176,10 +189,11 @@ public class TextboxRenderSystem extends EntitySystem{
 		
 		//Init Textboxing
 		this.boxStrings = boxes;
-		this.currentBoxString = 0;
+		this.currentBoxString = -1;
 		this.box = box;
 		this.place = place;
-		newBox(boxStrings.get(currentBoxString), place, box);
+		//newBox(boxStrings.get(currentBoxString), place, box);
+		advanceBox();
 	}
 	
 	
@@ -197,7 +211,10 @@ public class TextboxRenderSystem extends EntitySystem{
 		if(boxStrings!=null){
 			if(currentBoxString+1<boxStrings.size()){
 				this.currentBoxString++;
-				newBox(boxStrings.get(currentBoxString), place, box);
+				String curBoxString = boxStrings.get(currentBoxString);
+				newBox(curBoxString, place, box);
+				this.timer = new TweenTimer();
+				timer.start(curBoxString.length()*SCROLL_TIME);
 			}
 			else{
 				this.currentBoxString = -1;
@@ -207,21 +224,59 @@ public class TextboxRenderSystem extends EntitySystem{
 					panes[c].setVisible(false);
 					labels[c].setText("");
 				}
+				this.timer = new TweenTimer();
 			}
 		}
 	}
 	
 	public boolean isActive(){
-		return boxStrings!=null;
+		return boxStrings!=null && currentBoxString!=-1;
 	}
 	
 	public void input(){
-		advanceBox();
+		this.input = true;
+	}
+	
+	/** Returns Whether The Text Is Currently Scrolling */
+	private boolean isScrolling(){
+		if(isActive()){
+			if(!timer.isFinished()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private String getScrollText(){
+		String text = boxStrings.get(currentBoxString);
+		if(isScrolling()){
+			return text.substring(0, (int)(text.length()*timer.getTime()));
+		}
+		else{
+			return text;
+		}
+	}
+	
+	private void setScrollText(){
+		labels[place].setText(getScrollText());
 	}
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
 		stage.act(world.getDelta());
+		if(input){
+			if(isScrolling()){
+				this.timer = new TweenTimer();
+				this.timer.setFinished();
+			}
+			else{
+				advanceBox();
+			}
+			this.input = false;
+		}
+		if(isActive()){
+			setScrollText();
+		}
 		stage.draw();
 	}
 	
