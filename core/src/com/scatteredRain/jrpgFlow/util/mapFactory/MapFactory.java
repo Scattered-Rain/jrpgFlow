@@ -1,6 +1,7 @@
 package com.scatteredRain.jrpgFlow.util.mapFactory;
 
-import static com.scatteredRain.jrpgFlow.Constants.TILE_SIZE;
+import static com.scatteredRain.jrpgFlow.Constants.*;
+import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 
 import java.util.Iterator;
 
@@ -144,7 +145,7 @@ public class MapFactory {
 		addExistence(e, x, y, dir, true);
 		addMovabililty(e);
 		
-		PlayerCharacterInput playerInput = (PlayerCharacterInput) ((InputMultiplexer)Gdx.input.getInputProcessor()).getProcessors().get(ActiveWorldList.MAP_WORLD);
+		PlayerCharacterInput playerInput = (PlayerCharacterInput) globalActiveWorldsList.getInput(globalActiveWorldsList.MAP_WORLD);
 		playerInput.doTransitionPause();
 		
 		e.addComponent(new PlayerCharacterComponent(playerInput));

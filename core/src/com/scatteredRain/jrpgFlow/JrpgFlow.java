@@ -19,8 +19,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
+import com.scatteredRain.jrpgFlow.general.TextboxInput;
 import com.scatteredRain.jrpgFlow.tween.CameraTweener;
 import com.scatteredRain.jrpgFlow.tween.FloatPointTweener;
 import com.scatteredRain.jrpgFlow.tween.TweenTimerTweener;
@@ -40,17 +42,21 @@ public class JrpgFlow extends ApplicationAdapter {
 		globalSpriteAtlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
 		GlobalVariables.globalPlayerSkin = SpriteID.GENTLEMAN;
 		globalSkin = new Skin(Gdx.files.internal("json/skin.json"), new TextureAtlas(Gdx.files.internal("img/packed/ui.atlas")));
+		globalActiveWorldsList = new ActiveWorldList();
 		
 		InputMultiplexer input = new InputMultiplexer();
 		Gdx.input.setInputProcessor(input);
+		
 		World[] activeWorlds = new World[2];
 		
-		input.addProcessor(ActiveWorldList.MAP_WORLD, new PlayerCharacterInput());
+		activeWorlds[ActiveWorldList.TEXTBOX_WORLD] = WorldFactory.buildTextboxWorld();
+		input.addProcessor(ActiveWorldList.TOTAL_WORLDS-ActiveWorldList.TEXTBOX_WORLD-1, new TextboxInput(activeWorlds[1].getSystem(TextboxRenderSystem.class)));
+		
+		input.addProcessor(ActiveWorldList.TOTAL_WORLDS-ActiveWorldList.MAP_WORLD-1, new PlayerCharacterInput());
 		activeWorlds[ActiveWorldList.MAP_WORLD] = WorldFactory.buildMapWorld(MapID.DEBUG_FIRST, 0);
 		
-		activeWorlds[1] = WorldFactory.buildTextboxWorld();
 		
-		globalActiveWorldsList = new ActiveWorldList(activeWorlds);
+		globalActiveWorldsList.setAciveWorlds(activeWorlds);
 		
 	}
 	
@@ -72,7 +78,7 @@ public class JrpgFlow extends ApplicationAdapter {
 			world.setDelta(delta);
 			world.process();
 		}
-		System.out.println(System.currentTimeMillis()-t);
+		//System.out.println(System.currentTimeMillis()-t);
 	}
 	
 	@Override

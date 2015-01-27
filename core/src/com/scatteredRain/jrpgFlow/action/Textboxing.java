@@ -1,6 +1,7 @@
 package com.scatteredRain.jrpgFlow.action;
 
 import lombok.AllArgsConstructor;
+import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 
 @AllArgsConstructor
 public class Textboxing implements Action{
@@ -9,7 +10,7 @@ public class Textboxing implements Action{
 
 	@Override
 	public void act() {
-		System.out.println(text);
+		globalActiveWorldsList.startTextbox(text, 2, true);
 	}
 
 }

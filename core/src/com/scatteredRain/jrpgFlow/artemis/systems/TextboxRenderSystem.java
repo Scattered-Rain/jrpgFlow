@@ -1,5 +1,10 @@
 package com.scatteredRain.jrpgFlow.artemis.systems;
 
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import com.artemis.Aspect;
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
@@ -23,22 +28,33 @@ import static com.scatteredRain.jrpgFlow.Constants.*;
 
 public class TextboxRenderSystem extends EntitySystem{
 	
+	private static final float LABEL_PADDING = 6;
+	private static final float GENERAL_PADDING = 4;
+	
 	/** The Table The Textbox Uses To Render */
 	private Table table;
 	/** The Stage That Is To Be Used */
 	private Stage stage;
 	
-	
+	/** Reference To Teh Actual Elements */
 	private ScrollPane[] panes;
 	private Label[] labels;
 	private Group[] group;
+	
+	/** Strings Representing An Entire Box */
+	private List<String> boxStrings = null;
+	/** The Currently Active Box String */
+	private int currentBoxString = -1;
+	/** Settings For Current Textboxing */
+	private boolean box = false;
+	private int place = -1;
 	
 	
 	public TextboxRenderSystem() {
 		super(Aspect.getAspectForOne());
 		
-		float labelPadding = 5;
-		float generalPadding = 4;
+		float labelPadding = LABEL_PADDING;
+		float generalPadding = GENERAL_PADDING;
 		float fontScale = 1f;
 		
 		this.panes = new ScrollPane[3];
@@ -74,10 +90,13 @@ public class TextboxRenderSystem extends EntitySystem{
 			group[c].addActor(labelTable);
 		}
 		
+		float topGeneralPadding[] = new float[]{generalPadding, 0, 0};
+		float lowGeneralPadding[] = new float[]{0, 0, generalPadding};
+		
 		//Create Table & Stage & Add Everything
 		this.table = new Table();
 		for(int c=0; c<group.length; c++){
-			table.add(group[c]).expand().fill().padLeft(generalPadding).padRight(generalPadding).padTop(generalPadding).padBottom(generalPadding);
+			table.add(group[c]).expand().fill().padLeft(generalPadding).padRight(generalPadding).padTop(topGeneralPadding[c]).padBottom(lowGeneralPadding[c]);
 			table.row();
 		}
 		table.pack();
@@ -97,13 +116,107 @@ public class TextboxRenderSystem extends EntitySystem{
 		stage.addActor(table);
 		table.setFillParent(true);
 		table.validate();
-		//stage.setDebugAll(true);
 		
+		for(int c=0; c<3; c++){
+			panes[c].setVisible(false);
+			labels[c].setText("");
+		}
 		
-		panes[0].setVisible(false);
-		panes[1].setVisible(false);
-		labels[2].setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		stage.setDebugAll(true);
 		
+	}
+	
+	/** Starts New Textbox */
+	public void initText(String text, int place, boolean box){
+		
+		float maxTextWidth = group[place].getWidth()-(LABEL_PADDING*2);
+		float maxTextHeight = group[place].getHeight()-(LABEL_PADDING*2);
+		Label label = labels[place];
+		ArrayList<String> textLines = new ArrayList<String>();
+		
+		//Figure Out All The Lines
+		Scanner lineScanner = new Scanner(text);
+		while(lineScanner.hasNextLine()){
+			Scanner wordScanner = new Scanner(lineScanner.nextLine());
+			String line = "";
+			String tokenLine = "";
+			String nextWord = "";
+			line = wordScanner.next();
+			while(wordScanner.hasNext()){
+				nextWord = wordScanner.next();
+				tokenLine = line+" "+nextWord;
+				if(label.getStyle().font.computeVisibleGlyphs(tokenLine, 0, tokenLine.length(), maxTextWidth) < tokenLine.length()){
+					textLines.add(line);
+					line = nextWord;
+				}
+				else{
+					line = tokenLine;
+				}
+			}
+			textLines.add(line+"\n");
+		}
+		
+		//Estimate Height Of The Available Textspace (Very Crudely)
+		float fontHeight = label.getStyle().font.getCapHeight();
+		int lines = (int)(((maxTextHeight-fontHeight)/(fontHeight*1.8)))+1;
+		
+		//Add All Lines Of One Box Into A Single String Representing The Box
+		ArrayList<String> boxes = new ArrayList<String>();
+		int counter = 0;
+		while(counter<textLines.size()){
+			String boxText = "";
+			for(int c=0; c<lines; c++){
+				if(counter<textLines.size()){
+					boxText += " "+textLines.get(counter);
+					counter++;
+				}
+			}
+			boxes.add(boxText);
+		}
+		
+		//Init Textboxing
+		this.boxStrings = boxes;
+		this.currentBoxString = 0;
+		this.box = box;
+		this.place = place;
+		newBox(boxStrings.get(currentBoxString), place, box);
+	}
+	
+	
+	/** Creates New Box With The Given Parameters, Should Be Called From Inside This Class */
+	private void newBox(String text, int place, boolean box){
+		//Set Labels And Box If Applicable
+		labels[place].setText(text);
+		if(box){
+			panes[place].setVisible(true);
+		}
+	}
+	
+	/** Advances Current Textbox, Gets Rid Of It If There Is Nothing More To Advance */
+	public void advanceBox(){
+		if(boxStrings!=null){
+			if(currentBoxString+1<boxStrings.size()){
+				this.currentBoxString++;
+				newBox(boxStrings.get(currentBoxString), place, box);
+			}
+			else{
+				this.currentBoxString = -1;
+				this.boxStrings = null;
+				//Reset Everything
+				for(int c=0; c<3; c++){
+					panes[c].setVisible(false);
+					labels[c].setText("");
+				}
+			}
+		}
+	}
+	
+	public boolean isActive(){
+		return boxStrings!=null;
+	}
+	
+	public void input(){
+		advanceBox();
 	}
 
 	@Override
@@ -111,5 +224,5 @@ public class TextboxRenderSystem extends EntitySystem{
 		stage.act(world.getDelta());
 		stage.draw();
 	}
-
+	
 }
