@@ -142,6 +142,10 @@ public class TextboxRenderSystem extends EntitySystem{
 	/** Starts New Textbox */
 	public void initText(String text, int place, boolean box){
 		
+		//Make \n work with Tiled
+		text = text.replace("\\n", "\n");
+		
+		//Overhead
 		float maxTextWidth = group[place].getWidth()-(LABEL_PADDING*2);
 		float maxTextHeight = group[place].getHeight()-(LABEL_PADDING*2);
 		Label label = labels[place];
