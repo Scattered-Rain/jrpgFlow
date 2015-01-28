@@ -33,15 +33,15 @@ public class CharacterMoveProgressionComponent extends Component{
 	
 	/** Returns Progression Of Movement, 0 Means No Progression, 1 Means Move Finished And Currently Stationary */
 	public float getProgression(){
-		return timer.getTime();
+		return timer.getCurrentAnimationTime();
 	}
 	
 	public boolean justStarted(){
-		return timer.getTime()==0;
+		return timer.getCurrentAnimationTime()==0;
 	}
 	
 	public float getTotalNeededTime(){
-		return timer.getDuration();
+		return timer.getTotalAnimationDuration();
 	}
 	
 }

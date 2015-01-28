@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.scatteredRain.jrpgFlow.general.AnimatedImageActor;
 import com.scatteredRain.jrpgFlow.util.TweenTimer;
 
 import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
@@ -30,7 +31,10 @@ import static com.scatteredRain.jrpgFlow.Constants.*;
 public class TextboxRenderSystem extends EntitySystem{
 	
 	private static final float LABEL_PADDING = 6;
+	private static final float TEXT_DONE_TOKEN_PADDING = 2;
 	private static final float GENERAL_PADDING = 4;
+	
+	private static String TEXT_DONE_TOKEN_NAME = "textDoneToken";
 	
 	//Scroll Time Per Character
 	private static final float SCROLL_TIME = 0.05f;
@@ -44,6 +48,7 @@ public class TextboxRenderSystem extends EntitySystem{
 	private ScrollPane[] panes;
 	private Label[] labels;
 	private Group[] group;
+	private AnimatedImageActor[] textDoneToken;
 	
 	/** Timer for Text Scroll */
 	private TweenTimer timer;
@@ -73,6 +78,7 @@ public class TextboxRenderSystem extends EntitySystem{
 		this.panes = new ScrollPane[3];
 		this.group = new Group[3];
 		this.labels = new Label[3];
+		this.textDoneToken = new AnimatedImageActor[3];
 		
 		//Define All Labels
 		for(int c=0; c<group.length; c++){
@@ -86,6 +92,14 @@ public class TextboxRenderSystem extends EntitySystem{
 			paneTable.add(pane).expand().fill();
 			paneTable.pack();
 			paneTable.setFillParent(true);
+			//textDoneToken
+			AnimatedImageActor textDone = new AnimatedImageActor(TEXT_DONE_TOKEN_NAME, globalSkin);
+			textDoneToken[c] = textDone;
+			//Text Done Table
+			Table textDoneTable = new Table();
+			textDoneTable.add(textDone).expand().align(Align.bottomRight).padRight(TEXT_DONE_TOKEN_PADDING).padBottom(TEXT_DONE_TOKEN_PADDING);
+			textDoneTable.pack();
+			textDoneTable.setFillParent(true);
 			//Label
 			Label label = new Label("", globalSkin);
 			label.setFontScale(fontScale);
@@ -94,12 +108,13 @@ public class TextboxRenderSystem extends EntitySystem{
 			this.labels[c] = label;
 			//Label Table
 			Table labelTable = new Table();
-			labelTable.add(label).expand().fill().padLeft(labelPadding).padRight(generalPadding).padTop(generalPadding).padBottom(generalPadding);
+			labelTable.add(label).expand().fill().padLeft(labelPadding).padRight(labelPadding).padTop(generalPadding).padBottom(generalPadding);
 			labelTable.pack();
 			labelTable.setFillParent(true);
 			//Group
 			this.group[c] = new Group();
 			group[c].addActor(paneTable);
+			group[c].addActor(textDoneTable);
 			group[c].addActor(labelTable);
 		}
 		
@@ -132,6 +147,7 @@ public class TextboxRenderSystem extends EntitySystem{
 		
 		for(int c=0; c<3; c++){
 			panes[c].setVisible(false);
+			textDoneToken[c].setVisible(false);
 			labels[c].setText("");
 		}
 		
@@ -254,7 +270,7 @@ public class TextboxRenderSystem extends EntitySystem{
 	private String getScrollText(){
 		String text = boxStrings.get(currentBoxString);
 		if(isScrolling()){
-			return text.substring(0, (int)(text.length()*timer.getTime()));
+			return text.substring(0, (int)(text.length()*timer.getCurrentAnimationTime()));
 		}
 		else{
 			return text;
@@ -267,7 +283,6 @@ public class TextboxRenderSystem extends EntitySystem{
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
-		stage.act(world.getDelta());
 		if(input){
 			if(isScrolling()){
 				this.timer = new TweenTimer();
@@ -275,12 +290,19 @@ public class TextboxRenderSystem extends EntitySystem{
 			}
 			else{
 				advanceBox();
+				textDoneToken[place].setVisible(false);
 			}
 			this.input = false;
 		}
 		if(isActive()){
 			setScrollText();
+			if(!isScrolling()){
+				if(!textDoneToken[place].isVisible()){
+					textDoneToken[place].setVisible(true);
+				}
+			}
 		}
+		stage.act(world.getDelta());
 		stage.draw();
 	}
 	

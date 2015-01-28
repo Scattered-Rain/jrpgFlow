@@ -8,13 +8,13 @@ public class TweenTimerTweener implements TweenAccessor<TweenTimer>{
 
 	@Override
 	public int getValues(TweenTimer timer, int arg1, float[] returnValues) {
-		returnValues[0] = timer.getTime();
+		returnValues[0] = timer.getCurrentAnimationTime();
 		return 1;
 	}
 
 	@Override
 	public void setValues(TweenTimer timer, int arg1, float[] newValues) {
-		timer.setTime(newValues[0]);
+		timer.setCurrentAnimationTime(newValues[0]);
 	}
 
 }

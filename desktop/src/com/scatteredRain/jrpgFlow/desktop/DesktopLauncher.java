@@ -10,6 +10,10 @@ public class DesktopLauncher {
 	/** Whether The Game Is Supposed To Pack */
 	private static final boolean PACKING = true;
 	
+	/** List Of Debug Resolutions And The Index Of The Active Resolution */
+	private static final int[][] DEBUG_WINDOW_SIZES = new int[][]{{640, 480}, {2560/4, 1440/4}};
+	private static final int USE_WINDOW_SIZE= 1;
+	
 	public static void main (String[] arg) {
 		if(PACKING){
 			pack();
@@ -19,8 +23,8 @@ public class DesktopLauncher {
 		config.resizable = false;
 		config.title = "JRPG Flow";
 		config.fullscreen = false;
-		config.width = 640;
-		config.height = 480;
+		config.width = DEBUG_WINDOW_SIZES[USE_WINDOW_SIZE][0];
+		config.height = DEBUG_WINDOW_SIZES[USE_WINDOW_SIZE][1];
 		new LwjglApplication(new JrpgFlow(), config);
 	}
 	

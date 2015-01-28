@@ -15,8 +15,22 @@ backgroundBox
   index: -1
 defaultFont
   rotate: false
-  xy: 2, 15
+  xy: 2, 33
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
+textDoneToken
+  rotate: false
+  xy: 2, 15
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: 1
+textDoneToken
+  rotate: false
+  xy: 132, 145
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: 2

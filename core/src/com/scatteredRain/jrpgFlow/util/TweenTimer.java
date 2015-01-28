@@ -10,30 +10,44 @@ import lombok.Data;
 @Data
 public class TweenTimer {
 	
-	private float time;
-	private float duration;
+	private float currentAnimationTime;
+	private float totalAnimationDuration;
+	/** Note: When Loop Is True isFinished() will not work */
+	private boolean loop = false;
+	
+	/** Does Not Interfere in currently running Timer Because Of The TweenEngine itself */
+	public void setCurrentAnimationTime(float time){
+		currentAnimationTime = time;
+	}
 	
 	public TweenTimer(){
-		this.time = 0;
-		this.duration = -1;
+		this.currentAnimationTime = 0;
+		this.totalAnimationDuration = -1;
 	}
 	
+	/** Does Not Interfere in currently running Timer Because Of The TweenEngine itself */
 	public void reset(){
-		this.time = 0;
+		this.currentAnimationTime = 0;
 	}
 	
+	/** Does Not Interfere in currently running Timer Because Of The TweenEngine itself */
 	public void setFinished(){
-		this.time = 1f;
+		this.currentAnimationTime = 1f;
 	}
 	
 	public boolean isFinished(){
-		return (time>=1f);
+		return (currentAnimationTime>=1f);
 	}
 	
 	public void start(float duration){
 		reset();
-		this.duration = duration;
-		Tween.to(this, 0, duration).target(1).ease(Linear.INOUT).start(globalTweenManager);
+		this.totalAnimationDuration = duration;
+		if(!loop){
+			Tween.to(this, 0, duration).target(1).ease(Linear.INOUT).start(globalTweenManager);
+		}
+		else{
+			Tween.to(this, 0, duration).target(1).ease(Linear.INOUT).repeat(Tween.INFINITY, 0).start(globalTweenManager);
+		}
 	}
 
 }
