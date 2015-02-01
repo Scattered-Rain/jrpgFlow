@@ -38,6 +38,7 @@ public class JrpgFlow extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		calcZoom();
 		setupTween();
 		globalSpriteAtlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
 		GlobalVariables.globalPlayerSkin = SpriteID.GENTLEMAN;
@@ -60,6 +61,14 @@ public class JrpgFlow extends ApplicationAdapter {
 		
 	}
 	
+	/** Calcualate Zoom Level (Slightly Adjust The Zoom Level According To Screen Size So Pixels Do Not Get All Stretchy) */
+	private void calcZoom(){
+		float w = Gdx.graphics.getWidth();
+		int multiples = ((int)w)/((int)BASE_ZOOM);
+		int leftover = (((int)w)%((int)BASE_ZOOM));
+		Constants.ZOOM = BASE_ZOOM + (leftover/multiples);
+	}
+	
 	private void setupTween(){
 		globalTweenManager = new TweenManager();
 		Tween.registerAccessor(FloatPoint.class, new FloatPointTweener());
@@ -69,16 +78,14 @@ public class JrpgFlow extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		super.render();
 		long t = System.currentTimeMillis();
 		Gdx.gl.glClearColor(12f/255f, 12f/255f, 12f/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float delta = Gdx.graphics.getDeltaTime();
 		globalTweenManager.update(delta);
-		for(World world : globalActiveWorldsList.getActiveWorlds()){
-			world.setDelta(delta);
-			world.process();
-		}
-		System.out.println(System.currentTimeMillis()-t);
+		globalActiveWorldsList.update(delta);
+		//System.out.println(System.currentTimeMillis()-t);
 	}
 	
 	@Override

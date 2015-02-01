@@ -1,6 +1,9 @@
 package com.scatteredRain.jrpgFlow.general;
 
 import static com.scatteredRain.jrpgFlow.GlobalVariables.globalActiveWorldsList;
+
+import java.util.ArrayList;
+
 import lombok.Getter;
 
 import com.artemis.World;
@@ -8,6 +11,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.scatteredRain.jrpgFlow.Constants.MapID;
+import com.scatteredRain.jrpgFlow.action.Action;
+import com.scatteredRain.jrpgFlow.action.Teleport;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
 
@@ -18,15 +23,20 @@ public class ActiveWorldList {
 	
 	public static final int TOTAL_WORLDS = 2;
 	
+	private ArrayList<AwlRequest> requests;
+	
 	/** Reference to the worlds list used by the main loop */
 	@Getter
 	private World[] activeWorlds;
 	
 	public ActiveWorldList(World[] activeWorlds){
+		this();
 		this.activeWorlds = activeWorlds;
 	}
 	
-	public ActiveWorldList(){}
+	public ActiveWorldList(){
+		this.requests = new ArrayList<AwlRequest>();
+	}
 	
 	public void setAciveWorlds(World[] activeWorlds){
 		this.activeWorlds = activeWorlds;
@@ -44,7 +54,31 @@ public class ActiveWorldList {
 		return ((InputMultiplexer)Gdx.input.getInputProcessor()).getProcessors().get(ActiveWorldList.TOTAL_WORLDS-world-1);
 	}
 	
+	/** Updated All Worlds */
+	public void update(float delta){
+		for(World world : getActiveWorlds()){
+			world.setDelta(delta);
+			world.process();
+		}
+		handleRequests();
+	}
+	
+	/** Handles All Requests That Have Been Send To The Lsit, Like Teleporting or Initiating Textboxes */
+	private void handleRequests(){
+		for(AwlRequest request : requests){
+			request.doRequest();
+		}
+		requests.clear();
+	}
+	
+	public void sendRequest(AwlRequest request){
+		this.requests.add(request);
+	}
+	
 	public void switchMaps(MapID map, int enter){
+		if(activeWorlds!=null && activeWorlds[MAP_WORLD] != null){
+			activeWorlds[MAP_WORLD].dispose();
+		}
 		setWorld(MAP_WORLD, WorldFactory.buildMapWorld(map, enter));
 	}
 	
