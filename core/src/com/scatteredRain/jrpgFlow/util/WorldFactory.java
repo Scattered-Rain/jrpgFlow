@@ -38,6 +38,7 @@ import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapCharacterSpriteUpdateSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapPlayerCameraFocusSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.PassiveCharacterActionSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.PlayerCharacterInputSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
 import com.scatteredRain.jrpgFlow.general.Animation;
@@ -57,6 +58,7 @@ public class WorldFactory {
 		world.setSystem(new MapPlayerCameraFocusSystem(), false);
 		world.setSystem(new MapCharacterSpriteUpdateSystem(), false);
 		world.setSystem(new CharacterSpriteAnimationUpdateSystem(), false);
+		world.setSystem(new PassiveCharacterActionSystem(), true);
 		world.setSystem(new MapRenderSystem(false), false);
 		world.setSystem(new CharacterSpriteRenderSystem(), false);
 		world.setSystem(new MapRenderSystem(true), false);

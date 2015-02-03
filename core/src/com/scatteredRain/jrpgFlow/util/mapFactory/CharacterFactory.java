@@ -11,6 +11,7 @@ import com.scatteredRain.jrpgFlow.Constants;
 import com.scatteredRain.jrpgFlow.action.Action;
 import com.scatteredRain.jrpgFlow.action.Teleport;
 import com.scatteredRain.jrpgFlow.action.Textboxing;
+import com.scatteredRain.jrpgFlow.action.characterAction.Smalltalk;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterCollisionComponent;
@@ -35,6 +36,8 @@ public class CharacterFactory {
 	public static final String SIGN = "sign";
 	//Teleporter
 	public static final String TELEPORT = "warp";
+	//Smalltalker
+	public static final String SMALLTALK = "smalltalk";
 	
 	//Keys-------------------------------------------
 	//ID, If Needed (ID+Type Should Equal Unique Identification Of Character)
@@ -47,6 +50,8 @@ public class CharacterFactory {
 	public static final String MAP = "map";
 	//Generic ID
 	public static final String GENERIC_ID = "genid";
+	//Sprite
+	public static final String SPRITE = "sprite";
 	
 	//Specified Key For Showing Player Interaction Type
 	public static final String TRIGGER = "trigger";
@@ -76,6 +81,9 @@ public class CharacterFactory {
 		}
 		else if(type.equals(TELEPORT)){
 			e = createTeleport(e, x, y, properties.get(MAP, String.class), Integer.parseInt(properties.get(GENERIC_ID, String.class)), properties.get(TRIGGER, String.class));
+		}
+		else if(type.equals(SMALLTALK)){
+			e = createSmalltalk(e, x, y, Integer.parseInt(properties.get(DIRECTION, String.class)), properties.get(TEXT, String.class), properties.get(SPRITE, String.class));
 		}
 		return e;
 	}
@@ -122,7 +130,14 @@ public class CharacterFactory {
 		return e;
 	}
 	
-	
+	/** Adds A Smalltalker */
+	private static Entity createSmalltalk(Entity e, int x, int y, int dir, String text, String spriteName){
+		addExistence(e, x, y, dir, true);
+		addSprite(e, x, y, Constants.SpriteID.valueOf(spriteName).getPath(), dir);
+		Action smalltalk = new Smalltalk(e, text);
+		e.addComponent(new PlayerInteractionComponent(smalltalk, null, null, null));
+		return e;
+	}
 	
 	
 	

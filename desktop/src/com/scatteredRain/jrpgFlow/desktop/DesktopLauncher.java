@@ -12,8 +12,8 @@ public class DesktopLauncher {
 	
 	/** List Of Debug Resolutions And The Index Of The Active Resolution */
 	private static final int[][] DEBUG_WINDOW_SIZES = new int[][]{{640, 480}, {2560/4, 1440/4}, {2560/8, 1440/8},  {480, 480}};
-	private static final int USE_WINDOW_SIZE= 0;
-	private static final boolean FULLSCREEN = true;
+	private static final int USE_WINDOW_SIZE= 1;
+	private static final boolean FULLSCREEN = false;
 	
 	public static void main (String[] arg) {
 		if(PACKING){

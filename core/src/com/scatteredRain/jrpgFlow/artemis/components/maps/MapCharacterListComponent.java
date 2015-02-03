@@ -3,13 +3,17 @@ package com.scatteredRain.jrpgFlow.artemis.components.maps;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+
 import com.artemis.Component;
 import com.artemis.Entity;
 
 /** Component Contains References To All Characters On The Map, As Well As Their Location */
 public class MapCharacterListComponent extends Component{
 	
+	@Getter
 	private int width;
+	@Getter
 	private int height;
 	
 	/** 2D Array Of Array Lists Storing Each Character's Entity */

@@ -107,4 +107,13 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="smalltalker">
+  <object name="flowers" type="smalltalk" gid="432" x="224" y="272">
+   <properties>
+    <property name="dir" value="0"/>
+    <property name="sprite" value="STRAWHAT"/>
+    <property name="text" value="These flowers are really beautiful, don't you agree?"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

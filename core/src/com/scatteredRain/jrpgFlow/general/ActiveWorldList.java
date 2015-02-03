@@ -50,6 +50,7 @@ public class ActiveWorldList {
 		this.activeWorlds[index] = world;
 	}
 	
+	/** Returns Input Processor Of Specified World */
 	public InputProcessor getInput(int world){
 		return ((InputMultiplexer)Gdx.input.getInputProcessor()).getProcessors().get(ActiveWorldList.TOTAL_WORLDS-world-1);
 	}
@@ -71,6 +72,7 @@ public class ActiveWorldList {
 		requests.clear();
 	}
 	
+	/** Adds A New Request To Be Executed After This Processing Cycle */
 	public void sendRequest(AwlRequest request){
 		this.requests.add(request);
 	}
