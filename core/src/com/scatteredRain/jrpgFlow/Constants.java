@@ -53,7 +53,6 @@ public class Constants {
 		else if(direction==LEFT){
 			opposite = RIGHT;
 		}
-		//Should Never be -1
 		return opposite;
 	}
 	
@@ -72,6 +71,25 @@ public class Constants {
 			x--;
 		}
 		return new Point(x, y);
+	}
+	
+	/** Returns The Direction In Which The Target Is Adjacent To The Origin, Only If Directly Adjacent, Otherwise -1 */
+	public static int calcAdjacencyDirection(int originX, int originY, int targetX, int targetY){
+		if((Math.abs(originX-targetX)+Math.abs(originY-targetY))==1){
+			if(originY<targetY){
+				return UP;
+			}
+			else if(originX<targetX){
+				return RIGHT;
+			}
+			else if(originY>targetY){
+				return DOWN;
+			}
+			else if(originX>targetX){
+				return LEFT;
+			}
+		}
+		return -1;
 	}
 	
 	

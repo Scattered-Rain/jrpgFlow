@@ -17,7 +17,7 @@ public class Smalltalk extends CharacterAction{
 		super.act();
 		textbox.act();
 		//TODO: Find & Set To Player
-		super.accessor.getDirectionComp().get(super.owner).setDirection(2);
+		super.accessor.getDirectionComp().get(super.owner).setDirection(getOwnerToPlayerDirection());
 	}
 
 }
