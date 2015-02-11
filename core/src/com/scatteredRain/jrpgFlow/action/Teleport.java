@@ -3,7 +3,7 @@ package com.scatteredRain.jrpgFlow.action;
 import static com.scatteredRain.jrpgFlow.GlobalVariables.globalActiveWorldsList;
 import lombok.AllArgsConstructor;
 
-import com.scatteredRain.jrpgFlow.Constants.MapID;
+import com.scatteredRain.jrpgFlow.enums.MapID;
 import com.scatteredRain.jrpgFlow.general.AwlRequest;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
 

@@ -41,6 +41,7 @@ import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.PassiveCharacterActionSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.PlayerCharacterInputSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
+import com.scatteredRain.jrpgFlow.enums.MapID;
 import com.scatteredRain.jrpgFlow.general.Animation;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 import com.scatteredRain.jrpgFlow.util.mapFactory.MapFactory;

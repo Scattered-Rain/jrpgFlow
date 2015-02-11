@@ -5,7 +5,7 @@ import aurelienribon.tweenengine.TweenManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.scatteredRain.jrpgFlow.Constants.SpriteID;
+import com.scatteredRain.jrpgFlow.enums.SpriteID;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 
 import lombok.Data;

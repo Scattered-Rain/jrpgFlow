@@ -10,10 +10,10 @@ import com.artemis.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.scatteredRain.jrpgFlow.Constants.MapID;
 import com.scatteredRain.jrpgFlow.action.Action;
 import com.scatteredRain.jrpgFlow.action.Teleport;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
+import com.scatteredRain.jrpgFlow.enums.MapID;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
 
 public class ActiveWorldList {

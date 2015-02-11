@@ -22,6 +22,8 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSp
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerInteractionComponent;
+import com.scatteredRain.jrpgFlow.enums.MapID;
+import com.scatteredRain.jrpgFlow.enums.SpriteID;
 
 public class CharacterFactory {
 	
@@ -110,7 +112,7 @@ public class CharacterFactory {
 	
 	/** Adds A Teleport */
 	private static Entity createTeleport(Entity e, int x, int y, String map, int enter, String trigger){
-		Action warping = new Teleport(Constants.MapID.valueOf(map), enter);
+		Action warping = new Teleport(MapID.valueOf(map), enter);
 		if(trigger==null || trigger.equals(TRIGGER_TALK)){
 			addExistence(e, x, y, 2, true);
 			e.addComponent(new PlayerInteractionComponent(warping, null, null, null));
@@ -133,7 +135,7 @@ public class CharacterFactory {
 	/** Adds A Smalltalker */
 	private static Entity createSmalltalk(Entity e, int x, int y, int dir, String text, String spriteName){
 		addExistence(e, x, y, dir, true);
-		addSprite(e, x, y, Constants.SpriteID.valueOf(spriteName).getPath(), dir);
+		addSprite(e, x, y, SpriteID.valueOf(spriteName).getPath(), dir);
 		Action smalltalk = new Smalltalk(e, text);
 		e.addComponent(new PlayerInteractionComponent(smalltalk, null, null, null));
 		return e;

@@ -92,25 +92,4 @@ public class Constants {
 		return -1;
 	}
 	
-	
-	
-	@AllArgsConstructor
-	public enum MapID{
-		DEBUG_FIRST("maps/first.tmx"),
-		DEBUG_CAVE("maps/cave.tmx");
-		
-		@Getter
-		private String path;
-	}
-	
-	@AllArgsConstructor
-	public enum SpriteID{
-		GENTLEMAN("elderlyGentleman"),
-		STRAWHAT("strawhatBoy");
-		
-		@Getter
-		private String path;
-	}
-	
-	
 }
