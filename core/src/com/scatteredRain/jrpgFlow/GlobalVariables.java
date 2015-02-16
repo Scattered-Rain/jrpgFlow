@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.scatteredRain.jrpgFlow.enums.SpriteID;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
+import com.scatteredRain.jrpgFlow.general.gameVariables.GameVariables;
 
 import lombok.Data;
 
@@ -24,6 +25,9 @@ public class GlobalVariables {
 	
 	/** The Players Current Skin */
 	public static SpriteID globalPlayerSkin;
+	
+	/** Game Variables */
+	public static GameVariables gameVariables;
 	
 	/** The Default Skin That Is Used By The Game */
 	public static Skin globalSkin;
