@@ -7,7 +7,8 @@ import lombok.Getter;
 public enum MapID{
 	
 	DEBUG_FIRST("maps/first.tmx"),
-	DEBUG_CAVE("maps/cave.tmx");
+	DEBUG_CAVE("maps/cave.tmx"),
+	MOCK_SMALL_LAB("maps/smallLab.tmx");
 	
 	@Getter
 	private String path;

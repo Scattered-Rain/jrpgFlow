@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="7" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" source="../img/tilesets/indoor.tsx"/>
+ <layer name="invisibleWalls" width="10" height="7">
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggIAAIICAACCAgAAggIAAIICAACCAgAAggIAAIICAACCAgAAggIAAA==
+  </data>
+ </layer>
+ <layer name="ground" width="10" height="7">
+  <data encoding="base64">
+   AQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+  </data>
+ </layer>
+ <layer name="walls" width="10" height="7">
+  <data encoding="base64">
+   QQAAAEEAAABBAAAAQQAAAEEAAABBAAAAQQAAAEEAAABBAAAAQQAAAGEAAABhAAAAYQAAAGEAAABhAAAAYQAAAGEAAABhAAAAYQAAAGEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+  </data>
+ </layer>
+ <layer name="stuff" width="10" height="7">
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjwAAAAAAAAAAAAAAAAAAAAAAAADGAAAAxwAAAAAAAAAAAAAAAAAAAK8AAAAAAAAAAAAAAAAAAAAAAAAA5gAAAOcAAADjAQAAAAAAAOEAAADiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiAQAAAAAAAAAAAAAAAAAAAAAAAGMBAABkAQAAyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACDAQAAhAEAAOgAAAAAAAAAAAAAAAAAAAAjAgAAJAIAACUCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+  </data>
+ </layer>
+ <layer name="top" width="10" height="7" opacity="0.9">
+  <properties>
+   <property name="top" value=""/>
+  </properties>
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwQAAAMIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQwEAAEQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+  </data>
+ </layer>
+ <objectgroup name="entrances">
+  <object name="0 entrance" type="ENTER" gid="641" x="64" y="96">
+   <properties>
+    <property name="DIR" value="0"/>
+    <property name="ID" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="warps">
+  <object name="out" type="WARP" gid="610" x="64" y="112">
+   <properties>
+    <property name="ID" value="0"/>
+    <property name="MAP" value="DEBUG_FIRST"/>
+    <property name="TARGET" value="3"/>
+    <property name="TRIGGER" value="PUSH"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="signs">
+  <object name="controlUnit" type="SIGN" gid="610" x="144" y="80">
+   <properties>
+    <property name="ID" value="0"/>
+    <property name="TEXT" value="Protein Delivery: OK\nHeat Management: OK\nTissue Repair: Uncertain\nProgress: 76%"/>
+   </properties>
+  </object>
+  <object name="books" type="SIGN" gid="610" x="48" y="48">
+   <properties>
+    <property name="ID" value="1"/>
+    <property name="TEXT" value="This pile of books contains everything from 'How To Kill A Zombie Man' to 'Resurecting The Dead, A Beginner's Guide To Modern Age Necromancy'"/>
+   </properties>
+  </object>
+  <object name="book" type="SIGN" gid="610" x="32" y="64">
+   <properties>
+    <property name="ID" value="2"/>
+    <property name="TEXT" value="'Frankenstein'"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

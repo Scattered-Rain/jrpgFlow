@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.action.characterAction;
+package com.scatteredRain.jrpgFlow.action;
 
 import java.util.Random;
 
@@ -6,7 +6,6 @@ import com.artemis.Entity;
 import com.artemis.World;
 import com.scatteredRain.jrpgFlow.Constants;
 import com.scatteredRain.jrpgFlow.artemis.systems.PassiveCharacterActionSystem;
-import com.scatteredRain.jrpgFlow.action.Action;
 
 /** An Abstract Action Specifically Tailored To The Needs Of Map Characters */
 public abstract class CharacterAction implements Action{

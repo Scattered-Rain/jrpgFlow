@@ -1,13 +1,13 @@
-package com.scatteredRain.jrpgFlow.action;
+package com.scatteredRain.jrpgFlow.action.coreAction;
 
 import static com.scatteredRain.jrpgFlow.GlobalVariables.globalActiveWorldsList;
 import lombok.AllArgsConstructor;
 
+import com.scatteredRain.jrpgFlow.action.Action;
 import com.scatteredRain.jrpgFlow.enums.MapID;
 import com.scatteredRain.jrpgFlow.general.AwlRequest;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
 
-//TODO: Finish!
 @AllArgsConstructor
 public class Teleport implements Action, AwlRequest{
 	

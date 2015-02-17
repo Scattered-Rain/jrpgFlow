@@ -1,5 +1,6 @@
-package com.scatteredRain.jrpgFlow.action;
+package com.scatteredRain.jrpgFlow.action.coreAction;
 
+import com.scatteredRain.jrpgFlow.action.Action;
 import com.scatteredRain.jrpgFlow.general.AwlRequest;
 
 import lombok.AllArgsConstructor;

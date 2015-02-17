@@ -50,69 +50,82 @@
   </data>
  </layer>
  <objectgroup name="signs">
-  <object name="cave" type="sign" gid="432" x="256" y="64">
+  <object name="cave" type="SIGN" gid="432" x="256" y="64">
    <properties>
-    <property name="text" value="This is the Danger Cave. I know, I know. But just trust me, it actually is REALLY dangerous. Do Not Enter."/>
+    <property name="ID" value="0"/>
+    <property name="TEXT" value="This is the Danger Cave. I know, I know. But just trust me, it actually is REALLY dangerous. Do Not Enter."/>
    </properties>
   </object>
-  <object name="entrance1/2" type="sign" gid="432" x="80" y="96">
+  <object name="entrance1/2" type="SIGN" gid="432" x="80" y="96">
    <properties>
-    <property name="text" value="Welcome to Podonk.\nPopulation: 5."/>
+    <property name="ID" value="1"/>
+    <property name="TEXT" value="Welcome to Podonk.\nPopulation: 5."/>
    </properties>
   </object>
-  <object name="entrance2/2" type="sign" gid="432" x="96" y="96">
+  <object name="entrance2/2" type="SIGN" gid="432" x="96" y="96">
    <properties>
-    <property name="text" value="Welcome to Podonk.\nPopulation: 5."/>
+    <property name="ID" value="2"/>
+    <property name="TEXT" value="Welcome to Podonk.\nPopulation: 5."/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="entrances">
-  <object name="0 cave" type="enter" gid="463" x="224" y="48">
+  <object name="0 cave" type="ENTER" gid="463" x="224" y="48">
    <properties>
-    <property name="dir" value="2"/>
-    <property name="id" value="0"/>
+    <property name="DIR" value="2"/>
+    <property name="ID" value="0"/>
    </properties>
   </object>
-  <object name="1 rightPath" type="enter" gid="463" x="496" y="368">
+  <object name="1 rightPath" type="ENTER" gid="463" x="496" y="368">
    <properties>
-    <property name="dir" value="3"/>
-    <property name="id" value="1"/>
+    <property name="DIR" value="3"/>
+    <property name="ID" value="1"/>
    </properties>
   </object>
-  <object name="2 leftPath" type="enter" gid="463" x="0" y="144">
+  <object name="2 leftPath" type="ENTER" gid="463" x="0" y="144">
    <properties>
-    <property name="dir" value="2"/>
-    <property name="id" value="2"/>
+    <property name="DIR" value="2"/>
+    <property name="ID" value="2"/>
    </properties>
   </object>
-  <object name="3 redHouse" type="enter" gid="463" x="112" y="304">
+  <object name="3 redHouse" type="ENTER" gid="463" x="112" y="304">
    <properties>
-    <property name="dir" value="2"/>
-    <property name="id" value="3"/>
+    <property name="DIR" value="2"/>
+    <property name="ID" value="3"/>
    </properties>
   </object>
-  <object name="4 blueHouse" type="enter" gid="463" x="336" y="272">
+  <object name="4 blueHouse" type="ENTER" gid="463" x="336" y="272">
    <properties>
-    <property name="dir" value="2"/>
-    <property name="id" value="4"/>
+    <property name="DIR" value="2"/>
+    <property name="ID" value="4"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="warps">
-  <object name="cave" type="warp" gid="432" x="224" y="48">
+  <object name="cave" type="WARP" gid="432" x="224" y="48">
    <properties>
-    <property name="genid" value="0"/>
-    <property name="map" value="DEBUG_CAVE"/>
-    <property name="trigger" value="touch"/>
+    <property name="ID" value="0"/>
+    <property name="MAP" value="DEBUG_CAVE"/>
+    <property name="TARGET" value="0"/>
+    <property name="TRIGGER" value="TOUCH"/>
+   </properties>
+  </object>
+  <object name="redHouse" type="WARP" gid="0" x="112" y="288">
+   <properties>
+    <property name="ID" value="1"/>
+    <property name="MAP" value="MOCK_SMALL_LAB"/>
+    <property name="TARGET" value="0"/>
+    <property name="TRIGGER" value="PUSH"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="smalltalker">
-  <object name="flowers" type="smalltalk" gid="432" x="224" y="272">
+  <object name="flowers" type="SMALLTALK" gid="432" x="224" y="272">
    <properties>
-    <property name="dir" value="0"/>
-    <property name="sprite" value="STRAWHAT"/>
-    <property name="text" value="These flowers are really beautiful, don't you agree?"/>
+    <property name="DIR" value="0"/>
+    <property name="ID" value="0"/>
+    <property name="SPRITE" value="STRAWHAT"/>
+    <property name="TEXT" value="These flowers are really beautiful, don't you agree?"/>
    </properties>
   </object>
  </objectgroup>

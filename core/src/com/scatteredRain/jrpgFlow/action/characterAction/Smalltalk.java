@@ -2,7 +2,9 @@ package com.scatteredRain.jrpgFlow.action.characterAction;
 
 import com.artemis.Entity;
 import com.scatteredRain.jrpgFlow.action.Action;
-import com.scatteredRain.jrpgFlow.action.Textboxing;
+import com.scatteredRain.jrpgFlow.action.CharacterAction;
+import com.scatteredRain.jrpgFlow.action.coreAction.Textboxing;
+import com.scatteredRain.jrpgFlow.action.coreAction.Turning;
 
 public class Smalltalk extends CharacterAction{
 	
@@ -15,9 +17,9 @@ public class Smalltalk extends CharacterAction{
 	
 	public void act(){
 		super.act();
+		Action turning = new Turning(super.owner, getOwnerToPlayerDirection());
 		textbox.act();
-		//TODO: Find & Set To Player
-		super.accessor.getDirectionComp().get(super.owner).setDirection(getOwnerToPlayerDirection());
+		turning.act();
 	}
 
 }

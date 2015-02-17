@@ -39,13 +39,22 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSp
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
+import com.scatteredRain.jrpgFlow.enums.CharacterFactory;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 import com.sun.xml.internal.fastinfoset.sax.Properties;
-import static com.scatteredRain.jrpgFlow.util.mapFactory.CharacterFactory.*;
+import static com.scatteredRain.jrpgFlow.util.mapFactory.GenericCharacterFactory.*;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 
 public class MapFactory {
+	
+	//Type Of The Character (This Key Is Defined by Tiled Itself)
+	public static final String TYPE = "type";
+	//Entrance For Player (This Is Used In MapFactory And Will Not Be Translated Into A Character)
+	public static final String ENTER = "ENTER";
+	//ID and direction as referenced from the proper enum
+	public static final String ID = CharacterFactory.AttKey.ID.key();
+	public static final String DIRECTION = CharacterFactory.AttKey.DIRECTION.key();
 	
 	
 	/** Adds Given Map To Given World, Completely Initializes All Entities Needed Thusly */
@@ -112,7 +121,7 @@ public class MapFactory {
 					//Find Other Objects
 					else{
 						//Adds All Actual Characters Here!
-						Entity character = CharacterFactory.readObject(world.createEntity(), type, x, y, object, properties);
+						Entity character = GenericCharacterFactory.readObject(world.createEntity(), type, x, y, object, properties);
 						characterList.addEntity(x, y, character);
 					}
 				}
