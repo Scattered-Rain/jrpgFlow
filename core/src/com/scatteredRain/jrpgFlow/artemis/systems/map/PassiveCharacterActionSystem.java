@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import lombok.Data;
 
@@ -8,11 +8,11 @@ import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.annotations.Wire;
 import com.artemis.utils.ImmutableBag;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterIdComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
 
 /** This System is supposed to never be actively used, instead it is supposed to be an easily reachable object for accessing Component Mappers */
 @Data

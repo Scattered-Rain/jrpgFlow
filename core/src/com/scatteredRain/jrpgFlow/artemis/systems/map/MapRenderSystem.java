@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,8 +15,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
 
 /** System Designated To Render All Maps In World */
 @Wire
@@ -28,6 +28,9 @@ public class MapRenderSystem extends EntitySystem{
 	/** Whether This System Should Render The Top Layers Of The Map Or Everything but */
 	private boolean renderTop;
 	
+	private OrthographicCamera camera = null;
+	private TileMapRenderComponent mapRend = null;
+	
 	public MapRenderSystem(boolean renderTop) {
 		super(Aspect.getAspectForOne(TileMapRenderComponent.class, OrthographicCameraComponent.class));
 		this.renderTop = renderTop;
@@ -35,32 +38,37 @@ public class MapRenderSystem extends EntitySystem{
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
-		//Retrieving Camera And Map
-		OrthographicCamera camera = null;
-		for(Entity e : entities){
-			if(cameraComp.has(e)){
-				camera = cameraComp.get(e).getCamera();
-				break;
-			}
-		}
 		//Find Entities With MapRenderer, And Render Them
-		for(Entity e : entities){
-			if(mapRenderComp.has(e)){
-				TileMapRenderComponent mapRend = mapRenderComp.get(e);
-				//Prepare Layer List
-				int[] renderList = new int[0];
-				if(renderTop){
-					renderList = mapRend.getTopLayers();
-				}
-				else{
-					renderList = mapRend.getGroundLayers();
-				}
-				//Prepare MapRenderer And Render
-				OrthogonalTiledMapRenderer mapRenderer = mapRend.getMapRenderer();
-				mapRenderer.setView(camera);
-				mapRenderer.render(renderList);
-			}
+		int[] renderList = new int[0];
+		if(renderTop){
+			renderList = mapRend.getTopLayers();
 		}
+		else{
+			renderList = mapRend.getGroundLayers();
+		}
+		//Prepare MapRenderer And Render
+		OrthogonalTiledMapRenderer mapRenderer = mapRend.getMapRenderer();
+		mapRenderer.setView(camera);
+		mapRenderer.render(renderList);
+	}
+	
+	@Override
+	protected void inserted(Entity e){
+		if(cameraComp.has(e)){
+			camera = cameraComp.get(e).getCamera();
+		}
+		if(mapRenderComp.has(e)){
+				mapRend = mapRenderComp.get(e);
+		}
+	}
+	
+	@Override
+	protected void dispose(){
+		super.dispose();
+		try{
+			mapRend.getMap().dispose();
+			mapRend.getMapRenderer().dispose();
+		}catch(Exception ex){}
 	}
 
 }

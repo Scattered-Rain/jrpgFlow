@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;

@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import static com.scatteredRain.jrpgFlow.Constants.*;
 import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
@@ -14,10 +14,10 @@ import com.artemis.utils.ImmutableBag;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CameraFocusComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
 
 /** Focuses The Camera On The Character The The Camera Focus Component Is Attached To */
 @Wire
@@ -30,6 +30,10 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 	ComponentMapper<CharacterLocationComponent> locationComp;
 	ComponentMapper<CharacterMoveProgressionComponent> moveComp;
 	ComponentMapper<CameraFocusComponent> cameraFocusComp;
+	
+	private OrthographicCamera camera = null;
+	private int mapWidth = -1;
+	private int mapHeight = -1;
 
 	public MapPlayerCameraFocusSystem() {
 		super(Aspect.getAspectForOne(OrthographicCameraComponent.class, CameraFocusComponent.class, MapComponent.class));
@@ -37,18 +41,6 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
-		OrthographicCamera camera = null;
-		int mapWidth = -1;
-		int mapHeight = -1;
-		for(Entity e : entities){
-			if(cameraComp.has(e)){
-				camera = cameraComp.get(e).getCamera();
-			}
-			if(mapComp.has(e)){
-				mapWidth = mapComp.get(e).getWidth();
-				mapHeight = mapComp.get(e).getHeight();
-			}
-		}
 		for(Entity e : entities){
 			if(cameraFocusComp.has(e) && locationComp.has(e)){
 				if(moveComp.has(e) && moveComp.get(e).justStarted()){
@@ -104,6 +96,17 @@ public class MapPlayerCameraFocusSystem extends EntitySystem{
 			location = space*TILE_SIZE - zoomSpace;
 		}
 		return location;
+	}
+	
+	@Override
+	protected void inserted(Entity e){
+		if(cameraComp.has(e)){
+			camera = cameraComp.get(e).getCamera();
+		}
+		if(mapComp.has(e)){
+			mapWidth = mapComp.get(e).getWidth();
+			mapHeight = mapComp.get(e).getHeight();
+		}
 	}
 
 }

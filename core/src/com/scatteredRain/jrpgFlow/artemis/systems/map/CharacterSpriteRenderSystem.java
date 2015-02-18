@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import java.util.List;
 
@@ -16,11 +16,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.SpriteBatchComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
 
 @Wire
 public class CharacterSpriteRenderSystem extends EntitySystem{
@@ -30,32 +29,18 @@ public class CharacterSpriteRenderSystem extends EntitySystem{
 	ComponentMapper<ActiveCharacterSpriteComponent> spriteComp;
 	ComponentMapper<CharacterSpriteLocationComponent> locationComp;
 	ComponentMapper<OrthographicCameraComponent> cameraComp;
-	ComponentMapper<SpriteBatchComponent> batchComp;
+	
+	private OrthographicCamera camera = null;
+	private MapCharacterListComponent charList = null;
+	private SpriteBatch batch;
 
 	public CharacterSpriteRenderSystem() {
-		super(Aspect.getAspectForOne(ActiveCharacterSpriteComponent.class, CharacterSpriteLocationComponent.class, OrthographicCameraComponent.class, SpriteBatchComponent.class, MapCharacterListComponent.class));
+		super(Aspect.getAspectForOne(ActiveCharacterSpriteComponent.class, CharacterSpriteLocationComponent.class, OrthographicCameraComponent.class, MapCharacterListComponent.class));
+		this.batch = new SpriteBatch();
 	}
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
-		//Retrieving Camera And Map
-		OrthographicCamera camera = null;
-		SpriteBatch batch = null;
-		MapCharacterListComponent charList = null;
-		for(Entity e : entities){
-			if(cameraComp.has(e) && batchComp.has(e)){
-				//NOTE: Assertion That Both Camera And Sprite Batch are attached to the same Entity
-				camera = cameraComp.get(e).getCamera();
-				batch = batchComp.get(e).getBatch();
-				charList = charListComp.get(e);
-			}
-			if(charListComp.has(e)){
-				charList = charListComp.get(e);
-			}
-			if(camera!=null && batch!=null && charList!=null){
-				break;
-			}
-		}
 		//Begin Drawing Process
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
@@ -78,6 +63,24 @@ public class CharacterSpriteRenderSystem extends EntitySystem{
 			}
 		}
 		batch.end();
+	}
+	
+	@Override
+	protected void inserted(Entity e){
+		if(cameraComp.has(e)){
+			//NOTE: Assertion That Both Camera And Sprite Batch are attached to the same Entity
+			camera = cameraComp.get(e).getCamera();
+			charList = charListComp.get(e);
+		}
+		if(charListComp.has(e)){
+			charList = charListComp.get(e);
+		}
+	}
+	
+	@Override
+	protected void dispose(){
+		super.dispose();
+		batch.dispose();
 	}
 
 }

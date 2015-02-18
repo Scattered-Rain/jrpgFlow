@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.components.maps;
+package com.scatteredRain.jrpgFlow.artemis.components.maps.map;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,12 +20,15 @@ public class TileMapRenderComponent extends Component{
 	
 	private OrthogonalTiledMapRenderer mapRenderer;
 	
+	private TiledMap map;
+	
 	//The indexes of the maps layers that should be rendered by the mapRenderer
 	private int[] groundLayers;
 	private int[] topLayers;
 	
 	
 	public TileMapRenderComponent(TiledMap map){
+		this.map = map;
 		//Create Map Renderer
 		//TODO: Get Tile size Into Some Constants Class
 		this.mapRenderer  = new OrthogonalTiledMapRenderer(map, 1);

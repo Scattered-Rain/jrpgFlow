@@ -1,6 +1,9 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
@@ -8,13 +11,13 @@ import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.annotations.Wire;
 import com.artemis.utils.ImmutableBag;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMoveProgressionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerInteractionComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.util.Point;
 import com.scatteredRain.jrpgFlow.util.WorldFactory;
 
@@ -36,66 +39,73 @@ public class PlayerCharacterInputSystem extends EntitySystem{
 	
 	ComponentMapper<PlayerInteractionComponent> interactComp;
 	
+	private MapCharacterListComponent charList = null;
+	
 	//Indicates Whether The Currently Registered Action Button Press Was Already Used For Triggering Something Else
 	private boolean actionUsed;
 	private Point lastPoint;
+	
+	/** If False The Player Will Not Be Able To Control The Player Character, True By Default */
+	@Setter @Getter private boolean playerActionEnabled;
 	
 	
 	public PlayerCharacterInputSystem() {
 		super(Aspect.getAspectForOne(PlayerCharacterComponent.class, MapCharacterListComponent.class));
 		this.actionUsed = false;
+		this.playerActionEnabled = true;
 	}
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
-		MapCharacterListComponent charList = null;
-		for(Entity e : entities){
-			if(charListComp.has(e)){
-				charList = charListComp.get(e);
-			}
-		}
-		for(Entity e : entities){
-			if(playerComp.has(e)){
-				PlayerCharacterComponent player = playerComp.get(e);
-				//Player Movement
-				if(player.getInput().hasDirection()){
-					desiredDirComp.get(e).setDesiredDirection(player.getInput().getDirection());
-					if(!moveProgComp.get(e).isMoving()){
-						if(desiredDirComp.get(e).getDesiredDirection()==dirComp.get(e).getDirection()){
-							//Push
-							checkFrontPush(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+		if(playerActionEnabled){
+			for(Entity e : entities){
+				if(playerComp.has(e)){
+					PlayerCharacterComponent player = playerComp.get(e);
+					//Player Movement
+					if(player.getInput().hasDirection()){
+						desiredDirComp.get(e).setDesiredDirection(player.getInput().getDirection());
+						if(!moveProgComp.get(e).isMoving()){
+							if(desiredDirComp.get(e).getDesiredDirection()==dirComp.get(e).getDirection()){
+								//Push
+								checkFrontPush(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+							}
 						}
 					}
-				}
-				else{
-					desiredDirComp.get(e).setStationary();
+					else{
+						desiredDirComp.get(e).setStationary();
+						if(!moveProgComp.get(e).isMoving()){
+							//Look
+							checkFrontLook(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+						}
+					}
+					//Player Action Button
+					if(player.getInput().getAction() && !actionUsed){
+						actionUsed = true;
+						//Talk
+						checkFrontTalk(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+					}
+					else if(!player.getInput().getAction()){
+						actionUsed = false;
+					}
+					//Player Standing
 					if(!moveProgComp.get(e).isMoving()){
-						//Look
-						checkFrontLook(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
+						if(lastPoint!=null && 1==Math.abs(lastPoint.getX()-localComp.get(e).getX()+lastPoint.getY()-localComp.get(e).getY())){
+							//Standing
+							checkStanding(localComp.get(e).getX(), localComp.get(e).getY(), charList);
+						}
+						lastPoint = new Point(localComp.get(e).getX(), localComp.get(e).getY());
 					}
-				}
-				//Player Action Button
-				if(player.getInput().getAction() && !actionUsed){
-					actionUsed = true;
-					//Talk
-					checkFrontTalk(localComp.get(e).getX(), localComp.get(e).getY(), dirComp.get(e).getDirection(), charList);
-				}
-				else if(!player.getInput().getAction()){
-					actionUsed = false;
-				}
-				//Player Standing
-				if(!moveProgComp.get(e).isMoving()){
-					if(lastPoint!=null && 1==Math.abs(lastPoint.getX()-localComp.get(e).getX()+lastPoint.getY()-localComp.get(e).getY())){
-						//Standing
-						checkStanding(localComp.get(e).getX(), localComp.get(e).getY(), charList);
-					}
-					lastPoint = new Point(localComp.get(e).getX(), localComp.get(e).getY());
 				}
 			}
 		}
 	}
 	
-	
+	@Override
+	protected void inserted(Entity e){
+		if(charListComp.has(e)){
+			charList = charListComp.get(e);
+		}
+	}
 	
 	
 	

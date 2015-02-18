@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.systems;
+package com.scatteredRain.jrpgFlow.artemis.systems.map;
 
 import java.util.List;
 
@@ -15,8 +15,6 @@ import com.artemis.utils.ImmutableBag;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
@@ -24,6 +22,8 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMo
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.util.Point;
 
 //TODO: Finish This Class!
@@ -44,22 +44,18 @@ public class CharacterMoveInitSystem extends EntitySystem{
 	//Note: This Is Only Used In A Sub Method Independantly Of Actually received Entities
 	ComponentMapper<CharacterCollisionComponent> charCollComp;
 	
-
+	
+	private MapCollisionComponent map = null;
+	private MapCharacterListComponent charList = null;
+	
+	
+	/** Constructor */
 	public CharacterMoveInitSystem() {
 		super(Aspect.getAspectForOne(DesiredCharacterMovementComponent.class, CharacterMoveProgressionComponent.class, CharacterLocationComponent.class, MapCollisionComponent.class));
 	}
 
 	@Override
 	protected void processEntities(ImmutableBag<Entity> entities) {
-		MapCollisionComponent map = null;
-		MapCharacterListComponent charList = null;
-		for(Entity e : entities){
-			if(mapCollComp.has(e) && mapCharListComp.has(e)){
-				map = mapCollComp.get(e);
-				charList = mapCharListComp.get(e);
-				break;
-			}
-		}
 		for(Entity e : entities){
 			if(desMoveComp.has(e) && isMoveComp.has(e) && locationComp.has(e)){
 				if(!isMoveComp.get(e).isMoving() && desMoveComp.get(e).desiresToMove()){
@@ -114,6 +110,16 @@ public class CharacterMoveInitSystem extends EntitySystem{
 			}
 		}
 		return collision;
+	}
+	
+	
+	@Override
+	protected void inserted(Entity e){
+		super.inserted(e);
+		if(mapCollComp.has(e) && mapCharListComp.has(e)){
+			map = mapCollComp.get(e);
+			charList = mapCharListComp.get(e);
+		}
 	}
 
 }

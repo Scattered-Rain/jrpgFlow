@@ -18,10 +18,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 import com.scatteredRain.jrpgFlow.artemis.components.OrthographicCameraComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.SpriteBatchComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCollisionComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.MapComponent;
-import com.scatteredRain.jrpgFlow.artemis.components.maps.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteAnimationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.ActiveCharacterSpriteComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CameraFocusComponent;
@@ -32,15 +28,19 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSp
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
-import com.scatteredRain.jrpgFlow.artemis.systems.CharacterMoveInitSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteAnimationUpdateSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.CharacterSpriteRenderSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.MapCharacterSpriteUpdateSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.MapPlayerCameraFocusSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.MapRenderSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.PassiveCharacterActionSystem;
-import com.scatteredRain.jrpgFlow.artemis.systems.PlayerCharacterInputSystem;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCollisionComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.CharacterMoveInitSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.CharacterSpriteAnimationUpdateSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.CharacterSpriteRenderSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.MapCharacterSpriteUpdateSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.MapDisposalSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.MapPlayerCameraFocusSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.MapRenderSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.PassiveCharacterActionSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.PlayerCharacterInputSystem;
 import com.scatteredRain.jrpgFlow.enums.MapID;
 import com.scatteredRain.jrpgFlow.general.Animation;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
@@ -54,6 +54,7 @@ public class WorldFactory {
 		World world = new World();
 		
 		//Systems
+		world.setSystem(new MapDisposalSystem(), true);
 		world.setSystem(new PlayerCharacterInputSystem(), false);
 		world.setSystem(new CharacterMoveInitSystem(), false);
 		world.setSystem(new MapPlayerCameraFocusSystem(), false);
@@ -75,7 +76,6 @@ public class WorldFactory {
 		camera.zoom = ZOOM;
 		camera.update();
 		generalEntity.addComponent(new OrthographicCameraComponent(camera));
-		generalEntity.addComponent(new SpriteBatchComponent(new SpriteBatch()));
 		Entity mapEntity = world.createEntity();
 		TmxMapLoader mapLoader = new TmxMapLoader();
 		Parameters mapLoadParams = new Parameters();

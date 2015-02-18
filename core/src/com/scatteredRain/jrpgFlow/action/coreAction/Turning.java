@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import com.artemis.Entity;
 import com.artemis.World;
 import com.scatteredRain.jrpgFlow.action.Action;
-import com.scatteredRain.jrpgFlow.artemis.systems.PassiveCharacterActionSystem;
+import com.scatteredRain.jrpgFlow.artemis.systems.map.PassiveCharacterActionSystem;
 
 @AllArgsConstructor
 public class Turning implements Action{

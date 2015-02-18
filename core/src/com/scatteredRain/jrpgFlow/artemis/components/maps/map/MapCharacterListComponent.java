@@ -1,4 +1,4 @@
-package com.scatteredRain.jrpgFlow.artemis.components.maps;
+package com.scatteredRain.jrpgFlow.artemis.components.maps.map;
 
 import java.util.ArrayList;
 import java.util.List;
