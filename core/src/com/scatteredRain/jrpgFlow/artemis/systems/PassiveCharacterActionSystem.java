@@ -10,6 +10,7 @@ import com.artemis.annotations.Wire;
 import com.artemis.utils.ImmutableBag;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterIdComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 
@@ -23,6 +24,7 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 	ComponentMapper<CharacterDirectionComponent> directionComp;
 	ComponentMapper<MapCharacterListComponent> charListComp;
 	ComponentMapper<PlayerCharacterComponent> playerCharComp;
+	ComponentMapper<CharacterIdComponent> idComp;
 	
 	/** Easy Access To Certain Entities */
 	private Entity player;
@@ -35,9 +37,7 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 	}
 
 	@Override
-	protected void processEntities(ImmutableBag<Entity> entities) {
-		
-	}
+	protected void processEntities(ImmutableBag<Entity> entities) {}
 	
 	/** Adding All Interesting Entities To Make Them Quickly Available */
 	public void inserted(Entity e){
@@ -46,5 +46,15 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 			this.player = e;
 		}
 	}
-
+	
+	
+	//Utility--
+	/** Returns The Entity With The Given Type And Id, null If It Doesn't Exist */
+	public Entity findEntity(String type, int id){
+		//TODO: Make This Method!
+		return null;
+	}
+	
+	
+	
 }
