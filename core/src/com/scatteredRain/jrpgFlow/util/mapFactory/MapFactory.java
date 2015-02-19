@@ -36,6 +36,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredChar
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent.Entrance;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
@@ -54,6 +55,7 @@ public class MapFactory {
 	public static final String ENTER = "ENTER";
 	//ID and direction as referenced from the proper enum
 	public static final String ID = CharacterFactory.AttKey.ID.key();
+	public static final String SUB_ID = CharacterFactory.AttKey.SUB_ID.key();
 	public static final String DIRECTION = CharacterFactory.AttKey.DIRECTION.key();
 	
 	
@@ -76,7 +78,7 @@ public class MapFactory {
 	
 	
 	private static MapCharacterListComponent readObjectLayers(World world, TiledMap map, int entranceId){
-		Entrance entrance = null;
+		MapCharacterListComponent.Entrance entrance = null;
 		//Init Component To Store Chars Easily
 		MapCharacterListComponent characterList = null;
 		int width = -1;
@@ -110,13 +112,15 @@ public class MapFactory {
 					String type = properties.get(TYPE, String.class);
 					//Find Entrance
 					if(type.equals(ENTER)){
-						if(Integer.parseInt(properties.get(ID, String.class)) == entranceId){
-							int enterDir = 2;
-							if(properties.containsKey(DIRECTION)){
-								enterDir = Integer.parseInt(properties.get(DIRECTION, String.class));
-							}
-							entrance = new Entrance(x, y, enterDir);
+						int entId = Integer.parseInt(properties.get(ID, String.class));
+						int enterDir = 2;
+						if(properties.containsKey(DIRECTION)){
+							enterDir = Integer.parseInt(properties.get(DIRECTION, String.class));
 						}
+						if(entId == entranceId){
+							entrance = new Entrance(x, y, enterDir, entId);
+						}
+						characterList.addEntrance(new Entrance(x, y, enterDir, entId));
 					}
 					//Find Other Objects
 					else{
@@ -161,15 +165,6 @@ public class MapFactory {
 		e.addComponent(new CameraFocusComponent());
 		
 		return e;
-	}
-	
-	
-	@Data
-	@AllArgsConstructor
-	private static class Entrance{
-		private int x;
-		private int y;
-		private int dir;
 	}
 
 }

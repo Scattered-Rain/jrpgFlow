@@ -91,6 +91,7 @@ public class CharacterFactory {
 	public static enum AttKey{
 		
 		ID("ID"),
+		SUB_ID("SUB_ID"),
 		DIRECTION("DIR"),
 		TEXT("TEXT"),
 		MAP("MAP"),
