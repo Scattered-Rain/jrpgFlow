@@ -53,6 +53,8 @@ public class MapFactory {
 	public static final String TYPE = "type";
 	//Entrance For Player (This Is Used In MapFactory And Will Not Be Translated Into A Character)
 	public static final String ENTER = "ENTER";
+	//Waypoint used for easily designing Movement processes
+	public static final String WAYPOINT = "WAYPOINT";
 	//ID and direction as referenced from the proper enum
 	public static final String ID = CharacterFactory.AttKey.ID.key();
 	public static final String SUB_ID = CharacterFactory.AttKey.SUB_ID.key();
