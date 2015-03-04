@@ -37,6 +37,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacte
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent.Entrance;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent.Waypoint;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
@@ -124,6 +125,12 @@ public class MapFactory {
 						}
 						characterList.addEntrance(new Entrance(x, y, enterDir, entId));
 					}
+					//Find Waypoints
+					else if(type.equals(WAYPOINT)){
+						int wayId = Integer.parseInt(properties.get(ID, String.class));
+						int waySubId = Integer.parseInt(properties.get(SUB_ID, String.class));
+						characterList.addWaypoint(new Waypoint(x, y, wayId, waySubId));
+					}
 					//Find Other Objects
 					else{
 						//Adds All Actual Characters Here!
@@ -151,6 +158,8 @@ public class MapFactory {
 		}
 		Entity player = buildPlayer(world.createEntity(), playerX, playerY, playerDir);
 		characterList.addEntity(playerX, playerY, player);
+		characterList.completeInitialSetup();
+		System.out.println(characterList.getWaypointList().get(0).size());
 		return characterList;
 	}
 	

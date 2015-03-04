@@ -24,6 +24,8 @@ public class MapCharacterListComponent extends Component{
 	
 	/** List Of All Entrances On This Map */
 	@Getter private List<List<Waypoint>> waypointList;
+	//Setup List For waypointList
+	private List<Waypoint> setupWaypointList;
 	
 	/** 2D Array Of Array Lists Storing Each Character's Entity */
 	private List<Entity>[][] characterList;
@@ -33,6 +35,7 @@ public class MapCharacterListComponent extends Component{
 		this.width = width;
 		this.height = height;
 		this.waypointList = new ArrayList<List<Waypoint>>();
+		this.setupWaypointList = new ArrayList<Waypoint>();
 		this.entranceList = new ArrayList<Entrance>();
 		this.characterList = new ArrayList[height][width];
 		for(int cy=0; cy<characterList.length; cy++){
@@ -73,6 +76,43 @@ public class MapCharacterListComponent extends Component{
 	/** Adds New Entrance */
 	public void addEntrance(Entrance entrance){
 		this.entranceList.add(entrance);
+	}
+	
+	/** Adds New Waypoint (Note: This Will Lead To Errors When Done After completeInitialSetup() was called) */
+	public void addWaypoint(Waypoint waypoint){
+		this.setupWaypointList.add(waypoint);
+	}
+	
+	/** Called When The Initial Setup Of (As Done By the MapFactory) Is Finished Up */
+	public void completeInitialSetup(){
+		
+		//TODO: Fix Whatever Causes The Issue Here
+		
+		//Properly Set Up Waypoint List
+		int maxIndex = -1;
+		for(Waypoint w : setupWaypointList){
+			if(w.getId()>maxIndex){
+				maxIndex = w.getId();
+			}
+		}
+		for(int c=0; c<=maxIndex; c++){
+			this.waypointList.add(new ArrayList<Waypoint>());
+			int subCounter = 0;
+			for(int c2=0; c2<setupWaypointList.size(); c2++){
+				Waypoint w = setupWaypointList.get(c2);
+				if(w.getId()==c){
+					if(w.getSubId()==subCounter){
+						subCounter++;
+						this.waypointList.get(c).add(w);
+						setupWaypointList.remove(c2);
+						c2=0;
+					}
+				}
+			}
+		}
+		if(setupWaypointList.size()>0){
+			System.out.println("Waypoints In This Map Not Properly Set Up!");
+		}
 	}
 	
 	

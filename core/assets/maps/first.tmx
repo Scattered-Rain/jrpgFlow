@@ -110,7 +110,7 @@
     <property name="TRIGGER" value="TOUCH"/>
    </properties>
   </object>
-  <object name="redHouse" type="WARP" gid="0" x="112" y="288">
+  <object name="redHouse" type="WARP" x="112" y="288">
    <properties>
     <property name="ID" value="1"/>
     <property name="MAP" value="MOCK_SMALL_LAB"/>
