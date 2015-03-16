@@ -21,6 +21,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterMo
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterSpriteLocationComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.DesiredCharacterMovementComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacterAnimationSetComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MovementAIComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerInteractionComponent;
 import com.scatteredRain.jrpgFlow.enums.CharacterFactory;
 import com.scatteredRain.jrpgFlow.enums.MapID;
@@ -51,6 +52,7 @@ public class GenericCharacterFactory {
 	public static Entity addMovabililty(Entity e){
 		e.addComponent(new DesiredCharacterMovementComponent());
 		e.addComponent(new CharacterMoveProgressionComponent());
+		e.addComponent(new MovementAIComponent());//This will not be used for the player
 		return e;
 	}
 	

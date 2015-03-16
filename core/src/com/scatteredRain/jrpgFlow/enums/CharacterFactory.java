@@ -65,6 +65,7 @@ public class CharacterFactory {
 				//Process---
 				addExistence(e, x, y, dir, true);
 				addSprite(e, x, y, SpriteID.valueOf(spriteName).getPath(), dir);
+				addMovabililty(e);
 				Action smalltalk = new Smalltalk(e, text);
 				e.addComponent(new PlayerInteractionComponent(PlayerInteractionComponent.TALKING, smalltalk));
 				return e;

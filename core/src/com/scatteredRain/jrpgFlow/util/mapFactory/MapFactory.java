@@ -159,7 +159,6 @@ public class MapFactory {
 		Entity player = buildPlayer(world.createEntity(), playerX, playerY, playerDir);
 		characterList.addEntity(playerX, playerY, player);
 		characterList.completeInitialSetup();
-		System.out.println(characterList.getWaypointList().get(0).size());
 		return characterList;
 	}
 	

@@ -3,12 +3,13 @@ package com.scatteredRain.jrpgFlow.artemis.components.maps.characters;
 import lombok.AllArgsConstructor;
 
 import com.artemis.Component;
+import static com.scatteredRain.jrpgFlow.Constants.*;
 
 /** Component Attached To Characters that Desires To Walk To The Given Direction */
 @AllArgsConstructor
 public class DesiredCharacterMovementComponent extends Component{
 	
-	private static final int STATIONARY = -1;
+	
 	
 	private int desiredMoveDirection;
 	

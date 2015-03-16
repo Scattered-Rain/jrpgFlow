@@ -1,6 +1,7 @@
 package com.scatteredRain.jrpgFlow.artemis.components.maps.map;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -85,34 +86,33 @@ public class MapCharacterListComponent extends Component{
 	
 	/** Called When The Initial Setup Of (As Done By the MapFactory) Is Finished Up */
 	public void completeInitialSetup(){
-		
-		//TODO: Fix Whatever Causes The Issue Here
-		
-		//Properly Set Up Waypoint List
-		int maxIndex = -1;
-		for(Waypoint w : setupWaypointList){
-			if(w.getId()>maxIndex){
-				maxIndex = w.getId();
+		Collections.sort(setupWaypointList);
+		int maxId = -1;
+		for(int c=0; c<setupWaypointList.size(); c++){
+			Waypoint w = setupWaypointList.get(c);
+			if(w.getId()>maxId){
+				maxId = w.getId();
 			}
 		}
-		for(int c=0; c<=maxIndex; c++){
-			this.waypointList.add(new ArrayList<Waypoint>());
-			int subCounter = 0;
-			for(int c2=0; c2<setupWaypointList.size(); c2++){
-				Waypoint w = setupWaypointList.get(c2);
-				if(w.getId()==c){
-					if(w.getSubId()==subCounter){
-						subCounter++;
-						this.waypointList.get(c).add(w);
-						setupWaypointList.remove(c2);
-						c2=0;
-					}
+		for(int c=0; c<=maxId; c++){
+			ArrayList<Waypoint> newList = new ArrayList<Waypoint>();
+			int nextSubId = 0;
+			for(int d=0; d<setupWaypointList.size(); d++){
+				Waypoint w = setupWaypointList.get(d);
+				if(w.getId()==d && w.getSubId()==nextSubId){
+					nextSubId++;
+					newList.add(w);
+					setupWaypointList.remove(c);
+					d--;
 				}
 			}
+			waypointList.add(newList);
 		}
+		
 		if(setupWaypointList.size()>0){
-			System.out.println("Waypoints In This Map Not Properly Set Up!");
+			System.out.println("Waypoints Not Correctly Processed");
 		}
+		
 	}
 	
 	
@@ -138,10 +138,7 @@ public class MapCharacterListComponent extends Component{
 		private int subId;
 		
 		@Override public int compareTo(Waypoint other) {
-			int val = id-other.getId();
-			if(id==other.getId()){
-				val = subId-other.getSubId();
-			}
+			int val = (id-other.getId())*1024 + (subId-other.getSubId());
 			return val;
 		}
 	}

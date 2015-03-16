@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="18">
  <tileset firstgid="1" source="../img/tilesets/smallSoft.tsx"/>
  <layer name="ground" width="32" height="32">
   <data encoding="base64">
@@ -50,19 +50,19 @@
   </data>
  </layer>
  <objectgroup name="signs">
-  <object name="cave" type="SIGN" gid="432" x="256" y="64">
+  <object id="1" name="cave" type="SIGN" gid="432" x="256" y="64">
    <properties>
     <property name="ID" value="0"/>
     <property name="TEXT" value="This is the Danger Cave. I know, I know. But just trust me, it actually is REALLY dangerous. Do Not Enter."/>
    </properties>
   </object>
-  <object name="entrance1/2" type="SIGN" gid="432" x="80" y="96">
+  <object id="2" name="entrance1/2" type="SIGN" gid="432" x="80" y="96">
    <properties>
     <property name="ID" value="1"/>
     <property name="TEXT" value="Welcome to Podonk.\nPopulation: 5."/>
    </properties>
   </object>
-  <object name="entrance2/2" type="SIGN" gid="432" x="96" y="96">
+  <object id="3" name="entrance2/2" type="SIGN" gid="432" x="96" y="96">
    <properties>
     <property name="ID" value="2"/>
     <property name="TEXT" value="Welcome to Podonk.\nPopulation: 5."/>
@@ -70,31 +70,31 @@
   </object>
  </objectgroup>
  <objectgroup name="entrances">
-  <object name="0 cave" type="ENTER" gid="463" x="224" y="48">
+  <object id="4" name="0 cave" type="ENTER" gid="463" x="224" y="48">
    <properties>
     <property name="DIR" value="2"/>
     <property name="ID" value="0"/>
    </properties>
   </object>
-  <object name="1 rightPath" type="ENTER" gid="463" x="496" y="368">
+  <object id="5" name="1 rightPath" type="ENTER" gid="463" x="496" y="368">
    <properties>
     <property name="DIR" value="3"/>
     <property name="ID" value="1"/>
    </properties>
   </object>
-  <object name="2 leftPath" type="ENTER" gid="463" x="0" y="144">
+  <object id="6" name="2 leftPath" type="ENTER" gid="463" x="0" y="144">
    <properties>
     <property name="DIR" value="2"/>
     <property name="ID" value="2"/>
    </properties>
   </object>
-  <object name="3 redHouse" type="ENTER" gid="463" x="112" y="304">
+  <object id="7" name="3 redHouse" type="ENTER" gid="463" x="112" y="304">
    <properties>
     <property name="DIR" value="2"/>
     <property name="ID" value="3"/>
    </properties>
   </object>
-  <object name="4 blueHouse" type="ENTER" gid="463" x="336" y="272">
+  <object id="8" name="4 blueHouse" type="ENTER" gid="463" x="336" y="272">
    <properties>
     <property name="DIR" value="2"/>
     <property name="ID" value="4"/>
@@ -102,7 +102,7 @@
   </object>
  </objectgroup>
  <objectgroup name="warps">
-  <object name="cave" type="WARP" gid="432" x="224" y="48">
+  <object id="9" name="cave" type="WARP" gid="432" x="224" y="48">
    <properties>
     <property name="ID" value="0"/>
     <property name="MAP" value="DEBUG_CAVE"/>
@@ -110,7 +110,7 @@
     <property name="TRIGGER" value="TOUCH"/>
    </properties>
   </object>
-  <object name="redHouse" type="WARP" x="112" y="288">
+  <object id="14" name="redHouse" type="WARP" gid="432" x="112" y="288">
    <properties>
     <property name="ID" value="1"/>
     <property name="MAP" value="MOCK_SMALL_LAB"/>
@@ -120,7 +120,7 @@
   </object>
  </objectgroup>
  <objectgroup name="smalltalker">
-  <object name="flowers" type="SMALLTALK" gid="432" x="224" y="272">
+  <object id="11" name="flowers" type="SMALLTALK" gid="432" x="224" y="272">
    <properties>
     <property name="DIR" value="0"/>
     <property name="ID" value="0"/>
@@ -130,13 +130,13 @@
   </object>
  </objectgroup>
  <objectgroup name="waypoint">
-  <object name="0 strawhat" type="WAYPOINT" gid="431" x="288" y="272">
+  <object id="12" name="0 strawhat" type="WAYPOINT" gid="431" x="288" y="272">
    <properties>
     <property name="ID" value="0"/>
     <property name="SUB_ID" value="0"/>
    </properties>
   </object>
-  <object name="1 strawhat" type="WAYPOINT" gid="431" x="208" y="272">
+  <object id="13" name="1 strawhat" type="WAYPOINT" gid="431" x="208" y="272">
    <properties>
     <property name="ID" value="0"/>
     <property name="SUB_ID" value="1"/>

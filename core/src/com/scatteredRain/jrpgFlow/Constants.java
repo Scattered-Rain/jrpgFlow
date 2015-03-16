@@ -33,6 +33,7 @@ public class Constants {
 	
 	
 	/** The IDs corresponding to the directions */
+	public static final int STATIONARY = -1;
 	public static final int UP = 0;
 	public static final int RIGHT = 1;
 	public static final int DOWN = 2;

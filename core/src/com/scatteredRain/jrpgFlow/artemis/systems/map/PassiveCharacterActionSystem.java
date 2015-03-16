@@ -11,8 +11,10 @@ import com.artemis.utils.ImmutableBag;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterDirectionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterIdComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLocationComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MovementAIComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
 
 /** This System is supposed to never be actively used, instead it is supposed to be an easily reachable object for accessing Component Mappers */
 @Data
@@ -25,9 +27,14 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 	ComponentMapper<MapCharacterListComponent> charListComp;
 	ComponentMapper<PlayerCharacterComponent> playerCharComp;
 	ComponentMapper<CharacterIdComponent> idComp;
+	ComponentMapper<MovementAIComponent> movementAIComp;
+	
+	ComponentMapper<MapComponent> mapComp;
+	ComponentMapper<MapCharacterListComponent> mapCharListComp;
 	
 	/** Easy Access To Certain Entities */
 	private Entity player;
+	private Entity map;
 	
 	
 	/** Constructor */
@@ -44,6 +51,9 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 		super.inserted(e);
 		if(playerCharComp.has(e)){
 			this.player = e;
+		}
+		else if(mapComp.has(e)){
+			this.map = e;
 		}
 	}
 	
