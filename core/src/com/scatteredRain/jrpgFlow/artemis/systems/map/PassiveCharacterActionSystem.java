@@ -39,7 +39,7 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 	
 	/** Constructor */
 	public PassiveCharacterActionSystem() {
-		super(Aspect.getAspectForOne(PlayerCharacterComponent.class));
+		super(Aspect.getAspectForOne(PlayerCharacterComponent.class, MapCharacterListComponent.class));
 		this.setEnabled(false);
 	}
 
@@ -52,7 +52,7 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 		if(playerCharComp.has(e)){
 			this.player = e;
 		}
-		else if(mapComp.has(e)){
+		if(mapCharListComp.has(e)){
 			this.map = e;
 		}
 	}

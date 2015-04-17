@@ -17,7 +17,7 @@ public class FollowWaypointsMovement extends AIMovement{
 	public FollowWaypointsMovement(Entity owner, int waypoints){
 		this.owner = owner;
 		this.waypoints = waypoints;
-		this.progression = -1;
+		this.progression = 0;
 	}
 
 	@Override
@@ -55,9 +55,6 @@ public class FollowWaypointsMovement extends AIMovement{
 	}
 
 	@Override
-	public void moveCompletionUpdate(int x, int y) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void moveCompletionUpdate(int x, int y) {}
 
 }
