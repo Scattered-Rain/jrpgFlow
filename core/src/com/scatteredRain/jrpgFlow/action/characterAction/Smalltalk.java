@@ -30,7 +30,7 @@ public class Smalltalk extends CharacterAction{
 		this.textbox = new Textboxing(text);
 		
 		//TODO: Remove this code from he Smalltalk Action
-		AIMovement ai = new FollowWaypointsMovement(owner, 1);
+		AIMovement ai = new FollowWaypointsMovement(owner, 0);
 		this.movement = new AddMovement(owner, ai);
 		
 		ActionCompletionListener acl = new ActionCompletionListener(movement);

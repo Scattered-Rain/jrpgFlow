@@ -120,7 +120,7 @@
   </object>
  </objectgroup>
  <objectgroup name="smalltalker">
-  <object id="11" name="flowers" type="SMALLTALK" gid="432" x="224" y="272">
+  <object id="11" name="flowers" type="SMALLTALK" gid="432" x="208" y="272">
    <properties>
     <property name="DIR" value="0"/>
     <property name="ID" value="0"/>
@@ -130,34 +130,28 @@
   </object>
  </objectgroup>
  <objectgroup name="waypoint">
-  <object id="12" name="0 strawhat" type="WAYPOINT" gid="431" x="288" y="272">
-   <properties>
-    <property name="ID" value="1"/>
-    <property name="SUB_ID" value="0"/>
-   </properties>
-  </object>
-  <object id="13" name="1 strawhat" type="WAYPOINT" gid="431" x="288" y="304">
-   <properties>
-    <property name="ID" value="1"/>
-    <property name="SUB_ID" value="1"/>
-   </properties>
-  </object>
-  <object id="18" name="2 strawhat" type="WAYPOINT" gid="431" x="224" y="304">
-   <properties>
-    <property name="ID" value="1"/>
-    <property name="SUB_ID" value="2"/>
-   </properties>
-  </object>
-  <object id="19" name="3 strawhat" type="WAYPOINT" gid="431" x="224" y="272">
-   <properties>
-    <property name="ID" value="1"/>
-    <property name="SUB_ID" value="3"/>
-   </properties>
-  </object>
-  <object id="24" name="dummy" type="WAYPOINT" gid="431" x="272" y="240">
+  <object id="12" name="0 strawhat" type="WAYPOINT" gid="431" x="272" y="272">
    <properties>
     <property name="ID" value="0"/>
     <property name="SUB_ID" value="0"/>
+   </properties>
+  </object>
+  <object id="13" name="1 strawhat" type="WAYPOINT" gid="431" x="272" y="304">
+   <properties>
+    <property name="ID" value="0"/>
+    <property name="SUB_ID" value="1"/>
+   </properties>
+  </object>
+  <object id="18" name="2 strawhat" type="WAYPOINT" gid="431" x="208" y="304">
+   <properties>
+    <property name="ID" value="0"/>
+    <property name="SUB_ID" value="2"/>
+   </properties>
+  </object>
+  <object id="19" name="3 strawhat" type="WAYPOINT" gid="431" x="208" y="272">
+   <properties>
+    <property name="ID" value="0"/>
+    <property name="SUB_ID" value="3"/>
    </properties>
   </object>
  </objectgroup>
