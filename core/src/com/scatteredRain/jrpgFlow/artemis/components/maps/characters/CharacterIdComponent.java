@@ -12,5 +12,6 @@ public class CharacterIdComponent extends Component{
 	
 	private String type;
 	private int id;
+	private int subId;
 	
 }

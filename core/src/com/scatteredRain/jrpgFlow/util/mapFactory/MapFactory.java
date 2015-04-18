@@ -63,9 +63,9 @@ public class MapFactory {
 	
 	
 	/** Adds Given Map To Given World, Completely Initializes All Entities Needed Thusly */
-	public static World buildMap(World world, TiledMap map, int entrance){
+	public static World buildMap(World world, TiledMap map, int entrance, Entity mapEntity){
 		MapCharacterListComponent characterList = readObjectLayers(world, map, entrance);
-		buildMapEntity(world.createEntity(), map, characterList);
+		buildMapEntity(mapEntity, map, characterList);
 		return world;
 	}
 	

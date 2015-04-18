@@ -69,10 +69,14 @@ public class GenericCharacterFactory {
 	/** Adds CharacterID Component To The Entity, So it Is Uniquely Identifiable On A Map */
 	public static Entity addID(Entity e, String type, MapProperties properties){
 		int id = -1;
+		int subId = -1;
 		if(properties.containsKey(AttKey.ID.key())){
 			id = Integer.parseInt(properties.get(AttKey.ID.key(), String.class));
 		}
-		e.addComponent(new CharacterIdComponent(type, id));
+		if(properties.containsKey(AttKey.SUB_ID.key())){
+			subId = Integer.parseInt(properties.get(AttKey.SUB_ID.key(), String.class));
+		}
+		e.addComponent(new CharacterIdComponent(type, id, subId));
 		return e;
 	}
 	

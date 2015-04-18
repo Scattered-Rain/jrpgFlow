@@ -32,6 +32,7 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MapCharacte
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapIdComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
 import com.scatteredRain.jrpgFlow.artemis.systems.map.CharacterMoveInitSystem;
@@ -78,11 +79,12 @@ public class WorldFactory {
 		camera.zoom = ZOOM;
 		camera.update();
 		generalEntity.addComponent(new OrthographicCameraComponent(camera));
-		Entity mapEntity = world.createEntity();
 		TmxMapLoader mapLoader = new TmxMapLoader();
 		Parameters mapLoadParams = new Parameters();
 		TiledMap map = mapLoader.load(mapPath.getPath());
-		world = MapFactory.buildMap(world, map, enter);
+		Entity mapEntity = world.createEntity();
+		mapEntity.addComponent(new MapIdComponent(mapPath));
+		world = MapFactory.buildMap(world, map, enter, mapEntity);
 		
 		return world;
 	}
