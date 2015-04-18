@@ -63,6 +63,14 @@ public class FollowWaypointsMovement extends AIMovement{
 				}
 			}
 		}
+		else{
+			if(completionListener!=null){
+				//Call Completion Listener As Action Is Now Completed
+				completionListener.completed();
+				//Set Completion Listener To null Once Its Been Called
+				completionListener = null;
+			}
+		}
 		return dir;
 	}
 	

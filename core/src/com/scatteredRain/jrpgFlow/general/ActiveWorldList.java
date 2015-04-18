@@ -87,5 +87,9 @@ public class ActiveWorldList {
 	public void startTextbox(String text, int position, boolean box){
 		((TextboxRenderSystem)activeWorlds[TEXTBOX_WORLD].getSystem(TextboxRenderSystem.class)).initText(text, position, box);
 	}
+	
+	public void startTextbox(String text, int position, boolean box, CompletionListener completionListener){
+		((TextboxRenderSystem)activeWorlds[TEXTBOX_WORLD].getSystem(TextboxRenderSystem.class)).initText(text, position, box, completionListener);
+	}
 
 }

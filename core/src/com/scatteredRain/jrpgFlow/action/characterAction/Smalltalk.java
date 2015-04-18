@@ -2,9 +2,11 @@ package com.scatteredRain.jrpgFlow.action.characterAction;
 
 import com.artemis.Entity;
 import com.scatteredRain.jrpgFlow.action.Action;
+import com.scatteredRain.jrpgFlow.action.ActionCompletionListener;
 import com.scatteredRain.jrpgFlow.action.CharacterAction;
 import com.scatteredRain.jrpgFlow.action.coreAction.AddMovement;
 import com.scatteredRain.jrpgFlow.action.coreAction.PlayerInputPossible;
+import com.scatteredRain.jrpgFlow.action.coreAction.ResetCharacterAction;
 import com.scatteredRain.jrpgFlow.action.coreAction.Textboxing;
 import com.scatteredRain.jrpgFlow.action.coreAction.Turning;
 import com.scatteredRain.jrpgFlow.general.aiMovement.AIMovement;
@@ -12,26 +14,41 @@ import com.scatteredRain.jrpgFlow.general.aiMovement.FollowWaypointsMovement;
 
 public class Smalltalk extends CharacterAction{
 	
-	private Action textbox;
+	private Textboxing textbox;
+	private AddMovement movement;
 	
-	private Action movement;
+	private String text;
 	
 	public Smalltalk(Entity entity, String text) {
 		super(entity);
+		this.text = text;
+		setup();
+	}
+	
+	public void setup(){
+		
 		this.textbox = new Textboxing(text);
 		
-		//TODO: Find out why this doesn't work, fix it, and remove this code from he Smalltalk Action :p
-		this.movement = new AddMovement(entity, new FollowWaypointsMovement(entity, 1));
+		//TODO: Remove this code from he Smalltalk Action
+		AIMovement ai = new FollowWaypointsMovement(owner, 1);
+		this.movement = new AddMovement(owner, ai);
 		
+		ActionCompletionListener acl = new ActionCompletionListener(movement);
+		textbox.injectCompletionListener(acl);
+		
+		ResetCharacterAction reset = new ResetCharacterAction(this);
+		ai.injectCompletionListener(new ActionCompletionListener(reset));
 		
 	}
 	
 	public void act(){
-		super.act();
-		Action turning = new Turning(super.owner, getOwnerToPlayerDirection());
-		textbox.act();
-		turning.act();
-		movement.act();
+		if(allowAct){
+			super.act();
+			Action turning = new Turning(super.owner, getOwnerToPlayerDirection());
+			turning.act();
+			textbox.act();
+			allowAct = false;
+		}
 	}
 	
 }

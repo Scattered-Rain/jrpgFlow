@@ -17,11 +17,24 @@ public abstract class CharacterAction implements Action{
 	/** Reference To The Generic System Providing Access To Component Mappers */
 	protected PassiveCharacterActionSystem accessor;
 	
+	/** Whether It's Currently Possible To Act (True By Default, Set To True When Reset Is Called) */
+	protected boolean allowAct;
+	
 	/** Constructor */
 	public CharacterAction(Entity entity){
 		this.owner = entity;
 		this.world = entity.getWorld();
 		this.accessor = world.getSystem(PassiveCharacterActionSystem.class);
+		allowAct = true;
+	}
+	
+	/** Sets Up The Actual Character Action (Put everything for constructing this Action that is NOT CONSTANT in here!) */
+	public abstract void setup();
+	
+	/** Resets This Character Action */
+	public void reset(){
+		allowAct = true;
+		setup();
 	}
 	
 	/** Generic Act Function */

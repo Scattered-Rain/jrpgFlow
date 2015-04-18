@@ -10,9 +10,18 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.CharacterLo
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent.Waypoint;
 import com.scatteredRain.jrpgFlow.artemis.systems.map.PassiveCharacterActionSystem;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
+import com.scatteredRain.jrpgFlow.general.CompletionListener;
 import com.scatteredRain.jrpgFlow.util.Point;
 
 public abstract class AIMovement {
+	
+	/** Completion Listener To Be Called Once Movement Complete (If Applicable) */
+	protected CompletionListener completionListener;
+	
+	/** Inject Completion Listener If Needed */
+	public void injectCompletionListener(CompletionListener completionListener){
+		this.completionListener = completionListener;
+	}
 	
 	/** Returns The Desired Direction */
 	public abstract int desiredDirection();

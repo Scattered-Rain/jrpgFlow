@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.scatteredRain.jrpgFlow.general.AnimatedImageActor;
+import com.scatteredRain.jrpgFlow.general.CompletionListener;
 import com.scatteredRain.jrpgFlow.util.TweenTimer;
 
 import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
@@ -63,6 +64,10 @@ public class TextboxRenderSystem extends EntitySystem{
 	
 	/** Had Just Been Inputed */
 	private boolean input;
+	
+	
+	/** Completion Listener */
+	private CompletionListener completionListener;
 	
 	
 	public TextboxRenderSystem() {
@@ -155,6 +160,14 @@ public class TextboxRenderSystem extends EntitySystem{
 		
 	}
 	
+	
+	/** Starts New Textbox With CompletionListener*/
+	public void initText(String text, int place, boolean box, CompletionListener completionListener){
+		this.completionListener = completionListener;
+		initText(text, place, box);
+	}
+	
+	
 	/** Starts New Textbox */
 	public void initText(String text, int place, boolean box){
 		
@@ -245,6 +258,12 @@ public class TextboxRenderSystem extends EntitySystem{
 					labels[c].setText("");
 				}
 				this.timer = new TweenTimer();
+				if(completionListener!=null){
+					//Tell CompletionListener Text is done
+					completionListener.completed();
+					//Wipe Completion Listener Once We've Called It
+					completionListener = null;
+				}
 			}
 		}
 	}
