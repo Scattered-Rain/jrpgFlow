@@ -12,10 +12,12 @@ public class VariableSet {
 	private List<Boolean> switches;
 	
 	
+	
 	public VariableSet(){
 		this.vars = new ArrayList<Integer>();
 		this.switches = new ArrayList<Boolean>();
 	}
+	
 	
 	
 	public void setVar(int index, int value){
@@ -28,6 +30,7 @@ public class VariableSet {
 		return vars.get(index);
 	}
 	
+	
 	public void setSwitch(int index, boolean value){
 		fillUpBoolean(index);
 		switches.set(index, value);
@@ -37,6 +40,7 @@ public class VariableSet {
 		fillUpBoolean(index);
 		return switches.get(index);
 	}
+	
 	
 	private boolean fillUpInt(int index){
 		if(index >= vars.size()){
