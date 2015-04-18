@@ -32,4 +32,6 @@ public abstract class AIMovement {
 		return p;
 	}
 	
+	public abstract boolean moveComplete();
+	
 }

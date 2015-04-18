@@ -99,10 +99,10 @@ public class MapCharacterListComponent extends Component{
 			int nextSubId = 0;
 			for(int d=0; d<setupWaypointList.size(); d++){
 				Waypoint w = setupWaypointList.get(d);
-				if(w.getId()==d && w.getSubId()==nextSubId){
+				if(w.getId()==c && w.getSubId()==nextSubId){
 					nextSubId++;
 					newList.add(w);
-					setupWaypointList.remove(c);
+					setupWaypointList.remove(d);
 					d--;
 				}
 			}

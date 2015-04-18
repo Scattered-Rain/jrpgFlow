@@ -21,7 +21,7 @@ public class Smalltalk extends CharacterAction{
 		this.textbox = new Textboxing(text);
 		
 		//TODO: Find out why this doesn't work, fix it, and remove this code from he Smalltalk Action :p
-		this.movement = new AddMovement(entity, new FollowWaypointsMovement(entity, 0));
+		this.movement = new AddMovement(entity, new FollowWaypointsMovement(entity, 1));
 		
 		
 	}

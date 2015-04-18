@@ -13,17 +13,29 @@ public class FollowWaypointsMovement extends AIMovement{
 	private int waypoints;
 	//The Waypoints that have already been reached
 	private int progression;
+	//Looping
+	private boolean looping = false;
 	
 	public FollowWaypointsMovement(Entity owner, int waypoints){
 		this.owner = owner;
 		this.waypoints = waypoints;
 		this.progression = 0;
 	}
+	
+	public FollowWaypointsMovement(Entity owner, int waypoints, boolean looping){
+		this(owner, waypoints);
+		this.looping = looping;
+	}
 
 	@Override
 	public int desiredDirection() {
 		List<Waypoint> wPoints = super.getWaypoint(waypoints);
 		int dir = STATIONARY;
+		if(looping){
+			if(!(wPoints.size()>progression)){
+				this.progression = 0;
+			}
+		}
 		if(wPoints.size()>progression){
 			Waypoint w = wPoints.get(progression);
 			Point l = super.getLocation(owner);
@@ -44,14 +56,20 @@ public class FollowWaypointsMovement extends AIMovement{
 			}
 			else if(wy!=ly){
 				if(wy<ly){
-					dir = UP;
+					dir = DOWN;
 				}
 				else{
-					dir = DOWN;
+					dir = UP;
 				}
 			}
 		}
 		return dir;
+	}
+	
+	public boolean moveComplete(){
+		List<Waypoint> wPoints = super.getWaypoint(waypoints);
+		//Note: This Will Never Return True If Looping Is Turned On
+		return !(wPoints.size()>progression);
 	}
 
 	@Override
