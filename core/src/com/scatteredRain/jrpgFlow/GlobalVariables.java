@@ -27,7 +27,7 @@ public class GlobalVariables {
 	public static SpriteID globalPlayerSkin;
 	
 	/** Game Variables */
-	public static GameVariables gameVariables;
+	public static GameVariables globalGameVariables;
 	
 	/** The Default Skin That Is Used By The Game */
 	public static Skin globalSkin;

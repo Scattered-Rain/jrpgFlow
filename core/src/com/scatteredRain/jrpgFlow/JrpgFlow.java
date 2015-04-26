@@ -25,6 +25,7 @@ import com.scatteredRain.jrpgFlow.enums.SpriteID;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 import com.scatteredRain.jrpgFlow.general.TextboxInput;
+import com.scatteredRain.jrpgFlow.general.gameVariables.GameVariables;
 import com.scatteredRain.jrpgFlow.tween.CameraTweener;
 import com.scatteredRain.jrpgFlow.tween.FloatPointTweener;
 import com.scatteredRain.jrpgFlow.tween.TweenTimerTweener;
@@ -61,6 +62,7 @@ public class JrpgFlow extends ApplicationAdapter {
 		
 		globalActiveWorldsList.setAciveWorlds(activeWorlds);
 		
+		globalGameVariables = new GameVariables();
 	}
 	
 	/** Calcualate Zoom Level (Slightly Adjust The Zoom Level According To Screen Size So Pixels Do Not Get All Stretchy) */

@@ -51,6 +51,15 @@ public class MapCollisionComponent extends Component{
 							for(int cx=0; cx<tileLayer.getWidth(); cx++){
 								if(tileLayer.getCell(cx, cy)!=null && tileLayer.getCell(cx, cy).getTile()!=null){
 									TiledMapTile tile = tileLayer.getCell(cx, cy).getTile();
+									if(tile.getProperties().containsKey(COLLISION_PROPERTY_GROUND)){
+										//This Property Overrides The Collision Set By ALL Lower Layers On This Tile To False
+										//But Collision Inherent in this layer's tile will still be applied
+										generalCollision[cy][cx] = false;
+										sideCollision[UP][cy][cx] = false;
+										sideCollision[RIGHT][cy][cx] = false;
+										sideCollision[DOWN][cy][cx] = false;
+										sideCollision[LEFT][cy][cx] = false;
+									}
 									if(tile.getProperties().containsKey(COLLISION_PROPERTY)){
 										generalCollision[cy][cx] = true;
 									}

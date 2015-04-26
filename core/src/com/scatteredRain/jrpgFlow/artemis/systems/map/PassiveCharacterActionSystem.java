@@ -15,6 +15,8 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.MovementAIC
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerCharacterComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapIdComponent;
+import com.scatteredRain.jrpgFlow.enums.MapID;
 
 /** This System is supposed to never be actively used, instead it is supposed to be an easily reachable object for accessing Component Mappers */
 @Data
@@ -31,6 +33,7 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 	
 	ComponentMapper<MapComponent> mapComp;
 	ComponentMapper<MapCharacterListComponent> mapCharListComp;
+	ComponentMapper<MapIdComponent> mapId;
 	
 	/** Easy Access To Certain Entities */
 	private Entity player;
@@ -57,6 +60,10 @@ public class PassiveCharacterActionSystem extends EntitySystem{
 		}
 	}
 	
+	/** Retrns The Current Maps Id */
+	public MapID getMapId(){
+		return mapId.get(map).getId();
+	}
 	
 	//Utility--
 	/** Returns The Entity With The Given Type And Id, null If It Doesn't Exist */

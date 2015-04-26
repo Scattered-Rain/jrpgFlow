@@ -15,4 +15,9 @@ public class CharacterVariableSet extends VariableSet{
 		this.map = map;
 	}
 	
+	/** Returns Whether This Set Is The Requested Set */
+	public boolean matchesId(int id, String type, MapID map){
+		return (this.id==id && this.type==type && this.map.getId()== map.getId());
+	}
+	
 }

@@ -43,23 +43,21 @@ public class VariableSet {
 	
 	
 	private boolean fillUpInt(int index){
-		if(index >= vars.size()){
-			for(int c=0; c<index-vars.size()+1; c++){
-				vars.add(DEFAULT_INT);
-			}
-			return true;
+		boolean neededFilling = false;
+		while(vars.size()<=index){
+			vars.add(DEFAULT_INT);
+			neededFilling = true;
 		}
-		return false;
+		return neededFilling;
 	}
 	
 	private boolean fillUpBoolean(int index){
-		if(index >= switches.size()){
-			for(int c=0; c<index-switches.size()+1; c++){
-				switches.add(DEFAULT_BOOLEAN);
-			}
-			return true;
+		boolean neededFilling = false;
+		while(switches.size()<=index){
+			switches.add(DEFAULT_BOOLEAN);
+			neededFilling = true;
 		}
-		return false;
+		return neededFilling;
 	}
 	
 }

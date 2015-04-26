@@ -19,6 +19,8 @@ public class Constants {
 	public static final String TOP_LAYER_PROPERTY = "top";
 	/** The String That Identifies A Tile As Having General Collision */
 	public static final String COLLISION_PROPERTY = "coll";
+	/** The String That Identifies A Tile As Being A 'Ground' Tile, Thus Overriding The Lower Layer's Collision Information To False */
+	public static final String COLLISION_PROPERTY_GROUND = "ground";
 	/** The String That Identifies A Tile As Having Sideways Collision In The Corresponding Directions */
 	public static final String COLLISION_PROPERTY_UP = "collUP";
 	public static final String COLLISION_PROPERTY_RIGHT = "collRIGHT";
