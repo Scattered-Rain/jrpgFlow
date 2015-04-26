@@ -55,7 +55,7 @@ public class ActiveWorldList {
 		return ((InputMultiplexer)Gdx.input.getInputProcessor()).getProcessors().get(ActiveWorldList.TOTAL_WORLDS-world-1);
 	}
 	
-	/** Updated All Worlds */
+	/** Updates All Worlds */
 	public void update(float delta){
 		for(World world : getActiveWorlds()){
 			world.setDelta(delta);

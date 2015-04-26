@@ -5,7 +5,7 @@ import com.scatteredRain.jrpgFlow.action.Action;
 import com.scatteredRain.jrpgFlow.action.ActionCompletionListener;
 import com.scatteredRain.jrpgFlow.action.CharacterAction;
 import com.scatteredRain.jrpgFlow.action.coreAction.AddMovement;
-import com.scatteredRain.jrpgFlow.action.coreAction.ChangeVariableAction;
+import com.scatteredRain.jrpgFlow.action.coreAction.ChangeCharacterVariable;
 import com.scatteredRain.jrpgFlow.action.coreAction.PlayerInputPossible;
 import com.scatteredRain.jrpgFlow.action.coreAction.ResetCharacterAction;
 import com.scatteredRain.jrpgFlow.action.coreAction.Textboxing;
@@ -43,16 +43,6 @@ public class Smalltalk extends CharacterAction{
 	}
 	
 	public void act(){
-		
-		
-		System.out.println("Hi");
-		System.out.println(ChangeVariableAction.getIntegerVariable(owner, 5));
-		ChangeVariableAction cva = new ChangeVariableAction(owner, 3, 5);
-		cva.act();
-		System.out.println("Hello");
-		System.out.println(ChangeVariableAction.getIntegerVariable(owner, 5));
-		
-		
 		if(allowAct){
 			super.act();
 			Action turning = new Turning(super.owner, getOwnerToPlayerDirection());
