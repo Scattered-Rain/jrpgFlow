@@ -57,8 +57,9 @@ public class GenericCharacterFactory {
 	}
 	
 	/** Adds Sprite Components To The Entity, Using Texture Of Main Atlas */
-	public static Entity addSprite(Entity e, int x, int y, String spriteName, int dir){
-		MapCharacterAnimationSetComponent mapCharAniComp = new MapCharacterAnimationSetComponent(globalSpriteAtlas, spriteName);
+	public static Entity addSprite(Entity e, int x, int y, SpriteID sprite, int dir){
+		String spriteName =  sprite.getPath();
+		MapCharacterAnimationSetComponent mapCharAniComp = new MapCharacterAnimationSetComponent(globalSpriteAtlas, sprite);
 		e.addComponent(mapCharAniComp);
 		e.addComponent(new ActiveCharacterSpriteAnimationComponent(mapCharAniComp.getActiveWalking(dir)));
 		e.addComponent(new ActiveCharacterSpriteComponent(mapCharAniComp.getActiveWalking(dir).currentFrame()));

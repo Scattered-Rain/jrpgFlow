@@ -7,6 +7,7 @@ import com.artemis.Component;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.scatteredRain.jrpgFlow.enums.SpriteID;
 import com.scatteredRain.jrpgFlow.general.Animation;
 
 /** Holds All Animations Of A Character Used On A Normal Map */
@@ -26,15 +27,23 @@ public class MapCharacterAnimationSetComponent extends Component{
 	
 	
 	/** Sets Up New Set Using A 4x4 Directional Sprite Sheet */
-	public MapCharacterAnimationSetComponent(TextureAtlas atlas, String textureName){
+	public MapCharacterAnimationSetComponent(TextureAtlas atlas, SpriteID sprite){
+		String textureName =  sprite.getPath();
+		int height = sprite.getHeight();
+		int width = sprite.getWidth();
 		AtlasRegion atlasRegion = atlas.findRegion(textureName);
-		TextureRegion[][] regions = atlasRegion.split(atlasRegion.getRegionWidth()/4, atlasRegion.getRegionHeight()/4);
+		TextureRegion[][] regions = atlasRegion.split(atlasRegion.getRegionWidth()/width, atlasRegion.getRegionHeight()/height);
 		this.single = null;
 		this.standing = new Animation[1][4];
 		this.walking = new Animation[1][4];
+		//The Maximum Of Directional Animations is 4, However if the given sprite contains less than 4 animations they will be filled in so that after the last actual given animation's index all animations will be the same as the last given animation
 		for(int c=0; c<4; c++){
-			this.standing[0][c] = new Animation(new TextureRegion[]{regions[c][0]}, Animation.LOOP);
-			this.walking[0][c] = new Animation(regions[c], Animation.LOOP);
+			int usedC = c;
+			if(c>=height-1){
+				usedC = height-1;
+			}
+			this.standing[0][c] = new Animation(new TextureRegion[]{regions[usedC][0]}, Animation.LOOP);
+			this.walking[0][c] = new Animation(regions[usedC], Animation.LOOP);
 		}
 		this.activeSingleIndex = -1;
 		this.activeStandingIndex = 0;

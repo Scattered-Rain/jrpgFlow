@@ -4,6 +4,13 @@ size: 256,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+chest
+  rotate: false
+  xy: 192, 42
+  size: 16, 44
+  orig: 16, 44
+  offset: 0, 0
+  index: -1
 elderlyGentleman
   rotate: false
   xy: 134, 2
