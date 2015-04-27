@@ -8,6 +8,7 @@ public enum SpriteID{
 	GENTLEMAN("elderlyGentleman", 4, 4),
 	STRAWHAT("strawhatBoy", 4, 4),
 	MAD_SCIENTIST("madScientist", 4, 4),
+	FEMALE_STUDENT("femaleStudent", 4, 4),
 	CHEST("chest", 2, 1);
 	
 	@Getter

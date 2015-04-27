@@ -3231,7 +3231,7 @@
    <properties>
     <property name="DIR" value="0"/>
     <property name="ID" value="0"/>
-    <property name="SPRITE" value="STRAWHAT"/>
+    <property name="SPRITE" value="FEMALE_STUDENT"/>
     <property name="TEXT" value="These flowers are really beautiful, don't you agree?"/>
    </properties>
   </object>

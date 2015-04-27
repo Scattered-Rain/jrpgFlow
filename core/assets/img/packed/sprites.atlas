@@ -1,33 +1,40 @@
 
 sprites.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 chest
   rotate: false
-  xy: 192, 42
+  xy: 266, 62
   size: 16, 44
   orig: 16, 44
   offset: 0, 0
   index: -1
 elderlyGentleman
   rotate: false
-  xy: 134, 2
+  xy: 208, 22
   size: 56, 84
   orig: 56, 84
   offset: 0, 0
   index: -1
+femaleStudent
+  rotate: false
+  xy: 2, 2
+  size: 72, 104
+  orig: 72, 104
+  offset: 0, 0
+  index: -1
 madScientist
   rotate: false
-  xy: 2, 6
+  xy: 76, 26
   size: 64, 80
   orig: 64, 80
   offset: 0, 0
   index: -1
 strawhatBoy
   rotate: false
-  xy: 68, 6
+  xy: 142, 26
   size: 64, 80
   orig: 64, 80
   offset: 0, 0
