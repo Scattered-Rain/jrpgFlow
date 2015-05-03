@@ -4,6 +4,7 @@ import static com.scatteredRain.jrpgFlow.Constants.*;
 import static com.scatteredRain.jrpgFlow.GlobalVariables.*;
 
 import java.util.Iterator;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,8 @@ import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerChara
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent.Entrance;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListComponent.Waypoint;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListPotentialComponent.PotentialCharacter;
+import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCharacterListPotentialComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapCollisionComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.MapComponent;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.map.TileMapRenderComponent;
@@ -45,6 +48,7 @@ import com.scatteredRain.jrpgFlow.enums.CharacterFactory;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.PlayerCharacterInput;
 import com.sun.xml.internal.fastinfoset.sax.Properties;
+
 import static com.scatteredRain.jrpgFlow.util.mapFactory.GenericCharacterFactory.*;
 import static com.scatteredRain.jrpgFlow.Constants.*;
 
@@ -79,11 +83,12 @@ public class MapFactory {
 		return e;
 	}
 	
-	
+	//TODO: Integrate The CharacterListPotentialComponent
 	private static MapCharacterListComponent readObjectLayers(World world, TiledMap map, int entranceId){
 		MapCharacterListComponent.Entrance entrance = null;
 		//Init Component To Store Chars Easily
 		MapCharacterListComponent characterList = null;
+		MapCharacterListPotentialComponent potentialCharacters = new MapCharacterListPotentialComponent();
 		int width = -1;
 		int height = -1;
 		Iterator<MapLayer> layerIterator = map.getLayers().iterator();
@@ -133,13 +138,21 @@ public class MapFactory {
 					}
 					//Find Other Objects
 					else{
-						//Adds All Actual Characters Here!
-						Entity character = GenericCharacterFactory.readObject(world.createEntity(), type, x, y, object, properties);
-						characterList.addEntity(x, y, character);
+						//Adds All Potential Characters To The Potential Character List Here
+						potentialCharacters.setPotentialCharacter(type, x, y, object, properties);
 					}
 				}
 			}
 		}
+		//Initialize potentialCharacterList and use it's mechanics to retrieve legal characters
+		potentialCharacters.completeInitialSetup();
+		List<PotentialCharacter> potentialCharacter = potentialCharacters.getHighestLegalForAll();
+		for(PotentialCharacter potChar : potentialCharacter){
+			//Adds All Actual Characters Here!
+			Entity character = GenericCharacterFactory.readObject(world.createEntity(), potChar.getType(), potChar.getX(), potChar.getY(), potChar.getObject(), potChar.getProperties());
+			characterList.addEntity(potChar.getX(), potChar.getY(), character);
+		}
+		characterList.setPotentialCharacterList(potentialCharacters);
 		//Add Player (At Entrance)
 		int playerX = -1;
 		int playerY = -1;

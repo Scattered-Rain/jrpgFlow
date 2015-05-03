@@ -45,7 +45,7 @@ public class JrpgFlow extends ApplicationAdapter {
 		calcZoom();
 		setupTween();
 		globalSpriteAtlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
-		GlobalVariables.globalPlayerSkin = SpriteID.CHEST;
+		GlobalVariables.globalPlayerSkin = SpriteID.MAD_SCIENTIST;
 		globalSkin = new Skin(Gdx.files.internal("json/skin.json"), new TextureAtlas(Gdx.files.internal("img/packed/ui.atlas")));
 		globalActiveWorldsList = new ActiveWorldList();
 		

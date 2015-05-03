@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import com.artemis.Component;
 import com.artemis.Entity;
@@ -19,6 +20,12 @@ public class MapCharacterListComponent extends Component{
 	private int width;
 	@Getter
 	private int height;
+	
+	@Setter
+	@Getter
+	/** Reference to the Potential Character List Component */
+	private MapCharacterListPotentialComponent potentialCharacterList;
+	
 	
 	/** List Of All Entrances On This Map */
 	@Getter private List<Entrance> entranceList;
@@ -84,7 +91,7 @@ public class MapCharacterListComponent extends Component{
 		this.setupWaypointList.add(waypoint);
 	}
 	
-	/** Called When The Initial Setup Of (As Done By the MapFactory) Is Finished Up */
+	/** Called When The Initial Setup Of (As Done By the MapFactory) Is Finished Up (Mainly Concerns Itself With Waypoints)*/
 	public void completeInitialSetup(){
 		Collections.sort(setupWaypointList);
 		int maxId = -1;
