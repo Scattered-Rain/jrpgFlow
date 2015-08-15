@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="10" tilewidth="16" tileheight="16" nextobjectid="11">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="10" tilewidth="16" tileheight="16" nextobjectid="13">
  <tileset firstgid="1" source="../../img/tilesets/basicIndoors.tsx"/>
  <tileset firstgid="1025" source="../../img/tilesets/indoor.tsx"/>
  <tileset firstgid="2049" name="smallSoft" tilewidth="16" tileheight="16">
@@ -3185,13 +3185,21 @@
     <property name="TRIGGER" value="PUSH"/>
    </properties>
   </object>
+  <object id="12" name="mainHall" type="WARP" gid="1634" x="0" y="128">
+   <properties>
+    <property name="ID" value="2"/>
+    <property name="MAP" value="HQ_INTROROOM"/>
+    <property name="TARGET" value="0"/>
+    <property name="TRIGGER" value="PUSH"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="smalltalkers">
   <object id="6" name="doorBlockingBook" type="SMALLTALK" gid="2480" x="16" y="128">
    <properties>
     <property name="DIR" value="0"/>
     <property name="ID" value="0"/>
-    <property name="SPAWN_COND_FORBID" value="GAME_VAR 0 &gt; 1"/>
+    <property name="SPAWN_COND_FORBID" value="GAME_VAR 0 != 1"/>
     <property name="SPRITE" value="OBJ_BOOK"/>
     <property name="TEXT" value="Game Design IV: Guiding the player's path subtly"/>
    </properties>
@@ -3208,6 +3216,12 @@
    <properties>
     <property name="DIR" value="2"/>
     <property name="ID" value="1"/>
+   </properties>
+  </object>
+  <object id="11" name="2 mainHallDoor" type="ENTER" gid="1665" x="16" y="128">
+   <properties>
+    <property name="DIR" value="1"/>
+    <property name="ID" value="2"/>
    </properties>
   </object>
  </objectgroup>
