@@ -3,6 +3,7 @@ package com.scatteredRain.jrpgFlow.artemis.components.maps.map;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +11,10 @@ import lombok.Data;
 import com.artemis.Component;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.scatteredRain.jrpgFlow.GlobalVariables;
+import com.scatteredRain.jrpgFlow.enums.CharacterFactory;
 import com.scatteredRain.jrpgFlow.enums.CharacterFactory.AttKey;
+import com.scatteredRain.jrpgFlow.enums.MapID;
 
 /** Holds The Basic Information Of All Characters on the map, used for updating & reseting Characters; Especially for Character version control */
 public class MapCharacterListPotentialComponent{
@@ -161,9 +165,68 @@ public class MapCharacterListPotentialComponent{
 			return subId - potChar.getSubId();
 		}
 		
-		//TODO: Add Checking For Conditions Here!!!!!!!!!!
+		//TODO: Add Boolean Checking for conditions
 		public boolean isLegal(){
-			return true;
+			boolean allow = true;
+			boolean forbid = false;
+			if(properties.containsKey(AttKey.SPAWN_COND_ALLOW.key())){
+				String condAllow = properties.get(AttKey.SPAWN_COND_ALLOW.key(), String.class);
+				allow = testVar(condAllow);
+			}
+			if(properties.containsKey(AttKey.SPAWN_COND_FORBID.key())){
+				String condForbid = properties.get(AttKey.SPAWN_COND_FORBID.key(), String.class);
+				forbid = testVar(condForbid);
+			}
+			return (allow & !forbid);
+		}
+		
+		//tests conditions
+		private boolean testVar(String condition){
+			int varValue = 0;
+			String comparator = "";
+			int compareValue = 0;
+			Scanner scan = new Scanner(condition);
+			String cod = scan.next();
+			scan.close();
+			if(cod.equals("GAME_VAR")){//GAME_VAR 13 = 4
+				Scanner s = new Scanner(condition);
+				s.next();
+				int index = s.nextInt();
+				varValue = GlobalVariables.globalGameVariables.getGameVariable(index);
+				comparator = s.next();
+				compareValue = s.nextInt();
+				s.close();
+			}
+			else if(cod.equals("SELF_VAR")){//SELF_VAR 13 = 4
+				Scanner s = new Scanner(condition);
+				s.next();
+				int index = s.nextInt();
+				varValue = GlobalVariables.globalGameVariables.getCharacterVariable(GlobalVariables.currentMapID, type, id, index);
+				comparator = s.next();
+				compareValue = s.nextInt();
+				s.close();
+			}
+			if(comparator.equals("==") && varValue==compareValue){
+				return true;
+			}
+			else if(comparator.equals(">") && varValue>compareValue){
+				return true;
+			}
+			else if(comparator.equals("<") && varValue<compareValue){
+				return true;
+			}
+			else if(comparator.equals(">=") && varValue>=compareValue){
+				return true;
+			}
+			else if(comparator.equals("<") && varValue<=compareValue){
+				return true;
+			}
+			else if(comparator.equals("!=") && varValue!=compareValue){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 		
 	}

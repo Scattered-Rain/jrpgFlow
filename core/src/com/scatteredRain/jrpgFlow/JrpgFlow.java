@@ -45,9 +45,11 @@ public class JrpgFlow extends ApplicationAdapter {
 		calcZoom();
 		setupTween();
 		globalSpriteAtlas = new TextureAtlas(Gdx.files.internal("img/packed/sprites.atlas"));
-		GlobalVariables.globalPlayerSkin = SpriteID.MAD_SCIENTIST;
+		GlobalVariables.globalPlayerSkin = SpriteID.SPRITE_PSY;
 		globalSkin = new Skin(Gdx.files.internal("json/skin.json"), new TextureAtlas(Gdx.files.internal("img/packed/ui.atlas")));
 		globalActiveWorldsList = new ActiveWorldList();
+		
+		globalGameVariables = new GameVariables();
 		
 		InputMultiplexer input = new InputMultiplexer();
 		Gdx.input.setInputProcessor(input);
@@ -58,12 +60,12 @@ public class JrpgFlow extends ApplicationAdapter {
 		input.addProcessor(ActiveWorldList.TOTAL_WORLDS-ActiveWorldList.TEXTBOX_WORLD-1, new TextboxInput(activeWorlds[1].getSystem(TextboxRenderSystem.class)));
 		
 		input.addProcessor(ActiveWorldList.TOTAL_WORLDS-ActiveWorldList.MAP_WORLD-1, new PlayerCharacterInput());
-		activeWorlds[ActiveWorldList.MAP_WORLD] = WorldFactory.buildMapWorld(MapID.DEBUG_FIRST, 0);
+		MapID startMap = MapID.HQ_REANCHAMBER;
+		GlobalVariables.currentMapID = startMap;
+		activeWorlds[ActiveWorldList.MAP_WORLD] = WorldFactory.buildMapWorld(startMap, 0);
 		
 		
 		globalActiveWorldsList.setAciveWorlds(activeWorlds);
-		
-		globalGameVariables = new GameVariables();
 	}
 	
 	/** Calcualate Zoom Level (Slightly Adjust The Zoom Level According To Screen Size So Pixels Do Not Get All Stretchy) */

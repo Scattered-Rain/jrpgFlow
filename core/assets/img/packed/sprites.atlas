@@ -1,40 +1,124 @@
 
 sprites.png
-size: 512,128
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 chest
   rotate: false
-  xy: 266, 62
+  xy: 926, 80
   size: 16, 44
   orig: 16, 44
   offset: 0, 0
   index: -1
 elderlyGentleman
   rotate: false
-  xy: 208, 22
+  xy: 868, 40
   size: 56, 84
   orig: 56, 84
   offset: 0, 0
   index: -1
 femaleStudent
   rotate: false
-  xy: 2, 2
+  xy: 2, 20
+  size: 72, 104
+  orig: 72, 104
+  offset: 0, 0
+  index: -1
+sprite_tomoko
+  rotate: false
+  xy: 2, 20
   size: 72, 104
   orig: 72, 104
   offset: 0, 0
   index: -1
 madScientist
   rotate: false
-  xy: 76, 26
+  xy: 736, 44
   size: 64, 80
   orig: 64, 80
   offset: 0, 0
   index: -1
+object_book
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+sprite_agent
+  rotate: false
+  xy: 76, 20
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+sprite_avinashi
+  rotate: false
+  xy: 142, 20
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+sprite_base
+  rotate: false
+  xy: 670, 28
+  size: 64, 96
+  orig: 64, 96
+  offset: 0, 0
+  index: -1
+sprite_cop
+  rotate: false
+  xy: 208, 20
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+sprite_drJay
+  rotate: false
+  xy: 274, 20
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+sprite_heiko
+  rotate: false
+  xy: 604, 24
+  size: 64, 100
+  orig: 64, 100
+  offset: 0, 0
+  index: -1
+sprite_inmate
+  rotate: false
+  xy: 340, 16
+  size: 64, 108
+  orig: 64, 108
+  offset: 0, 0
+  index: -1
+sprite_midori
+  rotate: false
+  xy: 472, 20
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+sprite_psy
+  rotate: false
+  xy: 538, 20
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+sprite_tech
+  rotate: false
+  xy: 406, 16
+  size: 64, 108
+  orig: 64, 108
+  offset: 0, 0
+  index: -1
 strawhatBoy
   rotate: false
-  xy: 142, 26
+  xy: 802, 44
   size: 64, 80
   orig: 64, 80
   offset: 0, 0

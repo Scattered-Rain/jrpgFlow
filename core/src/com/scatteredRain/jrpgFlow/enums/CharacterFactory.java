@@ -1,15 +1,19 @@
 package com.scatteredRain.jrpgFlow.enums;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import static com.scatteredRain.jrpgFlow.util.mapFactory.GenericCharacterFactory.*;
 
 import com.artemis.Entity;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.scatteredRain.jrpgFlow.action.Action;
+import com.scatteredRain.jrpgFlow.action.MultiAction;
 import com.scatteredRain.jrpgFlow.action.characterAction.Smalltalk;
+import com.scatteredRain.jrpgFlow.action.characterAction.SmalltalkAndWalk;
+import com.scatteredRain.jrpgFlow.action.coreAction.SwitchVar;
 import com.scatteredRain.jrpgFlow.action.coreAction.Teleport;
 import com.scatteredRain.jrpgFlow.action.coreAction.Textboxing;
 import com.scatteredRain.jrpgFlow.artemis.components.maps.characters.PlayerInteractionComponent;
@@ -66,13 +70,43 @@ public class CharacterFactory {
 				addExistence(e, x, y, dir, true);
 				addSprite(e, x, y, SpriteID.valueOf(spriteName), dir);
 				addMovabililty(e);
+				ArrayList actions = new ArrayList<Action>();
 				Action smalltalk = new Smalltalk(e, text);
-				e.addComponent(new PlayerInteractionComponent(PlayerInteractionComponent.TALKING, smalltalk));
+				actions.add(smalltalk);
+				if(properties.containsKey(AttKey.SWITCH_VAR.key())){
+					Action switchVar = new SwitchVar(properties);
+					actions.add(switchVar);
+				}
+				Action action = new MultiAction(actions);
+				e.addComponent(new PlayerInteractionComponent(PlayerInteractionComponent.TALKING, action));
 				return e;
 			}
-		});
+		}),
 		
+		SMALLTALK_WALK(new CharConstruct(){
+			public Entity build(Entity e, int x, int y, RectangleMapObject object, MapProperties properties){
+				int dir = Integer.parseInt(properties.get(AttKey.DIRECTION.key(), String.class));
+				String text = properties.get(AttKey.TEXT.key(), String.class);
+				String text2 = properties.get(AttKey.TEXT2.key(), String.class);
+				String spriteName = properties.get(AttKey.SPRITE.key(), String.class);
+				//Process---
+				addExistence(e, x, y, dir, true);
+				addSprite(e, x, y, SpriteID.valueOf(spriteName), dir);
+				addMovabililty(e);
+				ArrayList actions = new ArrayList<Action>();
+				Action smalltalk = new SmalltalkAndWalk(e, text, text2);
+				actions.add(smalltalk);
+				if(properties.containsKey(AttKey.SWITCH_VAR.key())){
+					Action switchVar = new SwitchVar(properties);
+					actions.add(switchVar);
+				}
+				Action action = new MultiAction(actions);
+				e.addComponent(new PlayerInteractionComponent(PlayerInteractionComponent.TALKING, action));
+				return e;
+			}
+		}),
 		
+		;
 		
 		/** The Character Constructor Method Of The Character Factory In Question */
 		private CharConstruct charConstructor;
@@ -95,14 +129,18 @@ public class CharacterFactory {
 		SUB_ID("SUB_ID"),
 		DIRECTION("DIR"),
 		TEXT("TEXT"),
+		TEXT2("TEXT2"),
 		MAP("MAP"),
 		TARGET("TARGET"),
 		SPRITE("SPRITE"),
-		TRIGGER("TRIGGER");
+		TRIGGER("TRIGGER"),
+		SPAWN_COND_ALLOW("SPAWN_COND_ALLOW"),//GAME_VAR 13 = 4
+		SPAWN_COND_FORBID("SPAWN_COND_FORBID"),
+		SWITCH_VAR("SWITCH_VAR");//GAME_VAR 13 = 4
 		
 		/** The String Representing The Attribute In Question */
 		private String key;
-		/** Retruns Key String */
+		/** Returns Key String */
 		public String key(){
 			return key;
 		}
@@ -117,6 +155,7 @@ public class CharacterFactory {
 		TRIGGER_LOOK("LOOK"),
 		TRIGGER_TOUCH("TOUCH"),
 		TRIGGER_PUSH("PUSH");
+		
 		
 		/** The String Representing The Attribute In Question */
 		private String val;

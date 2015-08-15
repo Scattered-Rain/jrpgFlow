@@ -12,42 +12,53 @@ import com.scatteredRain.jrpgFlow.action.coreAction.Turning;
 import com.scatteredRain.jrpgFlow.general.aiMovement.AIMovement;
 import com.scatteredRain.jrpgFlow.general.aiMovement.FollowWaypointsMovement;
 
-public class Smalltalk extends CharacterAction{
+public class SmalltalkAndWalk extends CharacterAction{
 	
 	private Textboxing textbox;
 	private AddMovement movement;
 	
 	private String text;
+	private String text2;
 	
-	public Smalltalk(Entity entity, String text) {
+	private boolean walked;
+	
+	public SmalltalkAndWalk(Entity entity, String text, String text2) {
 		super(entity);
 		this.text = text;
+		this.text2 = text2;
+		this.walked = false;
 		setup();
 	}
 	
 	public void setup(){
 		
-		this.textbox = new Textboxing(text);
+		if(!walked){
+			this.textbox = new Textboxing(text);
+			
+			AIMovement ai = new FollowWaypointsMovement(owner, 0);
+			this.movement = new AddMovement(owner, ai);
+			
+			ActionCompletionListener acl = new ActionCompletionListener(movement);
+			textbox.injectCompletionListener(acl);
+			
+			ResetCharacterAction reset = new ResetCharacterAction(this);
+			ai.injectCompletionListener(new ActionCompletionListener(reset));
+		}
+		else{
+			this.textbox = new Textboxing(text2);
+		}
 		
-//		//TODO: Remove this code from he Smalltalk Action
-//		AIMovement ai = new FollowWaypointsMovement(owner, 0);
-//		this.movement = new AddMovement(owner, ai);
-//		
-//		ActionCompletionListener acl = new ActionCompletionListener(movement);
-//		textbox.injectCompletionListener(acl);
-//		
-//		ResetCharacterAction reset = new ResetCharacterAction(this);
-//		ai.injectCompletionListener(new ActionCompletionListener(reset));
-//		
+		
 	}
 	
 	public void act(){
 		if(allowAct){
+			this.walked = true;
 			super.act();
 			Action turning = new Turning(super.owner, getOwnerToPlayerDirection());
 			turning.act();
 			textbox.act();
-			//allowAct = false;
+			allowAct = true;
 		}
 	}
 	

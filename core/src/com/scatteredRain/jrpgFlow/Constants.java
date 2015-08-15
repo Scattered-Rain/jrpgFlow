@@ -31,7 +31,7 @@ public class Constants {
 	/** The Game's Zoom Level (Gets Slightly Adjusted Depending On Screen Size) */
 	public static float ZOOM = 0; 
 	/** Original Zoom Used To Calculate Actual Zoom */
-	public static final float BASE_ZOOM = TILE_SIZE*16;//12
+	public static final float BASE_ZOOM = TILE_SIZE*12;//12
 	
 	
 	/** The IDs corresponding to the directions */

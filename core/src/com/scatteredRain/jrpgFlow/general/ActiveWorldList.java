@@ -10,6 +10,7 @@ import com.artemis.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.scatteredRain.jrpgFlow.GlobalVariables;
 import com.scatteredRain.jrpgFlow.action.Action;
 import com.scatteredRain.jrpgFlow.action.coreAction.Teleport;
 import com.scatteredRain.jrpgFlow.artemis.systems.TextboxRenderSystem;
@@ -78,6 +79,7 @@ public class ActiveWorldList {
 	}
 	
 	public void switchMaps(MapID map, int enter){
+		GlobalVariables.currentMapID = map;
 		if(activeWorlds!=null && activeWorlds[MAP_WORLD] != null){
 			activeWorlds[MAP_WORLD].dispose();
 		}

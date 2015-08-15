@@ -11,12 +11,16 @@ public class GameVariables {
 	/** List That Contains The Variables Of All Characters, First Layer Map Id, Ordered; Second Layer Charcters, Unordered */
 	private List<List<CharacterVariableSet>> characterVariables;
 	
+	/** List That contains all Game Variables */
+	private VariableSet gameVariables;
+	
 	/** Constructs New */
 	public GameVariables(){
 		this.characterVariables = new ArrayList<List<CharacterVariableSet>>();
+		this.gameVariables = new VariableSet();
 	}
 	
-	
+	//Characters
 	/** Set Given Character's Integer Variable At Given Index */
 	public void setCharacterVariable(MapID map, String type, int id, int variableIndex, int variableValue){
 		CharacterVariableSet set = requestCharacterVariableSet(map, type, id);
@@ -41,8 +45,29 @@ public class GameVariables {
 		return set.getSwitch(variableIndex);
 	}
 	
+	//Game Variables
+	/** Set Given Game Variable At Given Index */
+	public void setGameVariable(int variableIndex, int variableValue){
+		gameVariables.setVar(variableIndex, variableValue);
+	}
+	
+	/** Set Given Game Variable Boolean Variable At Given Index */
+	public void setGameBoolean(int variableIndex, boolean variableValue){
+		gameVariables.setSwitch(variableIndex, variableValue);
+	}
+	
+	/** Returns Given Game Variable Integer Variable At Given Index */
+	public int getGameVariable(int variableIndex){
+		return gameVariables.getVar(variableIndex);
+	}
+	
+	/** Returns Given Game Variable Boolean Variable At Given Index */
+	public boolean getGameBoolean(int variableIndex){
+		return gameVariables.getSwitch(variableIndex);
+	}
 	
 	
+	//Util
 	/** Internally Retrieve, And If Not Existent Yet, Create CharacterVariableSet Of Given Identification */
 	private CharacterVariableSet requestCharacterVariableSet(MapID map, String type, int id){
 		//Fill The List Up To Contain The Given Index If Not Already Contained

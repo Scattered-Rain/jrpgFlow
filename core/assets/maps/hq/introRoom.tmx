@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="4">
+ <tileset firstgid="1" source="../../img/tilesets/basicIndoors.tsx"/>
+ <tileset firstgid="1025" source="../../img/tilesets/indoor.tsx"/>
+ <layer name="black" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj0gMAAYeAQE=
+  </data>
+ </layer>
+ <layer name="ground" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwm4AHEiDuxCJ/1JODCx+vHhUTC4AAB62wqR
+  </data>
+ </layer>
+ <layer name="wall" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFMMAFpV/gwCDAjUe/FpTmYMSOQUCbCP34wGDW70WEfm8i1IwC+gEAb0IHpQ==
+  </data>
+ </layer>
+ <layer name="wallDeco" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFyOAFEAcAcRAQ+wOxLBDLIckRAhyMDAwFQLoIiPOB2BaI7ZDkRsEoGEwAAJRtBNs=
+  </data>
+ </layer>
+ <layer name="shines" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B2gJ+RgUEAiAUZB9olowAbAABWCQA0
+  </data>
+ </layer>
+ <layer name="details" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1AQljOTJwcAUPGrwyVELDHX3jwLSAADRwAQp
+  </data>
+ </layer>
+ <layer name="top" width="16" height="16">
+  <properties>
+   <property name="top" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B6gIMAHgWDCwAAbIAAQQ==
+  </data>
+ </layer>
+ <objectgroup name="warps">
+  <object id="1" name="reanChamber" type="WARP" gid="1634" x="144" y="176">
+   <properties>
+    <property name="ID" value="0"/>
+    <property name="MAP" value="HQ_HALLWAY1"/>
+    <property name="TARGET" value="1"/>
+    <property name="TRIGGER" value="PUSH"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="entrances">
+  <object id="3" name="0 enter" type="ENTER" gid="1665" x="144" y="160">
+   <properties>
+    <property name="DIR" value="0"/>
+    <property name="ID" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

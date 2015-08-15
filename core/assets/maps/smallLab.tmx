@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="7" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="7" tilewidth="16" tileheight="16" nextobjectid="6">
  <tileset firstgid="1" source="../img/tilesets/indoor.tsx"/>
  <layer name="invisibleWalls" width="10" height="7">
   <data encoding="base64">
@@ -30,7 +30,7 @@
   </data>
  </layer>
  <objectgroup name="entrances">
-  <object name="0 entrance" type="ENTER" gid="641" x="64" y="96">
+  <object id="1" name="0 entrance" type="ENTER" gid="641" x="64" y="96">
    <properties>
     <property name="DIR" value="0"/>
     <property name="ID" value="0"/>
@@ -38,7 +38,7 @@
   </object>
  </objectgroup>
  <objectgroup name="warps">
-  <object name="out" type="WARP" gid="610" x="64" y="112">
+  <object id="2" name="out" type="WARP" gid="610" x="64" y="112">
    <properties>
     <property name="ID" value="0"/>
     <property name="MAP" value="DEBUG_FIRST"/>
@@ -48,19 +48,19 @@
   </object>
  </objectgroup>
  <objectgroup name="signs">
-  <object name="controlUnit" type="SIGN" gid="610" x="144" y="80">
+  <object id="3" name="controlUnit" type="SIGN" gid="610" x="144" y="80">
    <properties>
     <property name="ID" value="0"/>
     <property name="TEXT" value="Protein Delivery: OK\nHeat Management: OK\nTissue Repair: Uncertain\nProgress: 76%"/>
    </properties>
   </object>
-  <object name="books" type="SIGN" gid="610" x="48" y="48">
+  <object id="4" name="books" type="SIGN" gid="610" x="48" y="48">
    <properties>
     <property name="ID" value="1"/>
     <property name="TEXT" value="This pile of books contains everything from 'How To Kill A Zombie Man' to 'Resurecting The Dead, A Beginner's Guide To Modern Age Necromancy'"/>
    </properties>
   </object>
-  <object name="book" type="SIGN" gid="610" x="32" y="64">
+  <object id="5" name="book" type="SIGN" gid="610" x="32" y="64">
    <properties>
     <property name="ID" value="2"/>
     <property name="TEXT" value="'Frankenstein'"/>

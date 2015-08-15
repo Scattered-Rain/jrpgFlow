@@ -5,6 +5,7 @@ import aurelienribon.tweenengine.TweenManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.scatteredRain.jrpgFlow.enums.MapID;
 import com.scatteredRain.jrpgFlow.enums.SpriteID;
 import com.scatteredRain.jrpgFlow.general.ActiveWorldList;
 import com.scatteredRain.jrpgFlow.general.gameVariables.GameVariables;
@@ -31,5 +32,8 @@ public class GlobalVariables {
 	
 	/** The Default Skin That Is Used By The Game */
 	public static Skin globalSkin;
+	
+	/** Current Map's MapID */
+	public static MapID currentMapID;
 	
 }
