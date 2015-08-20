@@ -3117,12 +3117,12 @@
  </layer>
  <layer name="ground" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjYBg44EgAD7Q6YgAA4K0IIQ==
+   eJxjYBg4wEYAD7Q6YgAAXMAAwQ==
   </data>
  </layer>
  <layer name="wall" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjYCAOcAHxCgKYG4i1gPgEAawNVUcI0EKdFxHqvIlQAwMA3TUNfw==
+   eJxjYCAOcAHxCwKYG4i1gJiDET/WhqojBGihzosIdd5EqIEBALvwCYc=
   </data>
  </layer>
  <layer name="wallDeco" width="10" height="8">

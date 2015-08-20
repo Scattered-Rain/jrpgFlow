@@ -76,21 +76,6 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="43">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="44">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="45">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
  <tile id="64">
   <properties>
    <property name="ground" value=""/>
@@ -201,31 +186,6 @@
    <property name="coll" value=""/>
   </properties>
  </tile>
- <tile id="137">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="138">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="139">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="140">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="141">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
  <tile id="166">
   <properties>
    <property name="coll" value=""/>
@@ -322,21 +282,6 @@
   </properties>
  </tile>
  <tile id="234">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="235">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="236">
-  <properties>
-   <property name="coll" value=""/>
-  </properties>
- </tile>
- <tile id="237">
   <properties>
    <property name="coll" value=""/>
   </properties>

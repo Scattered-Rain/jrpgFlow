@@ -3188,7 +3188,7 @@
   <object id="12" name="mainHall" type="WARP" gid="1634" x="0" y="128">
    <properties>
     <property name="ID" value="2"/>
-    <property name="MAP" value="HQ_INTROROOM"/>
+    <property name="MAP" value="HQ_LAB_DUNGEON"/>
     <property name="TARGET" value="0"/>
     <property name="TRIGGER" value="PUSH"/>
    </properties>
@@ -3197,11 +3197,11 @@
  <objectgroup name="smalltalkers">
   <object id="6" name="doorBlockingBook" type="SMALLTALK" gid="2480" x="16" y="128">
    <properties>
-    <property name="DIR" value="0"/>
+    <property name="DIR" value="1"/>
     <property name="ID" value="0"/>
     <property name="SPAWN_COND_FORBID" value="GAME_VAR 0 != 1"/>
-    <property name="SPRITE" value="OBJ_BOOK"/>
-    <property name="TEXT" value="Game Design IV: Guiding the player's path subtly"/>
+    <property name="SPRITE" value="SPRITE_DUDE"/>
+    <property name="TEXT" value="Zombie:\n&quot;Sorry, I've been given strict orders not to let anyone pass without having passed basic training.&quot;"/>
    </properties>
   </object>
  </objectgroup>

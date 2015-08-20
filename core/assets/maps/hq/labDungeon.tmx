@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="45" tilewidth="16" tileheight="16" nextobjectid="2">
+ <tileset firstgid="1" source="../../img/tilesets/basicIndoors.tsx"/>
+ <tileset firstgid="1025" source="../../img/tilesets/indoor.tsx"/>
+ <layer name="black" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAMw6DOv+kLOSSsmqqqqqqqqvriARB9Bwk=
+  </data>
+ </layer>
+ <layer name="ground" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztlEEOwCAIBHvy/0/usY0RXYXV1TiJlxZ0DODzXC4f6bfUSIWFxs7A49eTe6pffjYSU4o92Q+pRe1bK99ba6RvRpaKn7UP2w/NY3P9uLT6yopj9CLit3KWFf287wZyD4YfelYvvXm7+ln/Z/uNEjE3TM9d/NDvPXERb4GqX6s+qn4RcREx1v0j/XJGZmk3PyaqfugMIP2n4ufpMwW/kf6P9PPstRJGfSNRcKix2k/hvanBmtEodvVTQ9ltBi/V0g4d
+  </data>
+ </layer>
+ <layer name="walls" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzdmEtywyAQRKWVEucm1k3i+58h8S0iLVTBne5hGD5SpatYGIF4wPysafo/um3tO2kf5+K8aGd7bu1t/m1fE2fEfYzYy31r7/Nr37L9XsXYdB/HXnoy30W/4kMt819mNvcsPu/cqD5F/4P09eJjdo22kq69inlPwXKDZ6lNemyR2TXaN3s/+jX60cGHPrYU2qJ1LwtZm/UpHXzW8xq+Wl2Fb1+H+dJD9KfPc4ruj/lMD+X4VN5CPisOHHM8sQKVO3+Vt9Cn0Z9Z3rBiRfQOVN5Cn875c9RXcmfeyr+jfLn4zPLCaD4ldW+4loovqaKxJnJ/jM+r0nkt+FgdqhrL5VadkDtzlRdSPlaHqsZyeY/43jJvI1+LWN+Tz4opnliPcWeFd6t1kcHiy+2nJO6k+VfVyngvVk1dy6fGK/tn92LV1L34WoxrFevRflryoSK5oDS/7crt+xhzyGPTnvjSq3722LQnvlh+WvP9JRpjWX3K+Gvr5F7/La16+gp8lkr4PD7HNPL7UCt5443nP3lEJfXMGWcUrWdG8imxema0SuuF0Srh6+UDlmq/k40Scl6JbZR+ALsRoD0=
+  </data>
+ </layer>
+ <layer name="wallDeco" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzt1kkKgDAMBVBvoAvnS+jC+ZQexSOaRQPdKIFUI/Y/+JRCC4HQkiT5n52SWRdx46D01kUAGCgVd9NgVVybFHe7YFUAxKUVntP8Hxqb8Jzm/wCAMCpKTWncvnDrGzOExExZKKvbj26NeYbg3uSmVVzj3gymVdj6am9YzL2BOBRemP8upbP0U0YvzH+X0lkaAAAAbJxx5AZr
+  </data>
+ </layer>
+ <layer name="shines" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzt2bENwCAUQ0H/CQKTJOy/HHRMgChyJ73evRPY3kq+1ajbSwAAAAAAAM54Kmmr/tM/ZAJEAwDH
+  </data>
+ </layer>
+ <layer name="details1" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztmF8SgiAQxsHjZNO/p+pMTbfoBF5D7a2O0VHSG7Q8MOEmSMgKlL+ZnXQS+MaF3W9kbGYmDW6csTt/3xd8+Fk8hhIXfeqz1JrH6MOYxk7BlHl1gUrfOmNsA7GDKOG+gqg9zn/RrGVLHnFOfEJ9VmVufeeXgjKinFegpYa48u51KtjuK/m/2CdifzzhuoFolTFqfXA5y6Z1C097/wHRjJuiQ+i+gPOH9djqk8+1PXNKFrx/jM28sZKKPnmetlk3DyF8ZyyE9oS/iqzxos+KvdZX63P+6Q1j9w1TsYf3sYT3s4I4avrftx5GV9eFf1Y9NM5DXx8W+k4w9mzQJ72M9DO2/sAVah+v65NYd4oeLlVsvkmE7G+Ua+aormJvZUPsPX8ol/i3DS3YI4fsv71ZasRQb0zEpgeToj6XmjtDywuDAIhA
+  </data>
+ </layer>
+ <layer name="details2" width="40" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzt1LENgCAUBNAPOwn7T2WwsrGFwkQC8b0FrrjcRQCwi5Yijvx9Ts3zsoD3yrPVOtiqLQPs7Ur9L/fx69MRrOcc/CoA/MkNPlML7w==
+  </data>
+ </layer>
+ <layer name="top1" width="40" height="45">
+  <properties>
+   <property name="top" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztWMFOwzAMTXYZ0MOAE+L/uAGXSfATbNzgs2B/hKPJmvHsxMmSJqA9yWq7Ju3r/GK/1rkzztjjwzv36Q/Ha58eS+e8wPbVH7Yj8KNjJc6j8OOIzS3FBcQlOV5GxnJ+S2H+qXiEeIJ4LpjbKoerhXPXELcQb3C8gdhWvP6Dci8rpkrP3GqNIjC3ufkNOgsaa71WMbeYX9S3FJLm+Rjtd36+iGvDPOViA1y2EO/+9z7C2gPwfNCJpo+S+pD6/626wvNBJ0EfX7D/DbEjc2h9KFnLsfuuG2o/Bp4/nkcrJzovVxMx8PxxPlLf4j2P1pedcE3EFeNiefZaOdN0TLXMn8tSa1L8Wnu4FJAfrqebxT4Pc/WFFFI5qVn3OVp4wjkQq/G5c6jONf1b+jcF1vjQZ4PWpFo/+WNvWNMXjgpL7u5Iz7tX+h/3MKn6otX14J+ph+Z5kPqwhR96GfQzeD/ePzR+uaA+XtMqfT/L9ZVan+S8JQ83B2L9zeKna9fWOWD5JtGzv7W858TqKvdWFvTq+Vakcsm3wXtKfUvrV6d6s9SaK1ljtD729mYx/If6URMj1JsYRuPD8Rf54XvUCGtAqnOx79G9MMJ/1RM/hZyHnQ==
+  </data>
+ </layer>
+ <layer name="top2" width="40" height="45">
+  <properties>
+   <property name="top" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztl00OQDAUhFt3wE0cjZsSDmJhpRILGn/ltW8S863Jm5qZFzWGpKK2xjQ27NmQd77yRl9K0PWFQH249O7ceRZ/Tpmlm3XGn30m/2Ob95DsF2tXy4uuSnQZvY/a+qTnD8JnkdY3geuLxdK31sr7I0Xl9I1W3h+iz5K5s12u/b8mhb8H0PbCFz0pPPLv5xr3dbLn6Nsj+YSejdj6uou9+oQ7L9lBggJ6JtH0+FAfIfrMB5Y3Xg==
+  </data>
+ </layer>
+ <objectgroup name="entrances">
+  <object id="1" name="0 mainEntrance" type="ENTER" gid="1665" x="272" y="704">
+   <properties>
+    <property name="DIR" value="0"/>
+    <property name="ID" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

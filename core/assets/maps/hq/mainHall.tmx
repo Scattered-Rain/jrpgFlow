@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="14" tilewidth="16" tileheight="16" nextobjectid="2">
+ <tileset firstgid="1" source="../../img/tilesets/basicIndoors.tsx"/>
+ <tileset firstgid="1025" source="../../img/tilesets/indoor.tsx"/>
+ <layer name="black" width="19" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj2I8GAAvIgEL
+  </data>
+ </layer>
+ <layer name="ground" width="19" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFKkCsCsRqZOqH6YXRrkDsBjUXhokFML3IZsDMJdUsZLchA5i5pAKYmwiZjw2gux2bX5DNxxd2MHHkcEEPIxUc6tABtjiDsbGZiawO3U3YwocYOfQwJCfdELKHUgAA0AEO1A==
+  </data>
+ </layer>
+ <layer name="walls" width="19" height="14">
+  <data encoding="base64" compression="zlib">
+   eJy9UlsOgCAM2zfeRG6iB1VOotxK9rGkqUAGJjbZh3t0o1XkH4QSJ8TyYT6VuCGOQd4VZjPVLqhFJ5cHHq7NybU38qiR6oC32X7O8YxAH+qboGZ6cw59wffiTtU30zf7wD3GFWjnDPRO04a9H4XeGeX9D+Db2VP0rjbX6+9hds6LB66zJVs=
+  </data>
+ </layer>
+ <layer name="wallDeco" width="19" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAfEAXifiAWoMCMCVD9pkC8HogNgFgESZwUsAGqHxmY4BAf6UAMjU9OeMOAGRp/NLwHPwAAIXQG3Q==
+  </data>
+ </layer>
+ <layer name="shines" width="19" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF+owMDAZAbMhIXf2UmjsKSAODNbz5ge4RAGJBIt1FqnpK9REDACkNAuY=
+  </data>
+ </layer>
+ <layer name="details" width="19" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiZgIuRemZpUdGsgQBZQJyNRZyHiYGBl4k0s7qAuBuLuA7QHF0g7gWGVT+B8IKpWQVkr8ajbi1QzXoCZhGjZhQQBgCoDAjo
+  </data>
+ </layer>
+ <layer name="top" width="19" height="14">
+  <properties>
+   <property name="top" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwlwIrHZgZgDi9gooD6AhTV6eBOSIwZwIGFaqKdUHzEAANQoALE=
+  </data>
+ </layer>
+ <objectgroup name="entrances">
+  <object id="1" name="0 hallway1Door" type="ENTER" gid="1665" x="144" y="192">
+   <properties>
+    <property name="DIR" value="0"/>
+    <property name="ID" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
